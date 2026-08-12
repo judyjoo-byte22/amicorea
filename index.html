@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>센트26 멕시코 선교 마스터북</title>
+  <title>센트26 아미꼬레아 멕시코 선교 마스터북</title>
   <style>
     :root {
       --primary: #d9532f;     /* 멕시코 테라코타 레드/오렌지 */
@@ -30,7 +30,6 @@
       position: relative;
       overflow: hidden;
     }
-    /* Papel Picado (멕시코 파티 깃발) 느낌 패턴 연출 */
     header::before {
       content: "🎉 🇲🇽 🌵 ☀️ 🇲🇽 🎉";
       display: block;
@@ -105,7 +104,6 @@
       padding-bottom: 8px;
     }
 
-    /* 알림 박스 */
     .notice {
       background: #fff8e7;
       border-left: 4px solid var(--accent);
@@ -172,16 +170,38 @@
       display: inline-block;
     }
 
-    /* 예산안 & 준비물 UI */
+    /* 예산 요약 대시보드 UI */
+    .budget-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .summary-box {
+      background: #fdfaf6;
+      border: 1px solid #f0e6df;
+      border-radius: 10px;
+      padding: 10px 4px;
+    }
+    .summary-label { font-size: 0.72rem; color: #666; font-weight: bold; margin-bottom: 4px; }
+    .summary-value { font-size: 0.95rem; font-weight: 800; color: var(--primary); }
+    .summary-value.used { color: var(--accent-warm); }
+    .summary-value.remain { color: var(--secondary); }
+
     .budget-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.88rem; }
     .budget-name { font-weight: 600; color: #444; }
     .budget-val { color: var(--primary); font-weight: 800; }
 
+    /* 준비물 체크리스트 UI & 구매태그 */
     .check-card-item { border-bottom: 1px solid #f5ede6; padding: 12px 0; }
     .check-card-title { font-weight: 700; font-size: 0.92rem; color: #333; display: flex; justify-content: space-between; align-items: center; }
+    .tag-group { display: flex; gap: 4px; }
     .check-tag { font-size: 0.7rem; padding: 3px 8px; border-radius: 12px; font-weight: 700; }
     .tag-kr { background: #e3f2fd; color: #1976d2; }
     .tag-carry { background: #f3e5f5; color: #7b1fa2; }
+    .tag-done { background: #e8f5e9; color: #2e7d32; } /* 구매/준비 완료 */
+    .tag-plan { background: #fff3e0; color: #e65100; } /* 구매 예정 */
     .check-sub { font-size: 0.8rem; color: #777; margin-top: 4px; }
 
     /* 버튼 스타일 */
@@ -330,67 +350,133 @@
       </div>
     </div>
 
-    <!-- 3. 준비물 탭 -->
+    <!-- 3. 준비물 탭 (구매 상태 태그 반영) -->
     <div id="tab-checklist" class="section">
       <div class="card">
-        <div class="card-title">📦 출국 전 체크리스트</div>
+        <div class="card-title">📦 출국 전 준비물 체크리스트</div>
         <div class="notice">⚠️ 위탁 수하물 금지 품목(보조배터리 등)을 꼭 확인하세요!</div>
 
         <div class="check-card-item">
-          <div class="check-card-title">여권 및 여권 사본 <span class="check-tag tag-carry">기내</span></div>
+          <div class="check-card-title">
+            여권 및 여권 사본
+            <div class="tag-group">
+              <span class="check-tag tag-carry">기내</span>
+              <span class="check-tag tag-done">준비 완료</span>
+            </div>
+          </div>
           <div class="check-sub">만료일 6개월 이상 남았는지 필히 확인</div>
         </div>
 
         <div class="check-card-item">
-          <div class="check-card-title">이티켓(항공권) 및 숙소 바우처 <span class="check-tag tag-carry">기내</span></div>
-          <div class="check-sub">모바일 저장 및 출력본 권장</div>
+          <div class="check-card-title">
+            사진 프린터 & 전용 인화지
+            <div class="tag-group">
+              <span class="check-tag tag-kr">국내</span>
+              <span class="check-tag tag-done">구매 완료</span>
+            </div>
+          </div>
+          <div class="check-sub">담당: 사진팀 | 현지교회 가족사진 사역용</div>
         </div>
 
         <div class="check-card-item">
-          <div class="check-card-title">개인 소독제 및 마스크 <span class="check-tag tag-carry">기내</span></div>
-          <div class="check-sub">장시간 비행 및 현지 위생 관리용</div>
+          <div class="check-card-title">
+            한국의 날 요리 재료 (제육, 김밥, 만두)
+            <div class="tag-group">
+              <span class="check-tag tag-plan">구매 예정</span>
+            </div>
+          </div>
+          <div class="check-sub">담당: 요리팀 | 현지 미국/멕시코 마트 구매 예정</div>
         </div>
 
         <div class="check-card-item">
-          <div class="check-card-title">목베개, 안대, 귀마개 <span class="check-tag tag-carry">기내</span></div>
-          <div class="check-sub">컨디션 조절용 필수템</div>
+          <div class="check-card-title">
+            샌드위치 200개 재료 & 음료
+            <div class="tag-group">
+              <span class="check-tag tag-plan">구매 예정</span>
+            </div>
+          </div>
+          <div class="check-sub">담당: 요리팀 | 리햅센터 제공용 (현지 구매)</div>
         </div>
 
         <div class="check-card-item">
-          <div class="check-card-title">충전 케이블 및 보조배터리 <span class="check-tag tag-carry">기내</span></div>
+          <div class="check-card-title">
+            전통놀이 도구 (제기, 윷, 딱지)
+            <div class="tag-group">
+              <span class="check-tag tag-kr">국내</span>
+              <span class="check-tag tag-done">구매 완료</span>
+            </div>
+          </div>
+          <div class="check-sub">담당: 게임팀 | 보육원 사역용</div>
+        </div>
+
+        <div class="check-card-item">
+          <div class="check-card-title">
+            충전 케이블 및 보조배터리
+            <div class="tag-group">
+              <span class="check-tag tag-carry">기내</span>
+              <span class="check-tag tag-done">준비 완료</span>
+            </div>
+          </div>
           <div class="check-sub">보조배터리는 위탁 수하물 절대 불가</div>
         </div>
 
         <div class="check-card-item">
-          <div class="check-card-title">개인 세면도구 <span class="check-tag tag-kr">위탁</span></div>
-          <div class="check-sub">100ml 초과 액체류는 위탁수하물에 보관</div>
-        </div>
-
-        <div class="check-card-item">
-          <div class="check-card-title">여벌 옷 및 얇은 겉옷 <span class="check-tag tag-kr">위탁</span></div>
-          <div class="check-sub">일교차 대비용 겉옷 필수</div>
-        </div>
-
-        <div class="check-card-item">
-          <div class="check-card-title">개인 상비약 <span class="check-tag tag-kr">위탁</span></div>
+          <div class="check-card-title">
+            개인 상비약 및 공용 상비약
+            <div class="tag-group">
+              <span class="check-tag tag-kr">위탁</span>
+              <span class="check-tag tag-done">준비 완료</span>
+            </div>
+          </div>
           <div class="check-sub">지사제, 소화제, 감기약, 개인 복용약</div>
         </div>
 
         <div class="check-card-item">
-          <div class="check-card-title">멀티 어댑터 (돼지코) <span class="check-tag tag-kr">위탁</span></div>
+          <div class="check-card-title">
+            멀티 어댑터 (돼지코)
+            <div class="tag-group">
+              <span class="check-tag tag-kr">위탁</span>
+              <span class="check-tag tag-plan">구매 예정</span>
+            </div>
+          </div>
           <div class="check-sub">멕시코는 110V 전압 사용</div>
         </div>
       </div>
     </div>
 
-    <!-- 4. 예산안 -->
+    <!-- 4. 예산안 탭 (실시간 현황 대시보드 반영) -->
     <div id="tab-budget" class="section">
       <div class="card">
-        <div class="card-title">💰 주요 사역 예산안</div>
+        <div class="card-title">📊 예산 사용 현황</div>
+        <div class="budget-summary">
+          <div class="summary-box">
+            <div class="summary-label">총 예산 ($)</div>
+            <div class="summary-value" id="totalBudgetDisplay">$1,000</div>
+          </div>
+          <div class="summary-box">
+            <div class="summary-label">현재 지출</div>
+            <div class="summary-value used" id="totalUsedDisplay">$0</div>
+          </div>
+          <div class="summary-box">
+            <div class="summary-label">남은 잔액</div>
+            <div class="summary-value remain" id="totalRemainDisplay">$1,000</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">💰 주요 사역 예상 예산안</div>
         <div class="budget-item"><span class="budget-name">리햅센터 (샌드위치 200개+음료)</span><span class="budget-val">$300 - $350</span></div>
         <div class="budget-item"><span class="budget-name">보육원 한국의 날 재료비</span><span class="budget-val">미국 마트 구매</span></div>
         <div class="budget-item"><span class="budget-name">현지교회 사역 식사/소모품</span><span class="budget-val">확인 예정</span></div>
         <div class="budget-item"><span class="budget-name">차량 운영비 (렌트/유류/톨비)</span><span class="budget-val">차량 2대</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🧾 실시간 지출 기록 내역</div>
+        <div id="expenseHistoryList" style="font-size: 0.85rem; color: #555;">
+          <p style="text-align: center; color: #999; padding: 10px;">아직 입력된 지출 내역이 없습니다.</p>
+        </div>
       </div>
     </div>
 
@@ -523,54 +609,49 @@
       </div>
     </div>
 
-    <!-- 7. 회계/지출 (웹 내 직접 입력 Form) -->
-<div id="tab-accounting" class="section">
-  <div class="card">
-    <div class="card-title">🧾 현장 지출 내역 직접 제출</div>
-    <form id="expenseForm" style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
-      
-      <div>
-        <label style="font-size: 0.8rem; font-weight: bold; color: #555;">지출 날짜</label>
-        <input type="date" id="expDate" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
+    <!-- 7. 회계/지출 -->
+    <div id="tab-accounting" class="section">
+      <div class="card">
+        <div class="card-title">🧾 현장 지출 내역 직접 제출</div>
+        <form id="expenseForm" style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
+          <div>
+            <label style="font-size: 0.8rem; font-weight: bold; color: #555;">지출 날짜</label>
+            <input type="date" id="expDate" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; font-weight: bold; color: #555;">항목 및 내용</label>
+            <input type="text" id="expItem" placeholder="예: 샌드위치 재료, 유류비" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; font-weight: bold; color: #555;">사용 금액 (숫자만 작성, 예: 35.5)</label>
+            <input type="number" step="0.01" id="expAmount" placeholder="35.50" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; font-weight: bold; color: #555;">결제 수단</label>
+            <select id="expPayment" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
+              <option value="현금">현금</option>
+              <option value="카드">카드</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; font-weight: bold; color: #555;">작성자 이름</label>
+            <input type="text" id="expAuthor" placeholder="작성자 이름" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; font-weight: bold; color: #555;">영수증 사진 첨부</label>
+            <input type="file" id="expFile" accept="image/*" capture="environment" style="width: 100%; padding: 8px; margin-top: 4px;">
+          </div>
+          <button type="submit" id="submitBtn" class="btn-submit" style="border: none; cursor: pointer;">
+            📷 제출하기
+          </button>
+        </form>
+        <div id="formStatus" style="text-align: center; margin-top: 10px; font-weight: bold; font-size: 0.85rem;"></div>
       </div>
+    </div>
 
-      <div>
-        <label style="font-size: 0.8rem; font-weight: bold; color: #555;">항목 및 내용</label>
-        <input type="text" id="expItem" placeholder="예: 샌드위치 재료, 유류비" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
-      </div>
-
-      <div>
-        <label style="font-size: 0.8rem; font-weight: bold; color: #555;">사용 금액 ($ 또는 MXN)</label>
-        <input type="text" id="expAmount" placeholder="예: $35.50 또는 500 MXN" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
-      </div>
-
-      <div>
-        <label style="font-size: 0.8rem; font-weight: bold; color: #555;">결제 수단</label>
-        <select id="expPayment" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
-          <option value="현금">현금</option>
-          <option value="카드">카드</option>
-        </select>
-      </div>
-
-      <div>
-        <label style="font-size: 0.8rem; font-weight: bold; color: #555;">작성자 이름</label>
-        <input type="text" id="expAuthor" placeholder="작성자 이름" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
-      </div>
-
-      <div>
-        <label style="font-size: 0.8rem; font-weight: bold; color: #555;">영수증 사진 첨부</label>
-        <input type="file" id="expFile" accept="image/*" capture="environment" style="width: 100%; padding: 8px; margin-top: 4px;">
-      </div>
-
-      <button type="submit" id="submitBtn" class="btn-submit" style="border: none; cursor: pointer;">
-        📷 제출하기
-      </button>
-    </form>
-    <div id="formStatus" style="text-align: center; margin-top: 10px; font-weight: bold; font-size: 0.85rem;"></div>
   </div>
-</div>
 
-  <!-- 아이콘이 들어간 하단 모바일 네비게이션 -->
+  <!-- 하단 모바일 네비게이션 -->
   <nav>
     <button class="active" onclick="switchTab('tab-schedule', this)">
       <span class="icon">📅</span>일정/사역
@@ -595,17 +676,42 @@
     </button>
   </nav>
 
-<script>
-    // 네비게이션 탭 전환
+  <script>
+    // 예산 대시보드 변수
+    let TOTAL_BUDGET = 1000;
+    let totalUsed = 0;
+    let historyData = [];
+
+    function updateBudgetUI() {
+      document.getElementById('totalUsedDisplay').innerText = `$${totalUsed.toFixed(2)}`;
+      const remain = TOTAL_BUDGET - totalUsed;
+      document.getElementById('totalRemainDisplay').innerText = `$${remain.toFixed(2)}`;
+
+      const listContainer = document.getElementById('expenseHistoryList');
+      if (historyData.length === 0) {
+        listContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">아직 입력된 지출 내역이 없습니다.</p>`;
+      } else {
+        listContainer.innerHTML = historyData.map(item => `
+          <div class="budget-item">
+            <div>
+              <span class="budget-name">${item.item}</span>
+              <div style="font-size:0.72rem; color:#888;">${item.date} | ${item.author} (${item.payment})</div>
+            </div>
+            <span class="budget-val" style="color:#d9532f;">-$${parseFloat(item.amount).toFixed(2)}</span>
+          </div>
+        `).join('');
+      }
+    }
+
     function switchTab(tabId, btn) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
       document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      
       document.getElementById(tabId).classList.add('active');
       btn.classList.add('active');
       window.scrollTo(0, 0);
     }
 
-    // 스페인어 발음 재생 (es-MX)
     function speakSpanish(text) {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
@@ -618,7 +724,7 @@
       }
     }
 
-    // 폼 제출 연동 (발급받으신 Apps Script URL 적용)
+    // Apps Script 제출 연동 및 자동 연동
     const GAS_URL = "https://script.google.com/macros/s/AKfycbwBxFcPQV4qkRKEj-7oJb8ENl26I6qRU8SCXzIuqalww5H6ie6q2x7HB5ByAS5J0K91vg/exec";
 
     document.getElementById('expenseForm').addEventListener('submit', function(e) {
@@ -628,17 +734,23 @@
       const formStatus = document.getElementById('formStatus');
       const fileInput = document.getElementById('expFile');
 
+      const amountVal = parseFloat(document.getElementById('expAmount').value) || 0;
+      const itemVal = document.getElementById('expItem').value;
+      const dateVal = document.getElementById('expDate').value;
+      const authorVal = document.getElementById('expAuthor').value;
+      const paymentVal = document.getElementById('expPayment').value;
+
       submitBtn.disabled = true;
       submitBtn.innerText = "전송 중...";
       formStatus.innerText = "영수증 및 지출 내역을 저장하는 중입니다...";
       formStatus.style.color = "#2b5876";
 
       const payload = {
-        date: document.getElementById('expDate').value,
-        item: document.getElementById('expItem').value,
-        amount: document.getElementById('expAmount').value,
-        payment: document.getElementById('expPayment').value,
-        author: document.getElementById('expAuthor').value,
+        date: dateVal,
+        item: itemVal,
+        amount: amountVal,
+        payment: paymentVal,
+        author: authorVal,
         fileData: null,
         fileName: null
       };
@@ -666,6 +778,18 @@
           if(res.result === "success") {
             formStatus.innerText = "✅ 지출 내역이 성공적으로 제출되었습니다!";
             formStatus.style.color = "green";
+            
+            // 예산 현황 실시간 합산 업데이트
+            totalUsed += amountVal;
+            historyData.unshift({
+              date: dateVal,
+              item: itemVal,
+              amount: amountVal,
+              author: authorVal,
+              payment: paymentVal
+            });
+            updateBudgetUI();
+
             document.getElementById('expenseForm').reset();
           } else {
             throw new Error(res.error);
@@ -681,6 +805,9 @@
         });
       }
     });
+
+    // 초기에 예산 UI 렌더링
+    updateBudgetUI();
   </script>
 </body>
 </html>
