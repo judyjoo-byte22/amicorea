@@ -5,357 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>아미꼬레아 마스터시트</title>
   <style>
-    :root {
-      --primary: #2b5876;
-      --secondary: #4e4376;
-      --accent: #ff6b6b;
-      --bg: #f4f7f6;
-      --card-bg: #ffffff;
-      --text: #333333;
+    /* 기본 스타일 설정 */
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    
+    .phrase-list {
+      list-style: none;
+      padding: 0;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background-color: var(--bg); color: var(--text); padding-bottom: 80px; }
-
-    /* 헤더 */
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      text-align: center;
-      padding: 24px 16px;
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-    header h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; }
-    header p { font-size: 0.85rem; opacity: 0.9; }
-
-    /* 네비게이션 탭 (하단 고정) */
-    nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: white;
-      display: flex;
-      justify-content: space-around;
-      border-top: 1px solid #ddd;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-      z-index: 1000;
-    }
-    nav button {
-      flex: 1;
-      padding: 12px 0;
-      border: none;
-      background: none;
-      font-size: 0.7rem;
-      font-weight: bold;
-      color: #777;
+    .phrase-item {
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      background-color: #f8f9fa;
       cursor: pointer;
+      transition: background-color 0.2s ease;
     }
-    nav button.active { color: var(--primary); border-top: 3px solid var(--primary); }
 
-    /* 섹션 컨테이너 */
-    .container { padding: 16px; }
-    .section { display: none; }
-    .section.active { display: block; }
-
-    /* 카드 스타일 */
-    .card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 14px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    .phrase-item:hover {
+      background-color: #e9ecef;
     }
-    .card-title { font-size: 1.05rem; font-weight: bold; color: var(--primary); margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
 
-    /* 일정 리스트 */
-    .schedule-item { border-left: 3px solid var(--primary); padding-left: 10px; margin-bottom: 12px; }
-    .schedule-date { font-weight: bold; color: var(--accent); font-size: 0.9rem; }
-    .schedule-desc { font-size: 0.85rem; color: #555; margin-top: 4px; white-space: pre-line; }
-
-    /* 팀원 카드 */
-    .member-card {
-      border: 1px solid #eee;
-      border-radius: 8px;
-      padding: 10px;
-      margin-bottom: 10px;
-      background: #fafafa;
-    }
-    .member-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-    .member-name { font-weight: bold; font-size: 0.95rem; color: var(--secondary); }
-    .member-role { background: #eef2f5; color: var(--primary); font-size: 0.75rem; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
-    .member-flight { font-size: 0.8rem; color: #666; line-height: 1.4; }
-
-    /* 기도제목 */
-    .prayer-item { margin-bottom: 10px; font-size: 0.85rem; line-height: 1.4; }
-    .prayer-name { font-weight: bold; color: var(--secondary); }
-
-    /* 스페인어 카드 */
-    .spanish-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
-    .spanish-card {
-      background: #ffffff;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      padding: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .spanish-kr { font-size: 0.85rem; color: #666; }
-    .spanish-es { font-weight: bold; color: var(--primary); font-size: 1rem; }
-    .spanish-pron { font-size: 0.8rem; color: var(--accent); }
-
-    /* 예산안 리스트 */
-    .budget-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #eee; font-size: 0.85rem; }
-    .budget-name { font-weight: 600; color: #444; }
-    .budget-val { color: var(--accent); font-weight: bold; }
-
-    /* 지출 제출 버튼 */
-    .btn-submit {
-      display: block;
-      width: 100%;
-      background: var(--accent);
-      color: white;
-      text-align: center;
-      padding: 14px;
-      border-radius: 10px;
-      text-decoration: none;
+    .spanish-text {
       font-weight: bold;
-      font-size: 1rem;
-      margin-top: 10px;
-      box-shadow: 0 4px 8px rgba(255,107,107,0.3);
+      color: #0066cc;
     }
 
-    .notice { background: #fff3cd; color: #856404; padding: 10px; border-radius: 8px; font-size: 0.8rem; margin-bottom: 12px; line-height: 1.3; }
+    .sound-icon {
+      font-size: 0.9em;
+      margin-left: 5px;
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>🇲🇽 센트26 멕시코 선교</h1>
-    <p>2026.09.22(화) ~ 10.04(일)</p>
-  </header>
+  <h2>🇲🇽 센트26 아미꼬레아!멕시코 선교</h2>
+  <p>2026.09.23(수) ~ 09.29(화)</p>
 
-  <div class="container">
+  <h3>🇲🇽 현지 필수 스페인어 <small style="font-size: 0.6em; color: #666;">(문장을 클릭하면 발음이 나옵니다 🔊)</small></h3>
 
-    <!-- 1. 일정 & 사역 -->
-    <div id="tab-schedule" class="section active">
-      <div class="notice">
-        ⚠️ <b>촬영 주의</b>: 보육원 및 리햅센터 촬영 시 얼굴이 노출되지 않도록 주의 바랍니다.
-      </div>
-      
-      <div class="card">
-        <div class="card-title">📅 전체 일정 요약</div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/23 (수)</div>
-          <div>한국 출발 ✈️ 티후아나 이동</div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/24 (목)</div>
-          <div>나눔, 오리엔테이션 & 아이스브레이킹</div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/25 (금)</div>
-          <div>리햅센터(마약중독자재활센터) 방문 사역</div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/26 (토)</div>
-          <div>믿음의 아이들 청소년 보육원 [한국의 날]</div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/27 (주일)</div>
-          <div>하늘의 복 교회 (현지교회 사역)</div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/28 (월) ~ 9/30 (수)</div>
-          <div>LA 이동 ✈️ 귀국 및 한국 도착 (개별 일정 참고)</div>
-        </div>
-      </div>
+  <ul class="phrase-list">
+    <li class="phrase-item" onclick="speakSpanish('Hola')">
+      안녕하세요 - <span class="spanish-text">Hola</span> (올라) <span class="sound-icon">🔊</span>
+    </li>
+    <li class="phrase-item" onclick="speakSpanish('Buenos días')">
+      좋은 아침입니다 - <span class="spanish-text">Buenos días</span> (부에노스 디아스) <span class="sound-icon">🔊</span>
+    </li>
+    <li class="phrase-item" onclick="speakSpanish('Dios te bendiga')">
+      하나님의 축복이 있기를 - <span class="spanish-text">Dios te bendiga</span> (디오스 떼 벤디가) <span class="sound-icon">🔊</span>
+    </li>
+    <li class="phrase-item" onclick="speakSpanish('Dios te ama')">
+      하나님은 당신을 사랑하십니다 - <span class="spanish-text">Dios te ama</span> (디오스 떼 아마) <span class="sound-icon">🔊</span>
+    </li>
+    <li class="phrase-item" onclick="speakSpanish('Jesús te ama')">
+      예수님은 당신을 사랑하십니다 - <span class="spanish-text">Jesús te ama</span> (헤수스 떼 아마) <span class="sound-icon">🔊</span>
+    </li>
+    <li class="phrase-item" onclick="speakSpanish('Mucho gusto')">
+      만나서 반갑습니다 - <span class="spanish-text">Mucho gusto</span> (무초 구스또) <span class="sound-icon">🔊</span>
+    </li>
+    <li class="phrase-item" onclick="speakSpanish('Gracias')">
+      감사합니다 - <span class="spanish-text">Gracias</span> (그라시아스) <span class="sound-icon">🔊</span>
+    </li>
+    <li class="phrase-item" onclick="speakSpanish('¡Muy bien!')">
+      잘했어요! - <span class="spanish-text">¡Muy bien!</span> (무이 비엔) <span class="sound-icon">🔊</span>
+    </li>
+    <li class="phrase-item" onclick="speakSpanish('Siéntate aquí')">
+      여기 앉으세요 - <span class="spanish-text">Siéntate aquí</span> (시엔따떼 아끼) <span class="sound-icon">🔊</span>
+    </li>
+    <li class="phrase-item" onclick="speakSpanish('¿Dónde está el baño?')">
+      화장실이 어디예요? - <span class="spanish-text">¿Dónde está el baño?</span> (돈데 에스따 엘 바뇨) <span class="sound-icon">🔊</span>
+    </li>
+    <li class="phrase-item" onclick="speakSpanish('Está rico')">
+      맛있어요 - <span class="spanish-text">Está rico</span> (에스따 리꼬) <span class="sound-icon">🔊</span>
+    </li>
+    <li class="phrase-item" onclick="speakSpanish('Buen provecho')">
+      맛있게 드세요 - <span class="spanish-text">Buen provecho</span> (부엔 프로베초) <span class="sound-icon">🔊</span>
+    </li>
+  </ul>
 
-      <div class="card">
-        <div class="card-title">📌 주요 사역 상세</div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/25 (금) 리햅센터 사역</div>
-          <div class="schedule-desc">• 예배 특송/스킷드라마 + 중보기도(남-남, 여-여)
-• 샌드위치 200개 + 음료수 준비 ($300-350 예상)
-• 미용 및 게임 사역 (남: 민선 / 여: 형선)</div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/26 (토) 청소년 보육원 [한국의 날]</div>
-          <div class="schedule-desc">• 30여 명 청소년 대상 (복음 메시지)
-• 요리교실(제육, 김밥, 만두), 한국어/노래/전통놀이</div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/27 (주일) 현지교회 사역</div>
-          <div class="schedule-desc">• 특송, 가족사진 촬영(프린트 발급), 미용
-• 전기가 자주 나가므로 사전 체크 필요</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. 팀원 & 비행 일정 -->
-    <div id="tab-team" class="section">
-      <div class="card">
-        <div class="card-title">👥 팀원 명단 및 항공 일정</div>
-        
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">송민선</span><span class="member-role">인솔, 미용, 운전</span></div>
-          <div class="member-flight">🛫 출국: 9/29(화) 12:30 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">임다솔</span><span class="member-role">요리</span></div>
-          <div class="member-flight">🛬 입국: 9/23(수) 07:50 도착<br>🛫 출국: 10/04(일) 10:10 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">최재혁</span><span class="member-role">미용, 게임, 운전</span></div>
-          <div class="member-flight">🛬 입국: 9/23(수) 07:50 도착<br>🛫 출국: 10/04(일) 10:10 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">주유정</span><span class="member-role">회계, 요리</span></div>
-          <div class="member-flight">🛬 입국: 9/22(화) 07:50 도착<br>🛫 출국: 9/29(화) 10:10 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">김예준</span><span class="member-role">게임</span></div>
-          <div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">김채은</span><span class="member-role">사진 촬영</span></div>
-          <div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">이형선</span><span class="member-role">미용</span></div>
-          <div class="member-flight">🛬 입국: 9/23(수) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">백사무엘</span><span class="member-role">게임</span></div>
-          <div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/30(수) 23:30 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">김채림</span><span class="member-role">사진 촬영, 음악</span></div>
-          <div class="member-flight">🛫 출국: 9/29(화) 12:30 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">건</span><span class="member-role">영상 촬영</span></div>
-          <div class="member-flight">🛬 입국: 9/23(수) 예정<br>🛫 출국: 9/30(수) 예정</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">🏠 숙소 & 차량</div>
-        <p style="font-size: 0.85rem; line-height: 1.6;">
-          • <b>숙소</b>: 티후아나 한인교회 1층<br>
-          • <b>차량</b>: 선교팀 차량 1대 + 선교사님 차량 1대
-        </p>
-      </div>
-    </div>
-
-    <!-- 3. 예산안 (새로 추가된 섹션) -->
-    <div id="tab-budget" class="section">
-      <div class="card">
-        <div class="card-title">💰 주요 사역 예산안</div>
-        <div class="budget-item"><span class="budget-name">리햅센터 (샌드위치 200개+음료)</span><span class="budget-val">$300 - $350</span></div>
-        <div class="budget-item"><span class="budget-name">보육원 한국의 날 (요리/사역 재료)</span><span class="budget-val">미국 마트 구매</span></div>
-        <div class="budget-item"><span class="budget-name">현지교회 사역 (식사 지원/사진소모품)</span><span class="budget-val">확인 예정</span></div>
-        <div class="budget-item"><span class="budget-name">차량 운영비 (렌트/유류/톨비)</span><span class="budget-val">차량 2대</span></div>
-      </div>
-      <div class="card">
-        <div class="card-title">💡 현장 회계 안내</div>
-        <p style="font-size: 0.85rem; color: #666; line-height: 1.5;">
-          선교 현장에서 지출되는 비용은 <b>[지출제출]</b> 탭에서 영수증을 촬영하여 제출해주세요.
-        </p>
-      </div>
-    </div>
-
-    <!-- 4. 기도제목 -->
-    <div id="tab-prayer" class="section">
-      <div class="card">
-        <div class="card-title">🙏 사역 공통 기도제목</div>
-        <div class="prayer-item">• <b>날씨</b>: 비가 오지 않고 사역지에 잘 들어갈 수 있도록 좋은 날씨 주시길</div>
-        <div class="prayer-item">• <b>영혼</b>: 상처받은 현지 주민/아이들의 마음속에 하나님의 사랑이 온전히 전달되길</div>
-        <div class="prayer-item">• <b>안전</b>: 모든 오고 가는 여정과 건강을 하나님께서 지켜주시기길</div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">❤️ 팀원 및 선교사님 기도제목</div>
-        <div class="prayer-item"><span class="prayer-name">채림:</span> 행복멕시코 사역이 되도록</div>
-        <div class="prayer-item"><span class="prayer-name">건:</span> 하나님의 일들을 영상으로 잘 담아내도록</div>
-        <div class="prayer-item"><span class="prayer-name">사무엘:</span> 선교에 대한 두려움을 이기고 주님 음성 들을 수 있도록</div>
-        <div class="prayer-item"><span class="prayer-name">예준:</span> 보내신 명확한 이유를 찾고 하나님 경험하도록</div>
-        <div class="prayer-item"><span class="prayer-name">채은:</span> 건강 이슈 없이 선교 목적을 깊이 깨닫도록</div>
-        <div class="prayer-item"><span class="prayer-name">재혁:</span> 주님이 마음껏 쓰시고 하나님과 더욱 가까워지도록</div>
-        <div class="prayer-item"><span class="prayer-name">다솔:</span> 지치지 않고 가정이 하나님 안에서 바로 세워지도록</div>
-        <div class="prayer-item"><span class="prayer-name">유정:</span> 기대함으로 준비하고 하나님의 이끄심에 예민하게 순종하도록</div>
-        <div class="prayer-item"><span class="prayer-name">민선:</span> 하나님 안에서 즐겁고 은혜로운 일정이 되도록</div>
-        <div class="prayer-item"><span class="prayer-name">옐레나 선교사님:</span> 준비 과정 중 팀원 한 사람 한 사람 만나주시길</div>
-        <div class="prayer-item"><span class="prayer-name">키스박 선교사님:</span> 현지 준비가 잘 되며 선교팀이 주님 뜻을 알아가도록</div>
-      </div>
-    </div>
-
-    <!-- 5. 스페인어 -->
-    <div id="tab-spanish" class="section">
-      <div class="card">
-        <div class="card-title">🇲🇽 현지 필수 스페인어</div>
-        <div class="spanish-grid">
-          <div class="spanish-card"><div><div class="spanish-kr">안녕하세요</div><div class="spanish-es">Hola</div></div><div class="spanish-pron">올라</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">좋은 아침입니다</div><div class="spanish-es">Buenos días</div></div><div class="spanish-pron">부에노스 디아스</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">하나님의 축복이 있기를</div><div class="spanish-es">Dios te bendiga</div></div><div class="spanish-pron">디오스 떼 벤디가</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">하나님은 당신을 사랑하십니다</div><div class="spanish-es">Dios te ama</div></div><div class="spanish-pron">디오스 떼 아마</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">예수님은 당신을 사랑하십니다</div><div class="spanish-es">Jesús te ama</div></div><div class="spanish-pron">헤수스 떼 아마</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">만나서 반갑습니다</div><div class="spanish-es">Mucho gusto</div></div><div class="spanish-pron">무초 구스또</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">감사합니다</div><div class="spanish-es">Gracias</div></div><div class="spanish-pron">그라시아스</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">잘했어요!</div><div class="spanish-es">¡Muy bien!</div></div><div class="spanish-pron">무이 비엔</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">여기 앉으세요</div><div class="spanish-es">Siéntate aquí</div></div><div class="spanish-pron">시엔따떼 아끼</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">화장실이 어디예요?</div><div class="spanish-es">¿Dónde está el baño?</div></div><div class="spanish-pron">돈데 에스따 엘 바뇨</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">맛있어요</div><div class="spanish-es">Está rico</div></div><div class="spanish-pron">에스따 리꼬</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">맛있게 드세요</div><div class="spanish-es">Buen provecho</div></div><div class="spanish-pron">부엔 프로베초</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 6. 회계/지출 -->
-    <div id="tab-accounting" class="section">
-      <div class="card">
-        <div class="card-title">🧾 현장 지출 내역 제출</div>
-        <p style="font-size: 0.85rem; color: #666; margin-bottom: 12px;">
-          현장에서 지출된 비용은 아래 버튼을 눌러 영수증 사진과 금액을 입력해주세요. 회계 마스터 시트로 자동 정리됩니다.
-        </p>
-        <!-- 실제 생성하신 구글 폼 URL 링크로 대체하시면 됩니다 -->
-        <a href="https://forms.google.com" target="_blank" class="btn-submit">📷 영수증 찍고 지출 입력하기</a>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- 하단 네비게이션 (예산안 버튼 추가됨) -->
-  <nav>
-    <button class="active" onclick="switchTab('tab-schedule', this)">일정/사역</button>
-    <button onclick="switchTab('tab-team', this)">팀원/항공</button>
-    <button onclick="switchTab('tab-budget', this)">예산안</button>
-    <button onclick="switchTab('tab-prayer', this)">기도제목</button>
-    <button onclick="switchTab('tab-spanish', this)">스페인어</button>
-    <button onclick="switchTab('tab-accounting', this)">지출제출</button>
-  </nav>
-
+  <!-- 스페인어 음성 재생 JavaScript -->
   <script>
-    function switchTab(tabId, btn) {
-      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-      
-      document.getElementById(tabId).classList.add('active');
-      btn.classList.add('active');
-      window.scrollTo(0, 0);
+    function speakSpanish(text) {
+      if ('speechSynthesis' in window) {
+        // 이전 재생 중인 음성이 있다면 중단
+        window.speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'es-MX'; // 멕시코 스페인어 설정
+        utterance.rate = 0.85;    // 또박또박 들리도록 속도 조절
+
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert('이 브라우저는 음성 재생을 지원하지 않습니다.');
+      }
     }
   </script>
+
 </body>
 </html>
