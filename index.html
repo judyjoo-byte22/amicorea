@@ -595,11 +595,11 @@
     </button>
   </nav>
 
-  <script>
+<script>
+    // 네비게이션 탭 전환
     function switchTab(tabId, btn) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
       document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-      
       document.getElementById(tabId).classList.add('active');
       btn.classList.add('active');
       window.scrollTo(0, 0);
@@ -617,6 +617,70 @@
         alert('현재 브라우저는 음성 재생을 지원하지 않습니다.');
       }
     }
+
+    // 폼 제출 연동 (발급받으신 Apps Script URL 적용)
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbwBxFcPQV4qkRKEj-7oJb8ENl26I6qRU8SCXzIuqalww5H6ie6q2x7HB5ByAS5J0K91vg/exec";
+
+    document.getElementById('expenseForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const formStatus = document.getElementById('formStatus');
+      const fileInput = document.getElementById('expFile');
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = "전송 중...";
+      formStatus.innerText = "영수증 및 지출 내역을 저장하는 중입니다...";
+      formStatus.style.color = "#2b5876";
+
+      const payload = {
+        date: document.getElementById('expDate').value,
+        item: document.getElementById('expItem').value,
+        amount: document.getElementById('expAmount').value,
+        payment: document.getElementById('expPayment').value,
+        author: document.getElementById('expAuthor').value,
+        fileData: null,
+        fileName: null
+      };
+
+      const file = fileInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          payload.fileData = evt.target.result;
+          payload.fileName = file.name;
+          sendData(payload);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        sendData(payload);
+      }
+
+      function sendData(data) {
+        fetch(GAS_URL, {
+          method: 'POST',
+          body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(res => {
+          if(res.result === "success") {
+            formStatus.innerText = "✅ 지출 내역이 성공적으로 제출되었습니다!";
+            formStatus.style.color = "green";
+            document.getElementById('expenseForm').reset();
+          } else {
+            throw new Error(res.error);
+          }
+        })
+        .catch(err => {
+          formStatus.innerText = "❌ 제출 실패: 다시 시도해 주세요.";
+          formStatus.style.color = "red";
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerText = "📷 제출하기";
+        });
+      }
+    });
   </script>
 </body>
 </html>
