@@ -158,7 +158,7 @@
       </div>
     </div>
 
-    <!-- 4. 예산안 탭 (통화 구분 반영) -->
+    <!-- 4. 예산안 탭 -->
     <div id="tab-budget" class="section">
       <div class="card">
         <div class="card-title">📊 실시간 누적 지출 합계</div>
@@ -227,7 +227,7 @@
       </div>
     </div>
 
-    <!-- 7. 회계/지출 (통화 선택 기능 추가) -->
+    <!-- 7. 회계/지출 -->
     <div id="tab-accounting" class="section">
       <div class="card">
         <div class="card-title">🧾 현장 지출 내역 직접 제출</div>
@@ -289,8 +289,9 @@
   </nav>
 
   <script>
-const GAS_URL = "https://script.google.com/macros/s/AKfycbxDa_HSiRAzv0WPpWZ6nmLFmNR6buMHct9P4xdQtMiqAHwZYbm64iZSQEqF_0b2X9EvZw/exec";
-    
+    // 신규 배포 URL 반영
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbxDa_HSiRAzv0WPpWZ6nmLFmNR6buMHct9P4xdQtMiqAHwZYbm64iZSQEqF_0b2X9EvZw/exec";
+
     function switchTab(tabId, btn) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
       document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
@@ -313,7 +314,7 @@ const GAS_URL = "https://script.google.com/macros/s/AKfycbxDa_HSiRAzv0WPpWZ6nmLF
       fetch(GAS_URL)
         .then(res => res.json())
         .then(res => {
-          if (res.result === "success" && res.data.length > 0) {
+          if (res.result === "success" && res.data && res.data.length > 0) {
             container.innerHTML = res.data.map(item => {
               let statusClass = 'tag-plan';
               let statusText = item.status || '미정';
@@ -415,11 +416,37 @@ const GAS_URL = "https://script.google.com/macros/s/AKfycbxDa_HSiRAzv0WPpWZ6nmLF
 
       const file = fileInput.files[0];
       if (file) {
+        // 이미지가 너무 큰 경우 압축 처리하여 전송 실패 방지
         const reader = new FileReader();
         reader.onload = function(evt) {
-          payload.fileData = evt.target.result;
-          payload.fileName = file.name;
-          sendData(payload);
+          const img = new Image();
+          img.onload = function() {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+            const max_size = 1000;
+
+            if (width > height) {
+              if (width > max_size) {
+                height *= max_size / width;
+                width = max_size;
+              }
+            } else {
+              if (height > max_size) {
+                width *= max_size / height;
+                height = max_size;
+              }
+            }
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            payload.fileData = canvas.toDataURL('image/jpeg', 0.7);
+            payload.fileName = file.name.replace(/\.[^/.]+$/, "") + ".jpg";
+            sendData(payload);
+          };
+          img.src = evt.target.result;
         };
         reader.readAsDataURL(file);
       } else {
