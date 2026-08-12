@@ -6,11 +6,11 @@
   <title>센트26 아미꼬레아 멕시코 선교 마스터북</title>
   <style>
     :root {
-      --primary: #d9532f;     /* 멕시코 테라코타 레드/오렌지 */
-      --secondary: #167a5b;   /* 선인장 그린 */
-      --accent: #f39c12;      /* 태양 골드 옐로우 */
+      --primary: #d9532f;
+      --secondary: #167a5b;
+      --accent: #f39c12;
       --accent-warm: #e74c3c;
-      --bg: #fdfaf6;          /* 따뜻한 아이보리 톤 배경 */
+      --bg: #fdfaf6;
       --card-bg: #ffffff;
       --text: #2c3e50;
     }
@@ -18,7 +18,6 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
     body { background-color: var(--bg); color: var(--text); padding-bottom: 90px; }
 
-    /* 멕시코 감성 헤더 */
     header {
       background: linear-gradient(135deg, #d9532f 0%, #b3391b 100%);
       color: white;
@@ -30,23 +29,13 @@
       position: relative;
       overflow: hidden;
     }
-    header::before {
-      content: "🎉 🇲🇽 🌵 ☀️ 🇲🇽 🎉";
-      display: block;
-      font-size: 0.85rem;
-      letter-spacing: 4px;
-      opacity: 0.85;
-      margin-bottom: 6px;
-    }
+    header::before { content: "🎉 🇲🇽 🌵 ☀️ 🇲🇽 🎉"; display: block; font-size: 0.85rem; letter-spacing: 4px; opacity: 0.85; margin-bottom: 6px; }
     header h1 { font-size: 1.5rem; font-weight: 800; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
     header p { font-size: 0.85rem; opacity: 0.95; margin-top: 4px; font-weight: 500; }
 
-    /* 하단 모바일 고정 네비게이션 */
     nav {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       background: #ffffff;
       display: flex;
       justify-content: space-around;
@@ -56,169 +45,69 @@
       padding-bottom: env(safe-area-inset-bottom);
     }
     nav button {
-      flex: 1;
-      padding: 10px 2px;
-      border: none;
-      background: none;
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: #888;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
+      flex: 1; padding: 10px 2px;
+      border: none; background: none;
+      font-size: 0.65rem; font-weight: 700; color: #888;
+      cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px;
       transition: all 0.2s ease;
     }
     nav button span.icon { font-size: 1.1rem; }
     nav button.active { color: var(--primary); }
-    nav button.active span.icon { transform: translateY(-2px); transition: transform 0.2s; }
+    nav button.active span.icon { transform: translateY(-2px); }
 
-    /* Container & Cards */
     .container { padding: 16px; max-width: 600px; margin: 0 auto; }
     .section { display: none; }
     .section.active { display: block; animation: fadeIn 0.25s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .card { background: var(--card-bg); border-radius: 16px; padding: 18px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.03); }
+    .card-title { font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px dashed #f0e6df; padding-bottom: 8px; }
+    .notice { background: #fff8e7; border-left: 4px solid var(--accent); color: #8a6d3b; padding: 12px 14px; border-radius: 10px; font-size: 0.82rem; margin-bottom: 14px; line-height: 1.4; }
 
-    .card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      border: 1px solid rgba(0,0,0,0.03);
-    }
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 2px dashed #f0e6df;
-      padding-bottom: 8px;
-    }
-
-    .notice {
-      background: #fff8e7;
-      border-left: 4px solid var(--accent);
-      color: #8a6d3b;
-      padding: 12px 14px;
-      border-radius: 10px;
-      font-size: 0.82rem;
-      margin-bottom: 14px;
-      line-height: 1.4;
-    }
-
-    /* 일정/사역 UI */
     .schedule-item { border-left: 3px solid var(--secondary); padding-left: 12px; margin-bottom: 14px; }
     .schedule-date { font-weight: 800; color: var(--primary); font-size: 0.95rem; }
     .schedule-desc { font-size: 0.85rem; color: #555; margin-top: 4px; white-space: pre-line; line-height: 1.45; }
 
-    /* 팀원 카드 */
-    .member-card {
-      border: 1px solid #f0e6df;
-      border-radius: 12px;
-      padding: 12px;
-      margin-bottom: 10px;
-      background: #fffaf7;
-    }
+    .member-card { border: 1px solid #f0e6df; border-radius: 12px; padding: 12px; margin-bottom: 10px; background: #fffaf7; }
     .member-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
     .member-name { font-weight: 800; font-size: 0.95rem; color: var(--secondary); }
     .member-role { background: #e8f5e9; color: var(--secondary); font-size: 0.72rem; padding: 3px 8px; border-radius: 12px; font-weight: 700; }
     .member-flight { font-size: 0.8rem; color: #666; line-height: 1.45; }
 
-    /* 기도제목 */
     .prayer-item { margin-bottom: 10px; font-size: 0.88rem; line-height: 1.5; color: #444; }
     .prayer-name { font-weight: 800; color: var(--primary); }
 
-    /* 스페인어 터치 버튼 UI */
     .spanish-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
-    .spanish-card {
-      background: #ffffff;
-      border: 2px solid #f3e9e1;
-      border-radius: 14px;
-      padding: 14px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-      transition: all 0.15s ease;
-    }
-    .spanish-card:active {
-      transform: scale(0.98);
-      background-color: #fff3ed;
-      border-color: var(--primary);
-    }
+    .spanish-card { background: #ffffff; border: 2px solid #f3e9e1; border-radius: 14px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.02); transition: all 0.15s ease; }
+    .spanish-card:active { transform: scale(0.98); background-color: #fff3ed; border-color: var(--primary); }
     .spanish-kr { font-size: 0.82rem; color: #777; margin-bottom: 2px; }
     .spanish-es { font-weight: 800; color: var(--primary); font-size: 1.05rem; }
     .spanish-pron { font-size: 0.85rem; color: var(--secondary); font-weight: 700; text-align: right; }
-    .sound-btn {
-      background: #fdf3e7;
-      color: var(--accent);
-      padding: 6px 10px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-left: 8px;
-      display: inline-block;
-    }
+    .sound-btn { background: #fdf3e7; color: var(--accent); padding: 6px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-left: 8px; display: inline-block; }
 
-    /* 예산 요약 대시보드 UI */
-    .budget-summary {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 14px;
-      text-align: center;
-    }
-    .summary-box {
-      background: #fdfaf6;
-      border: 1px solid #f0e6df;
-      border-radius: 10px;
-      padding: 10px 4px;
-    }
+    .budget-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; text-align: center; }
+    .summary-box { background: #fdfaf6; border: 1px solid #f0e6df; border-radius: 10px; padding: 10px 4px; }
     .summary-label { font-size: 0.72rem; color: #666; font-weight: bold; margin-bottom: 4px; }
     .summary-value { font-size: 0.95rem; font-weight: 800; color: var(--primary); }
     .summary-value.used { color: var(--accent-warm); }
     .summary-value.remain { color: var(--secondary); }
-
     .budget-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.88rem; }
     .budget-name { font-weight: 600; color: #444; }
     .budget-val { color: var(--primary); font-weight: 800; }
 
-    /* 준비물 체크리스트 UI & 구매태그 */
+    /* 준비물 실시간 UI */
     .check-card-item { border-bottom: 1px solid #f5ede6; padding: 12px 0; }
     .check-card-title { font-weight: 700; font-size: 0.92rem; color: #333; display: flex; justify-content: space-between; align-items: center; }
     .tag-group { display: flex; gap: 4px; }
     .check-tag { font-size: 0.7rem; padding: 3px 8px; border-radius: 12px; font-weight: 700; }
-    .tag-kr { background: #e3f2fd; color: #1976d2; }
+    .tag-path { background: #e3f2fd; color: #1976d2; }
     .tag-carry { background: #f3e5f5; color: #7b1fa2; }
-    .tag-done { background: #e8f5e9; color: #2e7d32; } /* 구매/준비 완료 */
-    .tag-plan { background: #fff3e0; color: #e65100; } /* 구매 예정 */
+    .tag-done { background: #e8f5e9; color: #2e7d32; }
+    .tag-plan { background: #fff3e0; color: #e65100; }
+    .tag-unknown { background: #ffebee; color: #c62828; }
     .check-sub { font-size: 0.8rem; color: #777; margin-top: 4px; }
 
-    /* 버튼 스타일 */
-    .btn-submit {
-      display: block;
-      width: 100%;
-      background: linear-gradient(135deg, var(--primary), var(--accent-warm));
-      color: white;
-      text-align: center;
-      padding: 16px;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: 800;
-      font-size: 1rem;
-      margin-top: 10px;
-      box-shadow: 0 4px 12px rgba(217, 83, 47, 0.3);
-    }
+    .btn-submit { display: block; width: 100%; background: linear-gradient(135deg, var(--primary), var(--accent-warm)); color: white; text-align: center; padding: 16px; border-radius: 14px; text-decoration: none; font-weight: 800; font-size: 1rem; margin-top: 10px; box-shadow: 0 4px 12px rgba(217, 83, 47, 0.3); }
   </style>
 </head>
 <body>
@@ -232,56 +121,21 @@
 
     <!-- 1. 일정 & 사역 -->
     <div id="tab-schedule" class="section active">
-      <div class="notice">
-        📸 <b>촬영 주의</b>: 보육원 및 리햅센터 사역 시 얼굴 노출을 주의해주세요.
-      </div>
-      
+      <div class="notice">📸 <b>촬영 주의</b>: 보육원 및 리햅센터 사역 시 얼굴 노출을 주의해주세요.</div>
       <div class="card">
         <div class="card-title">📅 전체 일정 요약</div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/23 (수)</div>
-          <div>한국 출발 ✈️ 티후아나 이동</div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/24 (목)</div>
-          <div>나눔, 오리엔테이션 & 아이스브레이킹</div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/25 (금)</div>
-          <div>리햅센터(마약중독자재활센터) 방문 사역</div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/26 (토)</div>
-          <div>믿음의 아이들 청소년 보육원 [한국의 날]</div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/27 (주일)</div>
-          <div>하늘의 복 교회 (현지교회 사역)</div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/28 (월) ~ 9/30 (수)</div>
-          <div>LA 이동 ✈️ 귀국 및 한국 도착</div>
-        </div>
+        <div class="schedule-item"><div class="schedule-date">9/23 (수)</div><div>한국 출발 ✈️ 티후아나 이동</div></div>
+        <div class="schedule-item"><div class="schedule-date">9/24 (목)</div><div>나눔, 오리엔테이션 & 아이스브레이킹</div></div>
+        <div class="schedule-item"><div class="schedule-date">9/25 (금)</div><div>리햅센터(마약중독자재활센터) 방문 사역</div></div>
+        <div class="schedule-item"><div class="schedule-date">9/26 (토)</div><div>믿음의 아이들 청소년 보육원 [한국의 날]</div></div>
+        <div class="schedule-item"><div class="schedule-date">9/27 (주일)</div><div>하늘의 복 교회 (현지교회 사역)</div></div>
+        <div class="schedule-item"><div class="schedule-date">9/28 (월) ~ 9/30 (수)</div><div>LA 이동 ✈️ 귀국 및 한국 도착</div></div>
       </div>
-
       <div class="card">
         <div class="card-title">📌 주요 사역 상세</div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/25 (금) 리햅센터 사역</div>
-          <div class="schedule-desc">• 예배 특송/스킷드라마 + 중보기도
-• 샌드위치 200개 + 음료수 준비 ($300-350 예상)
-• 미용 및 게임 사역 (남: 민선 / 여: 형선)</div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/26 (토) 청소년 보육원 [한국의 날]</div>
-          <div class="schedule-desc">• 30여 명 청소년 대상 (복음 메시지)
-• 요리교실(제육, 김밥, 만두), 한국어/전통놀이</div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-date">9/27 (주일) 현지교회 사역</div>
-          <div class="schedule-desc">• 특송, 가족사진 촬영(프린트 발급), 미용
-• 전기가 자주 나가므로 사전 체크 필요</div>
-        </div>
+        <div class="schedule-item"><div class="schedule-date">9/25 (금) 리햅센터 사역</div><div class="schedule-desc">• 예배 특송/스킷드라마 + 중보기도 • 샌드위치 200개 + 음료수 준비 ($300-350 예상) • 미용 및 게임 사역 (남: 민선 / 여: 형선)</div></div>
+        <div class="schedule-item"><div class="schedule-date">9/26 (토) 청소년 보육원 [한국의 날]</div><div class="schedule-desc">• 30여 명 청소년 대상 (복음 메시지) • 요리교실(제육, 김밥, 만두), 한국어/전통놀이</div></div>
+        <div class="schedule-item"><div class="schedule-date">9/27 (주일) 현지교회 사역</div><div class="schedule-desc">• 특송, 가족사진 촬영(프린트 발급), 미용 • 전기가 자주 나가므로 사전 체크 필요</div></div>
       </div>
     </div>
 
@@ -289,181 +143,47 @@
     <div id="tab-team" class="section">
       <div class="card">
         <div class="card-title">👥 팀원 명단 및 항공 일정</div>
-        
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">송민선</span><span class="member-role">인솔, 미용, 운전</span></div>
-          <div class="member-flight">🛫 출국: 9/29(화) 12:30 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">임다솔</span><span class="member-role">요리</span></div>
-          <div class="member-flight">🛬 입국: 9/23(수) 07:50 도착<br>🛫 출국: 10/04(일) 10:10 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">최재혁</span><span class="member-role">미용, 게임, 운전</span></div>
-          <div class="member-flight">🛬 입국: 9/23(수) 07:50 도착<br>🛫 출국: 10/04(일) 10:10 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">주유정</span><span class="member-role">회계, 요리</span></div>
-          <div class="member-flight">🛬 입국: 9/22(화) 07:50 도착<br>🛫 출국: 9/29(화) 10:10 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">김예준</span><span class="member-role">게임</span></div>
-          <div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">김채은</span><span class="member-role">사진 촬영</span></div>
-          <div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">이형선</span><span class="member-role">미용</span></div>
-          <div class="member-flight">🛬 입국: 9/23(수) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">백사무엘</span><span class="member-role">게임</span></div>
-          <div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/30(수) 23:30 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">김채림</span><span class="member-role">사진 촬영, 음악</span></div>
-          <div class="member-flight">🛫 출국: 9/29(화) 12:30 출발</div>
-        </div>
-
-        <div class="member-card">
-          <div class="member-header"><span class="member-name">유건</span><span class="member-role">영상 촬영</span></div>
-          <div class="member-flight">🛬 입국: 9/23(수) 예정<br>🛫 출국: 9/30(수) 예정</div>
-        </div>
+        <div class="member-card"><div class="member-header"><span class="member-name">송민선</span><span class="member-role">인솔, 미용, 운전</span></div><div class="member-flight">🛫 출국: 9/29(화) 12:30 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">임다솔</span><span class="member-role">요리</span></div><div class="member-flight">🛬 입국: 9/23(수) 07:50 도착<br>🛫 출국: 10/04(일) 10:10 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">최재혁</span><span class="member-role">미용, 게임, 운전</span></div><div class="member-flight">🛬 입국: 9/23(수) 07:50 도착<br>🛫 출국: 10/04(일) 10:10 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">주유정</span><span class="member-role">회계, 요리</span></div><div class="member-flight">🛬 입국: 9/22(화) 07:50 도착<br>🛫 출국: 9/29(화) 10:10 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">김예준</span><span class="member-role">게임</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">김채은</span><span class="member-role">사진 촬영</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">이형선</span><span class="member-role">미용</span></div><div class="member-flight">🛬 입국: 9/23(수) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">백사무엘</span><span class="member-role">게임</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/30(수) 23:30 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">김채림</span><span class="member-role">사진 촬영, 음악</span></div><div class="member-flight">🛫 출국: 9/29(화) 12:30 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">유건</span><span class="member-role">영상 촬영</span></div><div class="member-flight">🛬 입국: 9/23(수) 예정<br>🛫 출국: 9/30(수) 예정</div></div>
       </div>
-
       <div class="card">
         <div class="card-title">🏠 숙소 & 차량</div>
-        <p style="font-size: 0.85rem; line-height: 1.6;">
-          • <b>숙소</b>: 티후아나 한인교회 1층<br>
-          • <b>차량</b>: 선교팀 차량 1대 + 선교사님 차량 1대
-        </p>
+        <p style="font-size: 0.85rem; line-height: 1.6;">• <b>숙소</b>: 티후아나 한인교회 1층<br>• <b>차량</b>: 선교팀 차량 1대 + 선교사님 차량 1대</p>
       </div>
     </div>
 
-    <!-- 3. 준비물 탭 (구매 상태 태그 반영) -->
+    <!-- 3. 실시간 연동 준비물 탭 -->
     <div id="tab-checklist" class="section">
       <div class="card">
-        <div class="card-title">📦 출국 전 준비물 체크리스트</div>
-        <div class="notice">⚠️ 위탁 수하물 금지 품목(보조배터리 등)을 꼭 확인하세요!</div>
-
-        <div class="check-card-item">
-          <div class="check-card-title">
-            여권 및 여권 사본
-            <div class="tag-group">
-              <span class="check-tag tag-carry">기내</span>
-              <span class="check-tag tag-done">준비 완료</span>
-            </div>
-          </div>
-          <div class="check-sub">만료일 6개월 이상 남았는지 필히 확인</div>
+        <div class="card-title">
+          <span>📦 팀 공용 준비물 현황</span>
+          <button onclick="fetchChecklistData()" style="background: none; border: 1px solid #ddd; padding: 4px 8px; border-radius: 6px; font-size: 0.72rem; cursor: pointer;">🔄 새로고침</button>
         </div>
-
-        <div class="check-card-item">
-          <div class="check-card-title">
-            사진 프린터 & 전용 인화지
-            <div class="tag-group">
-              <span class="check-tag tag-kr">국내</span>
-              <span class="check-tag tag-done">구매 완료</span>
-            </div>
-          </div>
-          <div class="check-sub">담당: 사진팀 | 현지교회 가족사진 사역용</div>
-        </div>
-
-        <div class="check-card-item">
-          <div class="check-card-title">
-            한국의 날 요리 재료 (제육, 김밥, 만두)
-            <div class="tag-group">
-              <span class="check-tag tag-plan">구매 예정</span>
-            </div>
-          </div>
-          <div class="check-sub">담당: 요리팀 | 현지 미국/멕시코 마트 구매 예정</div>
-        </div>
-
-        <div class="check-card-item">
-          <div class="check-card-title">
-            샌드위치 200개 재료 & 음료
-            <div class="tag-group">
-              <span class="check-tag tag-plan">구매 예정</span>
-            </div>
-          </div>
-          <div class="check-sub">담당: 요리팀 | 리햅센터 제공용 (현지 구매)</div>
-        </div>
-
-        <div class="check-card-item">
-          <div class="check-card-title">
-            전통놀이 도구 (제기, 윷, 딱지)
-            <div class="tag-group">
-              <span class="check-tag tag-kr">국내</span>
-              <span class="check-tag tag-done">구매 완료</span>
-            </div>
-          </div>
-          <div class="check-sub">담당: 게임팀 | 보육원 사역용</div>
-        </div>
-
-        <div class="check-card-item">
-          <div class="check-card-title">
-            충전 케이블 및 보조배터리
-            <div class="tag-group">
-              <span class="check-tag tag-carry">기내</span>
-              <span class="check-tag tag-done">준비 완료</span>
-            </div>
-          </div>
-          <div class="check-sub">보조배터리는 위탁 수하물 절대 불가</div>
-        </div>
-
-        <div class="check-card-item">
-          <div class="check-card-title">
-            개인 상비약 및 공용 상비약
-            <div class="tag-group">
-              <span class="check-tag tag-kr">위탁</span>
-              <span class="check-tag tag-done">준비 완료</span>
-            </div>
-          </div>
-          <div class="check-sub">지사제, 소화제, 감기약, 개인 복용약</div>
-        </div>
-
-        <div class="check-card-item">
-          <div class="check-card-title">
-            멀티 어댑터 (돼지코)
-            <div class="tag-group">
-              <span class="check-tag tag-kr">위탁</span>
-              <span class="check-tag tag-plan">구매 예정</span>
-            </div>
-          </div>
-          <div class="check-sub">멕시코는 110V 전압 사용</div>
+        <div class="notice">구글 시트에 수정한 담당자 및 구매 상태가 실시간으로 반영됩니다!</div>
+        <div id="checklistContainer">
+          <p style="text-align: center; color: #888; padding: 20px;">구글 시트 데이터를 불러오는 중...</p>
         </div>
       </div>
     </div>
 
-    <!-- 4. 예산안 탭 (실시간 현황 대시보드 반영) -->
+    <!-- 4. 예산안 탭 -->
     <div id="tab-budget" class="section">
       <div class="card">
         <div class="card-title">📊 예산 사용 현황</div>
         <div class="budget-summary">
-          <div class="summary-box">
-            <div class="summary-label">총 예산 ($)</div>
-            <div class="summary-value" id="totalBudgetDisplay">$1,000</div>
-          </div>
-          <div class="summary-box">
-            <div class="summary-label">현재 지출</div>
-            <div class="summary-value used" id="totalUsedDisplay">$0</div>
-          </div>
-          <div class="summary-box">
-            <div class="summary-label">남은 잔액</div>
-            <div class="summary-value remain" id="totalRemainDisplay">$1,000</div>
-          </div>
+          <div class="summary-box"><div class="summary-label">총 예산 ($)</div><div class="summary-value" id="totalBudgetDisplay">$1,000</div></div>
+          <div class="summary-box"><div class="summary-label">현재 지출</div><div class="summary-value used" id="totalUsedDisplay">$0</div></div>
+          <div class="summary-box"><div class="summary-label">남은 잔액</div><div class="summary-value remain" id="totalRemainDisplay">$1,000</div></div>
         </div>
       </div>
-
       <div class="card">
         <div class="card-title">💰 주요 사역 예상 예산안</div>
         <div class="budget-item"><span class="budget-name">리햅센터 (샌드위치 200개+음료)</span><span class="budget-val">$300 - $350</span></div>
@@ -471,7 +191,6 @@
         <div class="budget-item"><span class="budget-name">현지교회 사역 식사/소모품</span><span class="budget-val">확인 예정</span></div>
         <div class="budget-item"><span class="budget-name">차량 운영비 (렌트/유류/톨비)</span><span class="budget-val">차량 2대</span></div>
       </div>
-
       <div class="card">
         <div class="card-title">🧾 실시간 지출 기록 내역</div>
         <div id="expenseHistoryList" style="font-size: 0.85rem; color: #555;">
@@ -488,7 +207,6 @@
         <div class="prayer-item">• <b>영혼</b>: 현지 주민/아이들에게 주님의 사랑이 온전히 전달되길</div>
         <div class="prayer-item">• <b>안전</b>: 모든 이동 여정과 팀원들의 건강을 지켜주시길</div>
       </div>
-
       <div class="card">
         <div class="card-title">❤️ 팀원 및 선교사님 기도제목</div>
         <div class="prayer-item"><span class="prayer-name">채림:</span> 행복멕시코 사역이 되도록</div>
@@ -510,101 +228,18 @@
       <div class="card">
         <div class="card-title">🇲🇽 필수 스페인어 (터치 시 발음 🔊)</div>
         <div class="spanish-grid">
-          <div class="spanish-card" onclick="speakSpanish('Hola')">
-            <div>
-              <div class="spanish-kr">안녕하세요</div>
-              <div class="spanish-es">Hola</div>
-            </div>
-            <div class="spanish-pron">올라 <span class="sound-btn">🔊</span></div>
-          </div>
-
-          <div class="spanish-card" onclick="speakSpanish('Buenos días')">
-            <div>
-              <div class="spanish-kr">좋은 아침입니다</div>
-              <div class="spanish-es">Buenos días</div>
-            </div>
-            <div class="spanish-pron">부에노스 디아스 <span class="sound-btn">🔊</span></div>
-          </div>
-
-          <div class="spanish-card" onclick="speakSpanish('Dios te bendiga')">
-            <div>
-              <div class="spanish-kr">하나님의 축복이 있기를</div>
-              <div class="spanish-es">Dios te bendiga</div>
-            </div>
-            <div class="spanish-pron">디오스 떼 벤디가 <span class="sound-btn">🔊</span></div>
-          </div>
-
-          <div class="spanish-card" onclick="speakSpanish('Dios te ama')">
-            <div>
-              <div class="spanish-kr">하나님은 당신을 사랑하십니다</div>
-              <div class="spanish-es">Dios te ama</div>
-            </div>
-            <div class="spanish-pron">디오스 떼 아마 <span class="sound-btn">🔊</span></div>
-          </div>
-
-          <div class="spanish-card" onclick="speakSpanish('Jesús te ama')">
-            <div>
-              <div class="spanish-kr">예수님은 당신을 사랑하십니다</div>
-              <div class="spanish-es">Jesús te ama</div>
-            </div>
-            <div class="spanish-pron">헤수스 떼 아마 <span class="sound-btn">🔊</span></div>
-          </div>
-
-          <div class="spanish-card" onclick="speakSpanish('Mucho gusto')">
-            <div>
-              <div class="spanish-kr">만나서 반갑습니다</div>
-              <div class="spanish-es">Mucho gusto</div>
-            </div>
-            <div class="spanish-pron">무초 구스또 <span class="sound-btn">🔊</span></div>
-          </div>
-
-          <div class="spanish-card" onclick="speakSpanish('Gracias')">
-            <div>
-              <div class="spanish-kr">감사합니다</div>
-              <div class="spanish-es">Gracias</div>
-            </div>
-            <div class="spanish-pron">그라시아스 <span class="sound-btn">🔊</span></div>
-          </div>
-
-          <div class="spanish-card" onclick="speakSpanish('¡Muy bien!')">
-            <div>
-              <div class="spanish-kr">잘했어요!</div>
-              <div class="spanish-es">¡Muy bien!</div>
-            </div>
-            <div class="spanish-pron">무이 비엔 <span class="sound-btn">🔊</span></div>
-          </div>
-
-          <div class="spanish-card" onclick="speakSpanish('Siéntate aquí')">
-            <div>
-              <div class="spanish-kr">여기 앉으세요</div>
-              <div class="spanish-es">Siéntate aquí</div>
-            </div>
-            <div class="spanish-pron">시엔따떼 아끼 <span class="sound-btn">🔊</span></div>
-          </div>
-
-          <div class="spanish-card" onclick="speakSpanish('¿Dónde está el baño?')">
-            <div>
-              <div class="spanish-kr">화장실이 어디예요?</div>
-              <div class="spanish-es">¿Dónde está el baño?</div>
-            </div>
-            <div class="spanish-pron">돈데 에스따 엘 바뇨 <span class="sound-btn">🔊</span></div>
-          </div>
-
-          <div class="spanish-card" onclick="speakSpanish('Está rico')">
-            <div>
-              <div class="spanish-kr">맛있어요</div>
-              <div class="spanish-es">Está rico</div>
-            </div>
-            <div class="spanish-pron">에스따 리꼬 <span class="sound-btn">🔊</span></div>
-          </div>
-
-          <div class="spanish-card" onclick="speakSpanish('Buen provecho')">
-            <div>
-              <div class="spanish-kr">맛있게 드세요</div>
-              <div class="spanish-es">Buen provecho</div>
-            </div>
-            <div class="spanish-pron">부엔 프로베초 <span class="sound-btn">🔊</span></div>
-          </div>
+          <div class="spanish-card" onclick="speakSpanish('Hola')"><div><div class="spanish-kr">안녕하세요</div><div class="spanish-es">Hola</div></div><div class="spanish-pron">올라 <span class="sound-btn">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Buenos días')"><div><div class="spanish-kr">좋은 아침입니다</div><div class="spanish-es">Buenos días</div></div><div class="spanish-pron">부에노스 디아스 <span class="sound-btn">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Dios te bendiga')"><div><div class="spanish-kr">하나님의 축복이 있기를</div><div class="spanish-es">Dios te bendiga</div></div><div class="spanish-pron">디오스 떼 벤디가 <span class="sound-btn">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Dios te ama')"><div><div class="spanish-kr">하나님은 당신을 사랑하십니다</div><div class="spanish-es">Dios te ama</div></div><div class="spanish-pron">디오스 떼 아마 <span class="sound-btn">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Jesús te ama')"><div><div class="spanish-kr">예수님은 당신을 사랑하십니다</div><div class="spanish-es">Jesús te ama</div></div><div class="spanish-pron">헤수스 떼 아마 <span class="sound-btn">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Mucho gusto')"><div><div class="spanish-kr">만나서 반갑습니다</div><div class="spanish-es">Mucho gusto</div></div><div class="spanish-pron">무초 구스또 <span class="sound-btn">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Gracias')"><div><div class="spanish-kr">감사합니다</div><div class="spanish-es">Gracias</div></div><div class="spanish-pron">그라시아스 <span class="sound-btn">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('¡Muy bien!')"><div><div class="spanish-kr">잘했어요!</div><div class="spanish-es">¡Muy bien!</div></div><div class="spanish-pron">무이 비엔 <span class="sound-btn">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Siéntate aquí')"><div><div class="spanish-kr">여기 앉으세요</div><div class="spanish-es">Siéntate aquí</div></div><div class="spanish-pron">시엔따떼 아끼 <span class="sound-btn">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('¿Dónde está el baño?')"><div><div class="spanish-kr">화장실이 어디예요?</div><div class="spanish-es">¿Dónde está el baño?</div></div><div class="spanish-pron">돈데 에스따 엘 바뇨 <span class="sound-btn">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Está rico')"><div><div class="spanish-kr">맛있어요</div><div class="spanish-es">Está rico</div></div><div class="spanish-pron">에스따 리꼬 <span class="sound-btn">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Buen provecho')"><div><div class="spanish-kr">맛있게 드세요</div><div class="spanish-es">Buen provecho</div></div><div class="spanish-pron">부엔 프로베초 <span class="sound-btn">🔊</span></div></div>
         </div>
       </div>
     </div>
@@ -651,33 +286,19 @@
 
   </div>
 
-  <!-- 하단 모바일 네비게이션 -->
   <nav>
-    <button class="active" onclick="switchTab('tab-schedule', this)">
-      <span class="icon">📅</span>일정/사역
-    </button>
-    <button onclick="switchTab('tab-team', this)">
-      <span class="icon">👥</span>팀원/항공
-    </button>
-    <button onclick="switchTab('tab-checklist', this)">
-      <span class="icon">📦</span>준비물
-    </button>
-    <button onclick="switchTab('tab-budget', this)">
-      <span class="icon">💰</span>예산안
-    </button>
-    <button onclick="switchTab('tab-prayer', this)">
-      <span class="icon">🙏</span>기도제목
-    </button>
-    <button onclick="switchTab('tab-spanish', this)">
-      <span class="icon">🇲🇽</span>스페인어
-    </button>
-    <button onclick="switchTab('tab-accounting', this)">
-      <span class="icon">🧾</span>지출제출
-    </button>
+    <button class="active" onclick="switchTab('tab-schedule', this)"><span class="icon">📅</span>일정/사역</button>
+    <button onclick="switchTab('tab-team', this)"><span class="icon">👥</span>팀원/항공</button>
+    <button onclick="switchTab('tab-checklist', this)"><span class="icon">📦</span>준비물</button>
+    <button onclick="switchTab('tab-budget', this)"><span class="icon">💰</span>예산안</button>
+    <button onclick="switchTab('tab-prayer', this)"><span class="icon">🙏</span>기도제목</button>
+    <button onclick="switchTab('tab-spanish', this)"><span class="icon">🇲🇽</span>스페인어</button>
+    <button onclick="switchTab('tab-accounting', this)"><span class="icon">🧾</span>지출제출</button>
   </nav>
 
   <script>
-    // 예산 대시보드 변수
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbwBxFcPQV4qkRKEj-7oJb8ENl26I6qRU8SCXzIuqalww5H6ie6q2x7HB5ByAS5J0K91vg/exec";
+
     let TOTAL_BUDGET = 1000;
     let totalUsed = 0;
     let historyData = [];
@@ -706,10 +327,61 @@
     function switchTab(tabId, btn) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
       document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-      
       document.getElementById(tabId).classList.add('active');
       btn.classList.add('active');
       window.scrollTo(0, 0);
+
+      // 준비물 탭을 눌렀을 때 구글 시트에서 최신 준비물 목록 불러오기
+      if (tabId === 'tab-checklist') {
+        fetchChecklistData();
+      }
+    }
+
+    // 구글 시트에서 '팀 공용 준비물' 데이터를 실시간으로 읽어와서 화면을 구성하는 함수
+    function fetchChecklistData() {
+      const container = document.getElementById('checklistContainer');
+      container.innerHTML = `<p style="text-align: center; color: #888; padding: 20px;">구글 시트에서 준비물 데이터를 가져오는 중...</p>`;
+
+      fetch(GAS_URL)
+        .then(res => res.json())
+        .then(res => {
+          if (res.result === "success" && res.data.length > 0) {
+            container.innerHTML = res.data.map(item => {
+              // 구매/준비 상태 태그 클래스 결정
+              let statusClass = 'tag-plan';
+              let statusText = item.status || '미정';
+              
+              if (statusText.includes('완료')) {
+                statusClass = 'tag-done';
+              } else if (statusText.includes('예정')) {
+                statusClass = 'tag-plan';
+              } else {
+                statusClass = 'tag-unknown';
+              }
+
+              return `
+                <div class="check-card-item">
+                  <div class="check-card-title">
+                    <span>${item.item}</span>
+                    <div class="tag-group">
+                      ${item.path ? `<span class="check-tag tag-path">${item.path}</span>` : ''}
+                      ${item.luggage ? `<span class="check-tag tag-carry">${item.luggage}</span>` : ''}
+                      <span class="check-tag ${statusClass}">${statusText}</span>
+                    </div>
+                  </div>
+                  <div class="check-sub">
+                    👤 담당: <b>${item.manager || '미정'}</b> ${item.note ? `| ${item.note}` : ''}
+                  </div>
+                </div>
+              `;
+            }).join('');
+          } else {
+            container.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">시트에 등록된 준비물이 없습니다.</p>`;
+          }
+        })
+        .catch(err => {
+          container.innerHTML = `<p style="text-align: center; color: #d9532f; padding: 10px;">데이터를 불러오지 못했습니다. Apps Script 배포를 최신 상태로 저장했는지 확인해주세요.</p>`;
+        });
     }
 
     function speakSpanish(text) {
@@ -724,12 +396,8 @@
       }
     }
 
-    // Apps Script 제출 연동 및 자동 연동
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbwBxFcPQV4qkRKEj-7oJb8ENl26I6qRU8SCXzIuqalww5H6ie6q2x7HB5ByAS5J0K91vg/exec";
-
     document.getElementById('expenseForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      
       const submitBtn = document.getElementById('submitBtn');
       const formStatus = document.getElementById('formStatus');
       const fileInput = document.getElementById('expFile');
@@ -769,45 +437,39 @@
       }
 
       function sendData(data) {
-        fetch(GAS_URL, {
-          method: 'POST',
-          body: JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(res => {
-          if(res.result === "success") {
-            formStatus.innerText = "✅ 지출 내역이 성공적으로 제출되었습니다!";
-            formStatus.style.color = "green";
-            
-            // 예산 현황 실시간 합산 업데이트
-            totalUsed += amountVal;
-            historyData.unshift({
-              date: dateVal,
-              item: itemVal,
-              amount: amountVal,
-              author: authorVal,
-              payment: paymentVal
-            });
-            updateBudgetUI();
-
-            document.getElementById('expenseForm').reset();
-          } else {
-            throw new Error(res.error);
-          }
-        })
-        .catch(err => {
-          formStatus.innerText = "❌ 제출 실패: 다시 시도해 주세요.";
-          formStatus.style.color = "red";
-        })
-        .finally(() => {
-          submitBtn.disabled = false;
-          submitBtn.innerText = "📷 제출하기";
-        });
+        fetch(GAS_URL, { method: 'POST', body: JSON.stringify(data) })
+          .then(res => res.json())
+          .then(res => {
+            if(res.result === "success") {
+              formStatus.innerText = "✅ 지출 내역이 성공적으로 제출되었습니다!";
+              formStatus.style.color = "green";
+              totalUsed += amountVal;
+              historyData.unshift({
+                date: dateVal,
+                item: itemVal,
+                amount: amountVal,
+                author: authorVal,
+                payment: paymentVal
+              });
+              updateBudgetUI();
+              document.getElementById('expenseForm').reset();
+            } else {
+              throw new Error(res.error);
+            }
+          })
+          .catch(err => {
+            formStatus.innerText = "❌ 제출 실패: 다시 시도해 주세요.";
+            formStatus.style.color = "red";
+          })
+          .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerText = "📷 제출하기";
+          });
       }
     });
 
-    // 초기에 예산 UI 렌더링
     updateBudgetUI();
+    fetchChecklistData(); // 초기 로드
   </script>
 </body>
 </html>
