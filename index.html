@@ -5,98 +5,242 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>아미꼬레아 마스터시트</title>
   <style>
-    /* 기본 스타일 설정 */
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-      margin: 20px;
-      line-height: 1.6;
+    :root {
+      --primary-color: #0066cc;
+      --bg-gray: #f8f9fa;
+      --border-color: #e9ecef;
     }
-    
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h1, h2, h3 {
+      color: #1a1a1a;
+    }
+
+    h2 {
+      border-bottom: 2px solid #0066cc;
+      padding-bottom: 8px;
+      margin-top: 35px;
+    }
+
+    .header-box {
+      background-color: #eef6ff;
+      border-left: 5px solid var(--primary-color);
+      padding: 15px 20px;
+      border-radius: 4px;
+      margin-bottom: 25px;
+    }
+
+    .header-box h1 {
+      margin: 0 0 10px 0;
+      font-size: 1.6rem;
+    }
+
+    .header-box p {
+      margin: 5px 0;
+      font-weight: 500;
+    }
+
+    /* 테이블 스타일 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f1f3f5;
+      font-weight: bold;
+    }
+
+    /* 스페인어 목록 스타일 */
     .phrase-list {
       list-style: none;
       padding: 0;
+      margin: 0;
     }
 
     .phrase-item {
-      padding: 10px;
+      padding: 12px 16px;
       margin-bottom: 8px;
       border-radius: 8px;
-      background-color: #f8f9fa;
+      background-color: var(--bg-gray);
+      border: 1px solid var(--border-color);
       cursor: pointer;
-      transition: background-color 0.2s ease;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .phrase-item:hover {
-      background-color: #e9ecef;
+      background-color: #e2e8f0;
+      transform: translateY(-1px);
     }
 
     .spanish-text {
       font-weight: bold;
-      color: #0066cc;
+      color: var(--primary-color);
     }
 
     .sound-icon {
       font-size: 0.9em;
-      margin-left: 5px;
+      opacity: 0.7;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 6px;
     }
   </style>
 </head>
 <body>
 
-  <h2>🇲🇽 센트26 아미꼬레아!멕시코 선교</h2>
-  <p>2026.09.23(수) ~ 09.29(화)</p>
+  <!-- 헤더 영역 -->
+  <div class="header-box">
+    <h1>🇲🇽 센트26 아미꼬레아! 멕시코 선교</h1>
+    <p><strong>일정:</strong> 2026.09.23(수) ~ 09.29(화)</p>
+    <p><strong>장소:</strong> 멕시코 현지 선교지</p>
+  </div>
 
-  <h3>🇲🇽 현지 필수 스페인어 <small style="font-size: 0.6em; color: #666;">(문장을 클릭하면 발음이 나옵니다 🔊)</small></h3>
+  <!-- 1. 일정 및 안내 -->
+  <h2>📅 주요 일정 안내</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>날짜</th>
+        <th>주요 사역 및 일정</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>09.23(수)</strong></td>
+        <td>출국 및 현지 도착 / 사역지 이동 및 짐 정리</td>
+      </tr>
+      <tr>
+        <td><strong>09.24(목)</strong></td>
+        <td>현지 사역 준비 및 원주민 마을 사역 시작</td>
+      </tr>
+      <tr>
+        <td><strong>09.25(금)</strong></td>
+        <td>어린이 사역, 문화 사역 및 찬양 집회</td>
+      </tr>
+      <tr>
+        <td><strong>09.26(토)</strong></td>
+        <td>지역 복음화 사역 및 의료/이미용 봉사</td>
+      </tr>
+      <tr>
+        <td><strong>09.27(일)</strong></td>
+        <td>현지 교회 주일 예배 참석 및 사역 마무리</td>
+      </tr>
+      <tr>
+        <td><strong>09.28(월)</strong></td>
+        <td>사역 평가회 및 귀국 준비 / 귀국길 출발</td>
+      </tr>
+      <tr>
+        <td><strong>09.29(화)</strong></td>
+        <td>한국 도착</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 2. 파트별 준비물 -->
+  <h2>🎒 개인 및 파트별 준비물</h2>
+  <ul>
+    <li><strong>공통 개인 준비물:</strong> 여권(유효기간 6개월 이상), 성경책, 개인 세면도구, 비상약, 얇은 겉옷, 운동화, 필기도구</li>
+    <li><strong>팀 준비물:</strong> 사역 물품, 단체 티셔츠, 선물용 물품, 비상 의약품 키트</li>
+  </ul>
+
+  <!-- 3. 현지 필수 스페인어 (음성 재생 기능) -->
+  <h2>🇲🇽 현지 필수 스페인어 <small style="font-size: 0.6em; color: #666; font-weight: normal;">(문장을 클릭하면 발음이 나옵니다 🔊)</small></h2>
 
   <ul class="phrase-list">
     <li class="phrase-item" onclick="speakSpanish('Hola')">
-      안녕하세요 - <span class="spanish-text">Hola</span> (올라) <span class="sound-icon">🔊</span>
+      <span>안녕하세요 - <span class="spanish-text">Hola</span> (올라)</span>
+      <span class="sound-icon">🔊</span>
     </li>
     <li class="phrase-item" onclick="speakSpanish('Buenos días')">
-      좋은 아침입니다 - <span class="spanish-text">Buenos días</span> (부에노스 디아스) <span class="sound-icon">🔊</span>
+      <span>좋은 아침입니다 - <span class="spanish-text">Buenos días</span> (부에노스 디아스)</span>
+      <span class="sound-icon">🔊</span>
     </li>
     <li class="phrase-item" onclick="speakSpanish('Dios te bendiga')">
-      하나님의 축복이 있기를 - <span class="spanish-text">Dios te bendiga</span> (디오스 떼 벤디가) <span class="sound-icon">🔊</span>
+      <span>하나님의 축복이 있기를 - <span class="spanish-text">Dios te bendiga</span> (디오스 떼 벤디가)</span>
+      <span class="sound-icon">🔊</span>
     </li>
     <li class="phrase-item" onclick="speakSpanish('Dios te ama')">
-      하나님은 당신을 사랑하십니다 - <span class="spanish-text">Dios te ama</span> (디오스 떼 아마) <span class="sound-icon">🔊</span>
+      <span>하나님은 당신을 사랑하십니다 - <span class="spanish-text">Dios te ama</span> (디오스 떼 아마)</span>
+      <span class="sound-icon">🔊</span>
     </li>
     <li class="phrase-item" onclick="speakSpanish('Jesús te ama')">
-      예수님은 당신을 사랑하십니다 - <span class="spanish-text">Jesús te ama</span> (헤수스 떼 아마) <span class="sound-icon">🔊</span>
+      <span>예수님은 당신을 사랑하십니다 - <span class="spanish-text">Jesús te ama</span> (헤수스 떼 아마)</span>
+      <span class="sound-icon">🔊</span>
     </li>
     <li class="phrase-item" onclick="speakSpanish('Mucho gusto')">
-      만나서 반갑습니다 - <span class="spanish-text">Mucho gusto</span> (무초 구스또) <span class="sound-icon">🔊</span>
+      <span>만나서 반갑습니다 - <span class="spanish-text">Mucho gusto</span> (무초 구스또)</span>
+      <span class="sound-icon">🔊</span>
     </li>
     <li class="phrase-item" onclick="speakSpanish('Gracias')">
-      감사합니다 - <span class="spanish-text">Gracias</span> (그라시아스) <span class="sound-icon">🔊</span>
+      <span>감사합니다 - <span class="spanish-text">Gracias</span> (그라시아스)</span>
+      <span class="sound-icon">🔊</span>
     </li>
     <li class="phrase-item" onclick="speakSpanish('¡Muy bien!')">
-      잘했어요! - <span class="spanish-text">¡Muy bien!</span> (무이 비엔) <span class="sound-icon">🔊</span>
+      <span>잘했어요! - <span class="spanish-text">¡Muy bien!</span> (무이 비엔)</span>
+      <span class="sound-icon">🔊</span>
     </li>
     <li class="phrase-item" onclick="speakSpanish('Siéntate aquí')">
-      여기 앉으세요 - <span class="spanish-text">Siéntate aquí</span> (시엔따떼 아끼) <span class="sound-icon">🔊</span>
+      <span>여기 앉으세요 - <span class="spanish-text">Siéntate aquí</span> (시엔따떼 아끼)</span>
+      <span class="sound-icon">🔊</span>
     </li>
     <li class="phrase-item" onclick="speakSpanish('¿Dónde está el baño?')">
-      화장실이 어디예요? - <span class="spanish-text">¿Dónde está el baño?</span> (돈데 에스따 엘 바뇨) <span class="sound-icon">🔊</span>
+      <span>화장실이 어디예요? - <span class="spanish-text">¿Dónde está el baño?</span> (돈데 에스따 엘 바뇨)</span>
+      <span class="sound-icon">🔊</span>
     </li>
     <li class="phrase-item" onclick="speakSpanish('Está rico')">
-      맛있어요 - <span class="spanish-text">Está rico</span> (에스따 리꼬) <span class="sound-icon">🔊</span>
+      <span>맛있어요 - <span class="spanish-text">Está rico</span> (에스따 리꼬)</span>
+      <span class="sound-icon">🔊</span>
     </li>
     <li class="phrase-item" onclick="speakSpanish('Buen provecho')">
-      맛있게 드세요 - <span class="spanish-text">Buen provecho</span> (부엔 프로베초) <span class="sound-icon">🔊</span>
+      <span>맛있게 드세요 - <span class="spanish-text">Buen provecho</span> (부엔 프로베초)</span>
+      <span class="sound-icon">🔊</span>
     </li>
+  </ul>
+
+  <!-- 4. 유의사항 -->
+  <h2>⚠️ 안전 및 유의사항</h2>
+  <ul>
+    <li>현지에서는 반드시 2인 1조 이상 이동해 주세요.</li>
+    <li>식수는 반드시 제공되는 생수를 마셔주세요.</li>
+    <li>소지품 관리에 유의해 주시기 바랍니다.</li>
   </ul>
 
   <!-- 스페인어 음성 재생 JavaScript -->
   <script>
     function speakSpanish(text) {
       if ('speechSynthesis' in window) {
-        // 이전 재생 중인 음성이 있다면 중단
+        // 중복 재생 방지
         window.speechSynthesis.cancel();
 
         const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'es-MX'; // 멕시코 스페인어 설정
-        utterance.rate = 0.85;    // 또박또박 들리도록 속도 조절
+        utterance.lang = 'es-MX'; // 멕시코 스페인어 발음
+        utterance.rate = 0.75;    // 또박또박한 전달을 위해 속도 약간 감소
 
         window.speechSynthesis.speak(utterance);
       } else {
