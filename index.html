@@ -289,8 +289,7 @@
   </nav>
 
   <script>
-    // 신규 배포 URL 반영
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbxDa_HSiRAzv0WPpWZ6nmLFmNR6buMHct9P4xdQtMiqAHwZYbm64iZSQEqF_0b2X9EvZw/exec";
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbyWciNnzkHBp1_mjoLmHSSkag9I8BcfS8ZQX0eJToZF29pqo0VRq1iu57cEJIw15ssYlA/exec";
 
     function switchTab(tabId, btn) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
@@ -400,7 +399,7 @@
 
       submitBtn.disabled = true;
       submitBtn.innerText = "전송 중...";
-      formStatus.innerText = "영수증 및 지출 내역을 저장하는 중입니다...";
+      formStatus.innerText = "영수증 압축 및 지출 내역을 저장하는 중입니다...";
       formStatus.style.color = "#2b5876";
 
       const payload = {
@@ -416,7 +415,7 @@
 
       const file = fileInput.files[0];
       if (file) {
-        // 이미지가 너무 큰 경우 압축 처리하여 전송 실패 방지
+        // ⚡ 초고속 전송을 위한 600px, 퀄리티 0.4 경량 압축
         const reader = new FileReader();
         reader.onload = function(evt) {
           const img = new Image();
@@ -424,7 +423,7 @@
             const canvas = document.createElement('canvas');
             let width = img.width;
             let height = img.height;
-            const max_size = 1000;
+            const max_size = 600;
 
             if (width > height) {
               if (width > max_size) {
@@ -442,7 +441,7 @@
             const ctx = canvas.getContext('2d');
             ctx.drawImage(img, 0, 0, width, height);
             
-            payload.fileData = canvas.toDataURL('image/jpeg', 0.7);
+            payload.fileData = canvas.toDataURL('image/jpeg', 0.4);
             payload.fileName = file.name.replace(/\.[^/.]+$/, "") + ".jpg";
             sendData(payload);
           };
