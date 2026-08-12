@@ -92,7 +92,7 @@
     .prayer-item { margin-bottom: 10px; font-size: 0.85rem; line-height: 1.4; }
     .prayer-name { font-weight: bold; color: var(--secondary); }
 
-    /* 스페인어 카드 */
+    /* 스페인어 카드 (클릭 가능 스타일 추가) */
     .spanish-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
     .spanish-card {
       background: #ffffff;
@@ -102,10 +102,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      cursor: pointer;
+      transition: background-color 0.2s;
     }
+    .spanish-card:hover { background-color: #f1f3f5; }
+    .spanish-card:active { background-color: #e9ecef; }
     .spanish-kr { font-size: 0.85rem; color: #666; }
     .spanish-es { font-weight: bold; color: var(--primary); font-size: 1rem; }
     .spanish-pron { font-size: 0.8rem; color: var(--accent); }
+    .sound-icon { font-size: 0.9em; margin-left: 8px; opacity: 0.6; }
 
     /* 예산안 리스트 */
     .budget-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #eee; font-size: 0.85rem; }
@@ -113,8 +118,18 @@
     .budget-val { color: var(--accent); font-weight: bold; }
 
     /* 준비물 체크리스트 UI */
-    .check-item { display: flex; align-items: center; margin-bottom: 10px; font-size: 0.85rem; color: #444; }
-    .check-item input { margin-right: 10px; width: 18px; height: 18px; accent-color: var(--primary); }
+    .check-card-item {
+      border-bottom: 1px solid #f0f0f0;
+      padding: 10px 0;
+    }
+    .check-card-title { font-weight: bold; font-size: 0.9rem; color: #333; display: flex; justify-content: space-between; align-items: center; }
+    .check-tag { font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: normal; margin-left: 8px;}
+    .tag-kr { background: #e3f2fd; color: #1976d2; }
+    .tag-us { background: #fff3e0; color: #e65100; }
+    .tag-mx { background: #e8f5e9; color: #2e7d32; }
+    .tag-carry { background: #f3e5f5; color: #7b1fa2; } /* 기내 태그 추가 */
+    .check-sub { font-size: 0.8rem; color: #666; margin-top: 4px; }
+    .check-desc { font-size: 0.75rem; color: #888; margin-top: 2px; font-style: italic;} /* 설명 스타일 추가 */
 
     /* 지출 제출 버튼 */
     .btn-submit {
@@ -264,28 +279,61 @@
       </div>
     </div>
 
-    <!-- 3. 준비물 체크리스트 (신규 추가) -->
+    <!-- 3. 업데이트된 준비물 탭 -->
     <div id="tab-checklist" class="section">
       <div class="card">
-        <div class="card-title">🧳 개인 필수 준비물</div>
-        <label class="check-item"><input type="checkbox"> 여권 (유효기간 6개월 이상)</label>
-        <label class="check-item"><input type="checkbox"> ESTA (미국 비자 승인서) 출력본</label>
-        <label class="check-item"><input type="checkbox"> 개인 세면도구 및 수건</label>
-        <label class="check-item"><input type="checkbox"> 개인 상비약</label>
-        <label class="check-item"><input type="checkbox"> 여벌 옷 / 속옷 / 편한 신발</label>
-        <label class="check-item"><input type="checkbox"> 선크림 / 모자 / 썬글라스</label>
-        <label class="check-item"><input type="checkbox"> 보조배터리 및 충전 케이블</label>
-        <label class="check-item"><input type="checkbox"> 환전 현금 ($) 및 카드</label>
-      </div>
+        <div class="card-title">📦 출국 전 최종 체크리스트</div>
+        <p class="notice">⚠️ 위탁 수하물 금지 품목(배터리, 라이터 등)을 꼭 확인하세요!</p>
 
-      <div class="card">
-        <div class="card-title">📦 팀 공용 준비물</div>
-        <label class="check-item"><input type="checkbox"> 상비약 (두통약, 소화제, 지사제 등)</label>
-        <label class="check-item"><input type="checkbox"> 포터블 사진 프린터 & 인화지</label>
-        <label class="check-item"><input type="checkbox"> 촬영 삼각대 & 멀티탭/돼지코</label>
-        <label class="check-item"><input type="checkbox"> 스킷드라마/특송 소품 및 음원</label>
-        <label class="check-item"><input type="checkbox"> 전통놀이 도구 (제기, 윷놀이 등)</label>
-        <label class="check-item"><input type="checkbox"> 미용 도구 (가위, 바리깡, 가운 등)</label>
+        <div class="check-card-item">
+          <div class="check-card-title">여권 및 여권 사본 <span class="check-tag tag-carry">기내</span></div>
+          <div class="check-sub">만료일 6개월 이상 남았는지 필히 확인</div>
+        </div>
+
+        <div class="check-card-item">
+          <div class="check-card-title">이티켓(항공권) 및 숙소 바우처 <span class="check-tag tag-carry">기내</span></div>
+          <div class="check-sub">모바일 저장 및 출력본 권장</div>
+        </div>
+
+        <div class="check-card-item">
+          <div class="check-card-title">개인 소독제 및 마스크 <span class="check-tag tag-carry">기내</span></div>
+          <div class="check-sub">장시간 비행 및 현지 위생 관리용</div>
+        </div>
+
+        <div class="check-card-item">
+          <div class="check-card-title">목베개, 안대, 귀마개 <span class="check-tag tag-carry">기내</span></div>
+          <div class="check-sub">컨디션 조절용 필수템</div>
+        </div>
+
+        <div class="check-card-item">
+          <div class="check-card-title">충전 케이블 및 보조배터리 <span class="check-tag tag-carry">기내</span></div>
+          <div class="check-sub">보조배터리는 위탁 수하물 절대 불가</div>
+        </div>
+
+        <div class="check-card-item">
+          <div class="check-card-title">개인 세면도구 (칫솔, 치약, 샴푸 등) <span class="check-tag tag-kr">위탁</span></div>
+          <div class="check-sub">액체류는 100ml 이하 기내 반입 가능, 이상은 위탁</div>
+        </div>
+
+        <div class="check-card-item">
+          <div class="check-card-title">여벌 옷 및 속옷 <span class="check-tag tag-kr">위탁</span></div>
+          <div class="check-sub">일교차가 크니 얇은 겉옷 포함</div>
+        </div>
+
+        <div class="check-card-item">
+          <div class="check-card-title">상비약 (감기약, 소화제, 지약 등) <span class="check-tag tag-kr">위탁</span></div>
+          <div class="check-sub">개인 복용 약 포함</div>
+        </div>
+
+        <div class="check-card-item">
+          <div class="check-card-title">팀 단체 티셔츠 <span class="check-tag tag-kr">위탁</span></div>
+          <div class="check-sub">사역 당일 착용</div>
+        </div>
+
+        <div class="check-card-item">
+          <div class="check-card-title">멀티 어댑터 및 돼지코 <span class="check-tag tag-kr">위탁</span></div>
+          <div class="check-sub">멕시코는 110V 사용</div>
+        </div>
       </div>
     </div>
 
@@ -331,23 +379,23 @@
       </div>
     </div>
 
-    <!-- 6. 스페인어 -->
+    <!-- 6. 음성 기능이 추가된 스페인어 탭 -->
     <div id="tab-spanish" class="section">
       <div class="card">
-        <div class="card-title">🇲🇽 현지 필수 스페인어</div>
+        <div class="card-title">🇲🇽 현지 필수 스페인어 (클릭 시 발음 재생 🔊)</div>
         <div class="spanish-grid">
-          <div class="spanish-card"><div><div class="spanish-kr">안녕하세요</div><div class="spanish-es">Hola</div></div><div class="spanish-pron">올라</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">좋은 아침입니다</div><div class="spanish-es">Buenos días</div></div><div class="spanish-pron">부에노스 디아스</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">하나님의 축복이 있기를</div><div class="spanish-es">Dios te bendiga</div></div><div class="spanish-pron">디오스 떼 벤디가</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">하나님은 당신을 사랑하십니다</div><div class="spanish-es">Dios te ama</div></div><div class="spanish-pron">디오스 떼 아마</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">예수님은 당신을 사랑하십니다</div><div class="spanish-es">Jesús te ama</div></div><div class="spanish-pron">헤수스 떼 아마</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">만나서 반갑습니다</div><div class="spanish-es">Mucho gusto</div></div><div class="spanish-pron">무초 구스또</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">감사합니다</div><div class="spanish-es">Gracias</div></div><div class="spanish-pron">그라시아스</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">잘했어요!</div><div class="spanish-es">¡Muy bien!</div></div><div class="spanish-pron">무이 비엔</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">여기 앉으세요</div><div class="spanish-es">Siéntate aquí</div></div><div class="spanish-pron">시엔따떼 아끼</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">화장실이 어디예요?</div><div class="spanish-es">¿Dónde está el baño?</div></div><div class="spanish-pron">돈데 에스따 엘 바뇨</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">맛있어요</div><div class="spanish-es">Está rico</div></div><div class="spanish-pron">에스따 리꼬</div></div>
-          <div class="spanish-card"><div><div class="spanish-kr">맛있게 드세요</div><div class="spanish-es">Buen provecho</div></div><div class="spanish-pron">부엔 프로베초</div></div>
+          <div class="spanish-card" onclick="speakSpanish('Hola')"><div><div class="spanish-kr">안녕하세요</div><div class="spanish-es">Hola</div></div><div class="spanish-pron">올라 <span class="sound-icon">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Buenos días')"><div><div class="spanish-kr">좋은 아침입니다</div><div class="spanish-es">Buenos días</div></div><div class="spanish-pron">부에노스 디아스 <span class="sound-icon">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Dios te bendiga')"><div><div class="spanish-kr">하나님의 축복이 있기를</div><div class="spanish-es">Dios te bendiga</div></div><div class="spanish-pron">디오스 떼 벤디가 <span class="sound-icon">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Dios te ama')"><div><div class="spanish-kr">하나님은 당신을 사랑하십니다</div><div class="spanish-es">Dios te ama</div></div><div class="spanish-pron">디오스 떼 아마 <span class="sound-icon">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Jesús te ama')"><div><div class="spanish-kr">예수님은 당신을 사랑하십니다</div><div class="spanish-es">Jesús te ama</div></div><div class="spanish-pron">헤수스 떼 아마 <span class="sound-icon">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Mucho gusto')"><div><div class="spanish-kr">만나서 반갑습니다</div><div class="spanish-es">Mucho gusto</div></div><div class="spanish-pron">무초 구스또 <span class="sound-icon">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Gracias')"><div><div class="spanish-kr">감사합니다</div><div class="spanish-es">Gracias</div></div><div class="spanish-pron">그라시아스 <span class="sound-icon">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('¡Muy bien!')"><div><div class="spanish-kr">잘했어요!</div><div class="spanish-es">¡Muy bien!</div></div><div class="spanish-pron">무이 비엔 <span class="sound-icon">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Siéntate aquí')"><div><div class="spanish-kr">여기 앉으세요</div><div class="spanish-es">Siéntate aquí</div></div><div class="spanish-pron">시엔따떼 아끼 <span class="sound-icon">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('¿Dónde está el baño?')"><div><div class="spanish-kr">화장실이 어디예요?</div><div class="spanish-es">¿Dónde está el baño?</div></div><div class="spanish-pron">돈데 에스따 엘 바뇨 <span class="sound-icon">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Está rico')"><div><div class="spanish-kr">맛있어요</div><div class="spanish-es">Está rico</div></div><div class="spanish-pron">에스따 리꼬 <span class="sound-icon">🔊</span></div></div>
+          <div class="spanish-card" onclick="speakSpanish('Buen provecho')"><div><div class="spanish-kr">맛있게 드세요</div><div class="spanish-es">Buen provecho</div></div><div class="spanish-pron">부엔 프로베초 <span class="sound-icon">🔊</span></div></div>
         </div>
       </div>
     </div>
@@ -385,6 +433,22 @@
       document.getElementById(tabId).classList.add('active');
       btn.classList.add('active');
       window.scrollTo(0, 0);
+    }
+
+    // 스페인어 음성 재생 함수 (멕시코 스페인어 설정)
+    function speakSpanish(text) {
+      if ('speechSynthesis' in window) {
+        // 이전 재생 중인 음성이 있다면 중단
+        window.speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'es-MX'; // 멕시코 스페인어 발음 설정
+        utterance.rate = 0.85;    // 또박또박 들리도록 속도 조절
+
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert('이 브라우저는 음성 재생을 지원하지 않습니다. 크롬이나 사파리를 이용해주세요.');
+      }
     }
   </script>
 </body>
