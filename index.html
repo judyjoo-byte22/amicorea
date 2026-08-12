@@ -523,18 +523,52 @@
       </div>
     </div>
 
-    <!-- 7. 회계/지출 -->
-    <div id="tab-accounting" class="section">
-      <div class="card">
-        <div class="card-title">🧾 현장 지출 제출</div>
-        <p style="font-size: 0.85rem; color: #666; margin-bottom: 12px; line-height: 1.5;">
-          현장 비용 지출 후 아래 버튼을 눌러 영수증 사진과 금액을 입력해주세요.
-        </p>
-        <a href="https://forms.google.com" target="_blank" class="btn-submit">📷 영수증 찍고 지출 제출하기</a>
+    <!-- 7. 회계/지출 (웹 내 직접 입력 Form) -->
+<div id="tab-accounting" class="section">
+  <div class="card">
+    <div class="card-title">🧾 현장 지출 내역 직접 제출</div>
+    <form id="expenseForm" style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
+      
+      <div>
+        <label style="font-size: 0.8rem; font-weight: bold; color: #555;">지출 날짜</label>
+        <input type="date" id="expDate" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
       </div>
-    </div>
 
+      <div>
+        <label style="font-size: 0.8rem; font-weight: bold; color: #555;">항목 및 내용</label>
+        <input type="text" id="expItem" placeholder="예: 샌드위치 재료, 유류비" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
+      </div>
+
+      <div>
+        <label style="font-size: 0.8rem; font-weight: bold; color: #555;">사용 금액 ($ 또는 MXN)</label>
+        <input type="text" id="expAmount" placeholder="예: $35.50 또는 500 MXN" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
+      </div>
+
+      <div>
+        <label style="font-size: 0.8rem; font-weight: bold; color: #555;">결제 수단</label>
+        <select id="expPayment" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
+          <option value="현금">현금</option>
+          <option value="카드">카드</option>
+        </select>
+      </div>
+
+      <div>
+        <label style="font-size: 0.8rem; font-weight: bold; color: #555;">작성자 이름</label>
+        <input type="text" id="expAuthor" placeholder="작성자 이름" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
+      </div>
+
+      <div>
+        <label style="font-size: 0.8rem; font-weight: bold; color: #555;">영수증 사진 첨부</label>
+        <input type="file" id="expFile" accept="image/*" capture="environment" style="width: 100%; padding: 8px; margin-top: 4px;">
+      </div>
+
+      <button type="submit" id="submitBtn" class="btn-submit" style="border: none; cursor: pointer;">
+        📷 제출하기
+      </button>
+    </form>
+    <div id="formStatus" style="text-align: center; margin-top: 10px; font-weight: bold; font-size: 0.85rem;"></div>
   </div>
+</div>
 
   <!-- 아이콘이 들어간 하단 모바일 네비게이션 -->
   <nav>
