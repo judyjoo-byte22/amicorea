@@ -20,40 +20,27 @@
 
     header {
       background: linear-gradient(135deg, #d9532f 0%, #b3391b 100%);
-      color: white;
-      text-align: center;
-      padding: 28px 16px 20px 16px;
-      border-bottom-left-radius: 24px;
-      border-bottom-right-radius: 24px;
-      box-shadow: 0 4px 15px rgba(217, 83, 47, 0.25);
-      position: relative;
-      overflow: hidden;
+      color: white; text-align: center; padding: 28px 16px 20px 16px;
+      border-bottom-left-radius: 24px; border-bottom-right-radius: 24px;
+      box-shadow: 0 4px 15px rgba(217, 83, 47, 0.25); position: relative; overflow: hidden;
     }
     header::before { content: "🎉 🇲🇽 🌵 ☀️ 🇲🇽 🎉"; display: block; font-size: 0.85rem; letter-spacing: 4px; opacity: 0.85; margin-bottom: 6px; }
     header h1 { font-size: 1.5rem; font-weight: 800; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
     header p { font-size: 0.85rem; opacity: 0.95; margin-top: 4px; font-weight: 500; }
 
     nav {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: #ffffff;
-      display: flex;
-      justify-content: space-around;
-      border-top: 1px solid #eee;
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
-      z-index: 1000;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: #ffffff; display: flex; justify-content: space-around;
+      border-top: 1px solid #eee; box-shadow: 0 -4px 15px rgba(0,0,0,0.08); z-index: 1000;
       padding-bottom: env(safe-area-inset-bottom);
     }
     nav button {
-      flex: 1; padding: 10px 2px;
-      border: none; background: none;
-      font-size: 0.65rem; font-weight: 700; color: #888;
-      cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px;
-      transition: all 0.2s ease;
+      flex: 1; padding: 10px 2px; border: none; background: none;
+      font-size: 0.65rem; font-weight: 700; color: #888; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 3px; transition: all 0.2s ease;
     }
     nav button span.icon { font-size: 1.1rem; }
     nav button.active { color: var(--primary); }
-    nav button.active span.icon { transform: translateY(-2px); }
 
     .container { padding: 16px; max-width: 600px; margin: 0 auto; }
     .section { display: none; }
@@ -78,24 +65,21 @@
     .prayer-name { font-weight: 800; color: var(--primary); }
 
     .spanish-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
-    .spanish-card { background: #ffffff; border: 2px solid #f3e9e1; border-radius: 14px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.02); transition: all 0.15s ease; }
-    .spanish-card:active { transform: scale(0.98); background-color: #fff3ed; border-color: var(--primary); }
+    .spanish-card { background: #ffffff; border: 2px solid #f3e9e1; border-radius: 14px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
     .spanish-kr { font-size: 0.82rem; color: #777; margin-bottom: 2px; }
     .spanish-es { font-weight: 800; color: var(--primary); font-size: 1.05rem; }
     .spanish-pron { font-size: 0.85rem; color: var(--secondary); font-weight: 700; text-align: right; }
     .sound-btn { background: #fdf3e7; color: var(--accent); padding: 6px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-left: 8px; display: inline-block; }
 
-    .budget-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; text-align: center; }
-    .summary-box { background: #fdfaf6; border: 1px solid #f0e6df; border-radius: 10px; padding: 10px 4px; }
-    .summary-label { font-size: 0.72rem; color: #666; font-weight: bold; margin-bottom: 4px; }
-    .summary-value { font-size: 0.95rem; font-weight: 800; color: var(--primary); }
-    .summary-value.used { color: var(--accent-warm); }
-    .summary-value.remain { color: var(--secondary); }
+    .budget-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; text-align: center; }
+    .summary-box { background: #fdfaf6; border: 1px solid #f0e6df; border-radius: 12px; padding: 12px 6px; }
+    .summary-label { font-size: 0.75rem; color: #666; font-weight: bold; margin-bottom: 4px; }
+    .summary-value { font-size: 1.05rem; font-weight: 800; color: var(--accent-warm); }
+
     .budget-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.88rem; }
     .budget-name { font-weight: 600; color: #444; }
     .budget-val { color: var(--primary); font-weight: 800; }
 
-    /* 준비물 실시간 UI */
     .check-card-item { border-bottom: 1px solid #f5ede6; padding: 12px 0; }
     .check-card-title { font-weight: 700; font-size: 0.92rem; color: #333; display: flex; justify-content: space-between; align-items: center; }
     .tag-group { display: flex; gap: 4px; }
@@ -160,7 +144,7 @@
       </div>
     </div>
 
-    <!-- 3. 실시간 연동 준비물 탭 -->
+    <!-- 3. 준비물 탭 -->
     <div id="tab-checklist" class="section">
       <div class="card">
         <div class="card-title">
@@ -174,14 +158,13 @@
       </div>
     </div>
 
-    <!-- 4. 예산안 탭 -->
+    <!-- 4. 예산안 탭 (통화 구분 반영) -->
     <div id="tab-budget" class="section">
       <div class="card">
-        <div class="card-title">📊 예산 사용 현황</div>
+        <div class="card-title">📊 실시간 누적 지출 합계</div>
         <div class="budget-summary">
-          <div class="summary-box"><div class="summary-label">총 예산 ($)</div><div class="summary-value" id="totalBudgetDisplay">$1,000</div></div>
-          <div class="summary-box"><div class="summary-label">현재 지출</div><div class="summary-value used" id="totalUsedDisplay">$0</div></div>
-          <div class="summary-box"><div class="summary-label">남은 잔액</div><div class="summary-value remain" id="totalRemainDisplay">$1,000</div></div>
+          <div class="summary-box"><div class="summary-label">달러 지출 총액</div><div class="summary-value" id="usedUsdDisplay">$0.00</div></div>
+          <div class="summary-box"><div class="summary-label">원화 지출 총액</div><div class="summary-value" id="usedKrwDisplay">₩0</div></div>
         </div>
       </div>
       <div class="card">
@@ -223,7 +206,7 @@
       </div>
     </div>
 
-    <!-- 6. 터치 중심 스페인어 탭 -->
+    <!-- 6. 터치 스페인어 탭 -->
     <div id="tab-spanish" class="section">
       <div class="card">
         <div class="card-title">🇲🇽 필수 스페인어 (터치 시 발음 🔊)</div>
@@ -244,7 +227,7 @@
       </div>
     </div>
 
-    <!-- 7. 회계/지출 -->
+    <!-- 7. 회계/지출 (통화 선택 기능 추가) -->
     <div id="tab-accounting" class="section">
       <div class="card">
         <div class="card-title">🧾 현장 지출 내역 직접 제출</div>
@@ -257,9 +240,18 @@
             <label style="font-size: 0.8rem; font-weight: bold; color: #555;">항목 및 내용</label>
             <input type="text" id="expItem" placeholder="예: 샌드위치 재료, 유류비" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
           </div>
-          <div>
-            <label style="font-size: 0.8rem; font-weight: bold; color: #555;">사용 금액 (숫자만 작성, 예: 35.5)</label>
-            <input type="number" step="0.01" id="expAmount" placeholder="35.50" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
+          <div style="display: flex; gap: 8px;">
+            <div style="flex: 1;">
+              <label style="font-size: 0.8rem; font-weight: bold; color: #555;">통화 선택</label>
+              <select id="expCurrency" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
+                <option value="USD">USD ($)</option>
+                <option value="KRW">KRW (₩)</option>
+              </select>
+            </div>
+            <div style="flex: 2;">
+              <label style="font-size: 0.8rem; font-weight: bold; color: #555;">사용 금액</label>
+              <input type="number" step="0.01" id="expAmount" placeholder="35.50 또는 45000" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
+            </div>
           </div>
           <div>
             <label style="font-size: 0.8rem; font-weight: bold; color: #555;">결제 수단</label>
@@ -299,31 +291,6 @@
   <script>
     const GAS_URL = "https://script.google.com/macros/s/AKfycbzppLsftUbqzkKWG3zrlSQ9pevpaw3BW6us_87glRF-VY1swYQ5VDFv77_Rn4nNmIbj-g/exec";
 
-    let TOTAL_BUDGET = 1000;
-    let totalUsed = 0;
-    let historyData = [];
-
-    function updateBudgetUI() {
-      document.getElementById('totalUsedDisplay').innerText = `$${totalUsed.toFixed(2)}`;
-      const remain = TOTAL_BUDGET - totalUsed;
-      document.getElementById('totalRemainDisplay').innerText = `$${remain.toFixed(2)}`;
-
-      const listContainer = document.getElementById('expenseHistoryList');
-      if (historyData.length === 0) {
-        listContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">아직 입력된 지출 내역이 없습니다.</p>`;
-      } else {
-        listContainer.innerHTML = historyData.map(item => `
-          <div class="budget-item">
-            <div>
-              <span class="budget-name">${item.item}</span>
-              <div style="font-size:0.72rem; color:#888;">${item.date} | ${item.author} (${item.payment})</div>
-            </div>
-            <span class="budget-val" style="color:#d9532f;">-$${parseFloat(item.amount).toFixed(2)}</span>
-          </div>
-        `).join('');
-      }
-    }
-
     function switchTab(tabId, btn) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
       document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
@@ -331,13 +298,14 @@
       btn.classList.add('active');
       window.scrollTo(0, 0);
 
-      // 준비물 탭을 눌렀을 때 구글 시트에서 최신 준비물 목록 불러오기
       if (tabId === 'tab-checklist') {
         fetchChecklistData();
       }
+      if (tabId === 'tab-budget') {
+        fetchBudgetData();
+      }
     }
 
-    // 구글 시트에서 '팀 공용 준비물' 데이터를 실시간으로 읽어와서 화면을 구성하는 함수
     function fetchChecklistData() {
       const container = document.getElementById('checklistContainer');
       container.innerHTML = `<p style="text-align: center; color: #888; padding: 20px;">구글 시트에서 준비물 데이터를 가져오는 중...</p>`;
@@ -347,17 +315,11 @@
         .then(res => {
           if (res.result === "success" && res.data.length > 0) {
             container.innerHTML = res.data.map(item => {
-              // 구매/준비 상태 태그 클래스 결정
               let statusClass = 'tag-plan';
               let statusText = item.status || '미정';
-              
-              if (statusText.includes('완료')) {
-                statusClass = 'tag-done';
-              } else if (statusText.includes('예정')) {
-                statusClass = 'tag-plan';
-              } else {
-                statusClass = 'tag-unknown';
-              }
+              if (statusText.includes('완료')) statusClass = 'tag-done';
+              else if (statusText.includes('예정')) statusClass = 'tag-plan';
+              else statusClass = 'tag-unknown';
 
               return `
                 <div class="check-card-item">
@@ -380,7 +342,33 @@
           }
         })
         .catch(err => {
-          container.innerHTML = `<p style="text-align: center; color: #d9532f; padding: 10px;">데이터를 불러오지 못했습니다. Apps Script 배포를 최신 상태로 저장했는지 확인해주세요.</p>`;
+          container.innerHTML = `<p style="text-align: center; color: #d9532f; padding: 10px;">데이터를 불러오지 못했습니다.</p>`;
+        });
+    }
+
+    function fetchBudgetData() {
+      fetch(GAS_URL)
+        .then(res => res.json())
+        .then(res => {
+          if (res.result === "success") {
+            document.getElementById('usedUsdDisplay').innerText = `$${(res.totalUsd || 0).toFixed(2)}`;
+            document.getElementById('usedKrwDisplay').innerText = `₩${(res.totalKrw || 0).toLocaleString()}`;
+
+            const listContainer = document.getElementById('expenseHistoryList');
+            if (res.history && res.history.length > 0) {
+              listContainer.innerHTML = res.history.map(item => `
+                <div class="budget-item">
+                  <div>
+                    <span class="budget-name">${item.item}</span>
+                    <div style="font-size:0.72rem; color:#888;">${item.date} | ${item.author} (${item.payment})</div>
+                  </div>
+                  <span class="budget-val" style="color:#d9532f;">-${item.currency === 'KRW' ? '₩' + parseFloat(item.amount).toLocaleString() : '$' + parseFloat(item.amount).toFixed(2)}</span>
+                </div>
+              `).join('');
+            } else {
+              listContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">아직 입력된 지출 내역이 없습니다.</p>`;
+            }
+          }
         });
     }
 
@@ -403,6 +391,7 @@
       const fileInput = document.getElementById('expFile');
 
       const amountVal = parseFloat(document.getElementById('expAmount').value) || 0;
+      const currencyVal = document.getElementById('expCurrency').value;
       const itemVal = document.getElementById('expItem').value;
       const dateVal = document.getElementById('expDate').value;
       const authorVal = document.getElementById('expAuthor').value;
@@ -416,6 +405,7 @@
       const payload = {
         date: dateVal,
         item: itemVal,
+        currency: currencyVal,
         amount: amountVal,
         payment: paymentVal,
         author: authorVal,
@@ -443,15 +433,7 @@
             if(res.result === "success") {
               formStatus.innerText = "✅ 지출 내역이 성공적으로 제출되었습니다!";
               formStatus.style.color = "green";
-              totalUsed += amountVal;
-              historyData.unshift({
-                date: dateVal,
-                item: itemVal,
-                amount: amountVal,
-                author: authorVal,
-                payment: paymentVal
-              });
-              updateBudgetUI();
+              fetchBudgetData();
               document.getElementById('expenseForm').reset();
             } else {
               throw new Error(res.error);
@@ -468,8 +450,8 @@
       }
     });
 
-    updateBudgetUI();
-    fetchChecklistData(); // 초기 로드
+    fetchChecklistData();
+    fetchBudgetData();
   </script>
 </body>
 </html>
