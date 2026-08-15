@@ -74,6 +74,13 @@
     .total-budget-banner { background: #fdf3e7; border: 2px solid var(--accent); border-radius: 14px; padding: 16px; text-align: center; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(243, 156, 18, 0.15); }
     .total-budget-title { font-size: 0.85rem; color: #8a6d3b; font-weight: bold; }
     .total-budget-amount { font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-top: 4px; }
+    .total-budget-usd-sub { font-size: 0.82rem; color: #8a6d3b; margin-top: 4px; font-weight: 600; }
+
+    .remaining-budget-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+    .remaining-budget-box { background: rgba(255,255,255,0.65); border: 1px solid rgba(243, 156, 18, 0.4); border-radius: 10px; padding: 10px 6px; }
+    .remaining-budget-label { font-size: 0.72rem; color: #8a6d3b; font-weight: 700; margin-bottom: 3px; }
+    .remaining-budget-value { font-size: 1.05rem; font-weight: 800; color: var(--primary); }
+    .remaining-budget-value.over-budget { color: #c0392b; }
 
     .budget-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; text-align: center; }
     .summary-box { background: #fdfaf6; border: 1px solid #f0e6df; border-radius: 12px; padding: 12px 6px; }
@@ -254,8 +261,20 @@
     <!-- 4. 예산안 탭 -->
     <div id="tab-budget" class="section">
       <div class="total-budget-banner">
-        <div class="total-budget-title">현재 환율 기준 예산 총액</div>
+        <div class="total-budget-title">확정 예산 (원화 기준)</div>
         <div class="total-budget-amount">₩8,000,000</div>
+        <div class="total-budget-usd-sub" id="totalBudgetUsdDisplay">현재 환율 기준 달러 환산액 계산 중...</div>
+
+        <div class="remaining-budget-grid">
+          <div class="remaining-budget-box">
+            <div class="remaining-budget-label">잔여 예산 (KRW)</div>
+            <div class="remaining-budget-value" id="remainingKrwDisplay">₩0</div>
+          </div>
+          <div class="remaining-budget-box">
+            <div class="remaining-budget-label">잔여 예산 (USD)</div>
+            <div class="remaining-budget-value" id="remainingUsdDisplay">$0.00</div>
+          </div>
+        </div>
       </div>
 
       <div class="card">
@@ -455,24 +474,56 @@
         });
     }
 
+    // 확정된 원화 예산 (고정값) — 환율은 변동돼도 이 원화 총액은 그대로 유지됩니다.
+    const TOTAL_BUDGET_KRW = 8000000;
+
     function fetchBudgetData() {
       const budgetPlanContainer = document.getElementById('budgetPlanList');
       const exchangeRateDisplay = document.getElementById('exchangeRateDisplay');
+      const totalBudgetUsdDisplay = document.getElementById('totalBudgetUsdDisplay');
+      const remainingKrwDisplay = document.getElementById('remainingKrwDisplay');
+      const remainingUsdDisplay = document.getElementById('remainingUsdDisplay');
 
       fetch(GAS_URL)
         .then(res => res.json())
         .then(res => {
           if (res.result === "success") {
             // 실시간 현장 지출 합계
-            document.getElementById('usedUsdDisplay').innerText = `$${(res.totalUsd || 0).toFixed(2)}`;
-            document.getElementById('usedKrwDisplay').innerText = `₩${(res.totalKrw || 0).toLocaleString()}`;
+            const spentUsd = res.totalUsd || 0;
+            const spentKrw = res.totalKrw || 0;
+            document.getElementById('usedUsdDisplay').innerText = `$${spentUsd.toFixed(2)}`;
+            document.getElementById('usedKrwDisplay').innerText = `₩${spentKrw.toLocaleString()}`;
 
             // 환율 표기 (1USD=얼마) — 이 박스가 화면에서 환율이 보이는 유일한 위치입니다.
+            const exNum = res.exchangeRate ? parseFloat(String(res.exchangeRate).replace(/[^0-9.-]+/g, "")) : NaN;
+
             if (res.exchangeRate) {
-              const exNum = parseFloat(String(res.exchangeRate).replace(/[^0-9.-]+/g, ""));
               exchangeRateDisplay.innerText = !isNaN(exNum) ? `1USD=₩${exNum.toLocaleString()}` : `1USD=${res.exchangeRate}`;
             } else {
               exchangeRateDisplay.innerText = "미설정";
+            }
+
+            // 현재 환율 기준 총 예산(USD) 및 잔여 예산(KRW/USD) 계산
+            // - 원화 총 예산은 고정, 환율에 따라 달러 환산액만 움직입니다.
+            // - 지출은 KRW/USD가 섞여 들어오므로, 환율로 한쪽을 다른 쪽으로 환산해 하나의 기준(KRW)으로 합산합니다.
+            if (!isNaN(exNum) && exNum > 0) {
+              const totalBudgetUsd = TOTAL_BUDGET_KRW / exNum;
+              totalBudgetUsdDisplay.innerText = `≈ $${totalBudgetUsd.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} (현재 환율 기준)`;
+
+              const spentKrwEquivalent = spentKrw + (spentUsd * exNum);
+              const remainingKrw = TOTAL_BUDGET_KRW - spentKrwEquivalent;
+              const remainingUsd = remainingKrw / exNum;
+
+              remainingKrwDisplay.innerText = `₩${Math.round(remainingKrw).toLocaleString()}`;
+              remainingUsdDisplay.innerText = `$${remainingUsd.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+              const overBudget = remainingKrw < 0;
+              remainingKrwDisplay.classList.toggle('over-budget', overBudget);
+              remainingUsdDisplay.classList.toggle('over-budget', overBudget);
+            } else {
+              totalBudgetUsdDisplay.innerText = "환율 정보를 불러오지 못했습니다.";
+              remainingKrwDisplay.innerText = "-";
+              remainingUsdDisplay.innerText = "-";
             }
 
             // 예산안 계층화 및 합산 노출
