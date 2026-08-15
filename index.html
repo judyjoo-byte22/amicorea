@@ -81,15 +81,109 @@
     .summary-label { font-size: 0.75rem; color: #666; font-weight: bold; margin-bottom: 4px; }
     .summary-value { font-size: 1.05rem; font-weight: 800; color: var(--accent-warm); }
 
-    .budget-plan-card { border-bottom: 1px solid #f5ede6; padding: 12px 0; }
-    .budget-plan-card:last-child { border-bottom: none; }
-    .budget-plan-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-    .budget-plan-category { font-size: 0.72rem; color: var(--secondary); font-weight: 800; background: #e8f5e9; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-bottom: 4px; }
-    .budget-plan-title { font-weight: 800; font-size: 0.95rem; color: #2c3e50; }
-    .budget-plan-desc { font-size: 0.82rem; color: #666; margin-top: 3px; line-height: 1.4; }
-    .budget-amounts { text-align: right; white-space: nowrap; min-width: 80px; }
-    .amt-usd { font-weight: 800; color: var(--primary); font-size: 0.95rem; }
-    .amt-krw { font-size: 0.8rem; color: var(--secondary); font-weight: 700; margin-top: 2px; }
+    /* 환율 박스 스타일 */
+    .exchange-rate-box {
+      background: #fdf5f0;
+      border: 1px solid #f0e6df;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.83rem;
+      color: #555;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .exchange-rate-value {
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    /* 대항목 (운영비, 사역비, 예비비 등) */
+    .category-group {
+      border: 1px solid #f0e6df;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      background: #ffffff;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .category-header {
+      background: #fdf5f0;
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f0e6df;
+    }
+    .category-title {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    /* 소항목 (숙박비, 유류비, 팀식비 등) */
+    .subcategory-group {
+      padding: 12px 14px;
+      border-bottom: 1px dashed #f5ede6;
+    }
+    .subcategory-group:last-child {
+      border-bottom: none;
+    }
+    .subcategory-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .subcategory-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    /* 금액 공통 표기 */
+    .amount-badge {
+      text-align: right;
+      white-space: nowrap;
+    }
+    .amount-usd {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #2c3e50;
+    }
+    .amount-krw {
+      font-size: 0.75rem;
+      color: #777;
+      font-weight: 600;
+    }
+
+    /* 일자/세부내용 리스트 */
+    .detail-list {
+      background: #fafafa;
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+    .detail-info {
+      color: #555;
+      padding-right: 8px;
+    }
+    .detail-date {
+      color: #888;
+      font-size: 0.72rem;
+      margin-right: 4px;
+      font-weight: bold;
+    }
 
     .check-card-item { border-bottom: 1px solid #f5ede6; padding: 12px 0; }
     .check-card-title { font-weight: 700; font-size: 0.92rem; color: #333; display: flex; justify-content: space-between; align-items: center; }
@@ -169,7 +263,7 @@
       </div>
     </div>
 
-    <!-- 4. 예산안 탭 (구글 마스터 시트 데이터 직접 연동) -->
+    <!-- 4. 예산안 탭 -->
     <div id="tab-budget" class="section">
       <div class="total-budget-banner">
         <div class="total-budget-title">현재 환율 기준 예산 총액</div>
@@ -189,7 +283,14 @@
           <span>💰 사역별 예산안 세부 계획</span>
           <button onclick="fetchBudgetData()" style="background: none; border: 1px solid #ddd; padding: 4px 8px; border-radius: 6px; font-size: 0.72rem; cursor: pointer;">🔄 새로고침</button>
         </div>
-        <!-- 인원/단가 제외, 항목, 세부내용, USD, KRW만 카드 출력 -->
+
+        <!-- 1. C2 환율 자동 노출 영역 -->
+        <div class="exchange-rate-box">
+          <span>💱 구글 시트 적용 환율 (C2)</span>
+          <span class="exchange-rate-value" id="exchangeRateDisplay">불러오는 중...</span>
+        </div>
+
+        <!-- 2, 3, 4. 대항목 > 소항목 > 세부내역 자동 동적 생성 영역 -->
         <div id="budgetPlanList">
           <p style="text-align: center; color: #888; padding: 15px;">구글 시트에서 예산안 데이터를 가져오는 중...</p>
         </div>
@@ -310,8 +411,8 @@
   </nav>
 
   <script>
-    // 공유해주신 최신 백엔드 URL 연결
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbyAydSCskf82SeyGeTU0AAPKz73qYBpz2r-FU7VSGhnvaQEvS5cFWOM9Ri_OfFXqDLKRw/exec";
+    // 전달해주신 최신 Apps Script URL 적용
+    const GAS_URL = "https://script.google.com/macros/s/AKfycby9mGZzv5eLZLKdkQuOzfHXe47JJyAEHHP68aDT3kbw_VGMvtz1tSZxcvl1kgbNaJy8ag/exec";
 
     function switchTab(tabId, btn) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
@@ -370,45 +471,74 @@
 
     function fetchBudgetData() {
       const budgetPlanContainer = document.getElementById('budgetPlanList');
+      const exchangeRateDisplay = document.getElementById('exchangeRateDisplay');
 
       fetch(GAS_URL)
         .then(res => res.json())
         .then(res => {
           if (res.result === "success") {
-            // 1. 실시간 현장 지출 금액 표시
+            // 실시간 현장 지출 합계
             document.getElementById('usedUsdDisplay').innerText = `$${(res.totalUsd || 0).toFixed(2)}`;
             document.getElementById('usedKrwDisplay').innerText = `₩${(res.totalKrw || 0).toLocaleString()}`;
 
-            // 2. 구글 시트 예산안 데이터 노출 (인원, 단가 제외하고 항목, 세부내용, USD, KRW만 노출)
-            if (res.budgetPlan && res.budgetPlan.length > 0) {
-              budgetPlanContainer.innerHTML = res.budgetPlan.map(p => {
-                let usdVal = p.amountUsd;
-                if (!isNaN(parseFloat(usdVal)) && usdVal !== "") {
-                  usdVal = "$" + parseFloat(usdVal).toLocaleString();
-                } else if (usdVal && !usdVal.startsWith("$")) {
-                  usdVal = "$" + usdVal;
-                }
+            // 1. C2 환율 노출
+            if (res.exchangeRate) {
+              const exNum = parseFloat(String(res.exchangeRate).replace(/[^0-9.-]+/g, ""));
+              exchangeRateDisplay.innerText = !isNaN(exNum) ? `1 USD = ₩${exNum.toLocaleString()}` : res.exchangeRate;
+            } else {
+              exchangeRateDisplay.innerText = "미설정";
+            }
 
-                let krwVal = p.amountKrw;
-                if (!isNaN(parseFloat(krwVal)) && krwVal !== "") {
-                  krwVal = "₩" + parseFloat(krwVal).toLocaleString();
-                } else if (krwVal && !krwVal.startsWith("₩")) {
-                  krwVal = "₩" + krwVal;
-                }
+            // 2, 3, 4. 예산안 대항목 / 소항목 / 세부내역 계층화 및 합산 노출
+            if (res.budgetPlan && res.budgetPlan.length > 0) {
+              const structuredData = groupBudgetData(res.budgetPlan);
+
+              budgetPlanContainer.innerHTML = Object.keys(structuredData).map(catName => {
+                const category = structuredData[catName];
 
                 return `
-                  <div class="budget-plan-card">
-                    <div class="budget-plan-header">
-                      <div>
-                        ${p.category ? `<span class="budget-plan-category">${p.category}</span>` : ''}
-                        <div class="budget-plan-title">${p.detail || p.category}</div>
-                        ${p.note ? `<div class="budget-plan-desc">💡 ${p.note}</div>` : ''}
-                      </div>
-                      <div class="budget-amounts">
-                        ${usdVal ? `<div class="amt-usd">${usdVal}</div>` : ''}
-                        ${krwVal ? `<div class="amt-krw">${krwVal}</div>` : ''}
+                  <div class="category-group">
+                    <!-- 대항목 타이틀 및 USD / KRW 총액 -->
+                    <div class="category-header">
+                      <span class="category-title">📂 ${catName}</span>
+                      <div class="amount-badge">
+                        <div class="amount-usd">$${category.totalUsd.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2})}</div>
+                        <div class="amount-krw">₩${Math.round(category.totalKrw).toLocaleString()}</div>
                       </div>
                     </div>
+
+                    <!-- 소항목 목록 -->
+                    ${Object.keys(category.subcategories).map(subName => {
+                      const subcategory = category.subcategories[subName];
+
+                      return `
+                        <div class="subcategory-group">
+                          <div class="subcategory-header">
+                            <span class="subcategory-title">ㆍ ${subName}</span>
+                            <div class="amount-badge">
+                              <span class="amount-usd">$${subcategory.totalUsd.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2})}</span>
+                              <span class="amount-krw">(₩${Math.round(subcategory.totalKrw).toLocaleString()})</span>
+                            </div>
+                          </div>
+
+                          <!-- 일자 / 세부내용별 리스트 (G열: USD / H열: KRW) -->
+                          <div class="detail-list">
+                            ${subcategory.items.map(item => `
+                              <div class="detail-item">
+                                <div class="detail-info">
+                                  ${item.date ? `<span class="detail-date">[${item.date}]</span>` : ''}
+                                  <span>${item.detail || '세부내용 없음'}</span>
+                                </div>
+                                <div class="amount-badge" style="font-size:0.78rem;">
+                                  <span style="font-weight:700; color:#555;">$${item.amountUsd.toLocaleString()}</span>
+                                  <span style="color:#888; font-size:0.7rem;">(₩${Math.round(item.amountKrw).toLocaleString()})</span>
+                                </div>
+                              </div>
+                            `).join('')}
+                          </div>
+                        </div>
+                      `;
+                    }).join('')}
                   </div>
                 `;
               }).join('');
@@ -416,7 +546,7 @@
               budgetPlanContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">시트에 등록된 예산안 데이터가 없습니다.</p>`;
             }
 
-            // 3. 지출 내역 히스토리
+            // 지출 기록 내역
             const listContainer = document.getElementById('expenseHistoryList');
             if (res.history && res.history.length > 0) {
               listContainer.innerHTML = res.history.map(item => `
@@ -432,7 +562,45 @@
               listContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">아직 입력된 지출 내역이 없습니다.</p>`;
             }
           }
+        })
+        .catch(err => {
+          budgetPlanContainer.innerHTML = `<p style="text-align: center; color: #d9532f; padding: 10px;">데이터를 불러오지 못했습니다.</p>`;
         });
+    }
+
+    // 예산안 데이터를 [대항목 -> 소항목 -> 세부내용] 계층구조로 변환 및 합산해주는 헬퍼 함수
+    function groupBudgetData(dataList) {
+      const categories = {};
+
+      dataList.forEach(row => {
+        const cat = row.category || '기타';
+        const subCat = row.subcategory || row.item || '일반';
+        
+        // G열(amountUsd) & H열(amountKrw) 숫자 파싱
+        const usd = parseFloat(String(row.amountUsd || row.usd || 0).replace(/[^0-9.-]+/g, "")) || 0;
+        const krw = parseFloat(String(row.amountKrw || row.krw || 0).replace(/[^0-9.-]+/g, "")) || 0;
+
+        if (!categories[cat]) {
+          categories[cat] = { totalUsd: 0, totalKrw: 0, subcategories: {} };
+        }
+        categories[cat].totalUsd += usd;
+        categories[cat].totalKrw += krw;
+
+        if (!categories[cat].subcategories[subCat]) {
+          categories[cat].subcategories[subCat] = { totalUsd: 0, totalKrw: 0, items: [] };
+        }
+        categories[cat].subcategories[subCat].totalUsd += usd;
+        categories[cat].subcategories[subCat].totalKrw += krw;
+
+        categories[cat].subcategories[subCat].items.push({
+          date: row.date || '',
+          detail: row.detail || row.note || row.item || '',
+          amountUsd: usd,
+          amountKrw: krw
+        });
+      });
+
+      return categories;
     }
 
     function speakSpanish(text) {
