@@ -398,7 +398,7 @@
 
   <script>
     // 요청하신 신규 Apps Script URL 적용
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbxGhJeC_RuDaqiS8fCswX-yFoPiZji3wVbwv3s5cDWE5t4qfz7JxpZkF6Gch0wh7NiTjw/exec";
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbxrip-Fv8woXR7nUDyOuv4VWSi874i7uVm2SIjikS5taYdK3Ex0dfkkypAb9fecwpsShA/exec";
 
     function switchTab(tabId, btn) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
@@ -467,7 +467,7 @@
             document.getElementById('usedUsdDisplay').innerText = `$${(res.totalUsd || 0).toFixed(2)}`;
             document.getElementById('usedKrwDisplay').innerText = `₩${(res.totalKrw || 0).toLocaleString()}`;
 
-            // 환율 표기 (1USD=얼마)
+            // 환율 표기 (1USD=얼마) — 이 박스가 화면에서 환율이 보이는 유일한 위치입니다.
             if (res.exchangeRate) {
               const exNum = parseFloat(String(res.exchangeRate).replace(/[^0-9.-]+/g, ""));
               exchangeRateDisplay.innerText = !isNaN(exNum) ? `1USD=₩${exNum.toLocaleString()}` : `1USD=${res.exchangeRate}`;
@@ -478,8 +478,14 @@
             // 예산안 계층화 및 합산 노출
             if (res.budgetPlan && res.budgetPlan.length > 0) {
               const structuredData = groupBudgetData(res.budgetPlan, res.categoryTotals, res.subcategoryTotals);
+              const catNames = Object.keys(structuredData);
 
-              budgetPlanContainer.innerHTML = Object.keys(structuredData).map(catName => {
+              if (catNames.length === 0) {
+                budgetPlanContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">시트에 등록된 예산안 데이터가 없습니다.</p>`;
+                return;
+              }
+
+              budgetPlanContainer.innerHTML = catNames.map(catName => {
                 const category = structuredData[catName];
 
                 return `
@@ -513,7 +519,7 @@
                                   ${item.note ? `<span style="font-size:0.72rem; color:#888;"> (${item.note})</span>` : ''}
                                 </div>
                                 <div class="amount-badge" style="font-size:0.78rem;">
-                                  <span style="font-weight:700; color:#555;">$${item.amountUsd.toLocaleString()}</span>
+                                  <span style="font-weight:700; color:#555;">$${item.amountUsd.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2})}</span>
                                   <span style="color:#888; font-size:0.7rem;">(₩${Math.round(item.amountKrw).toLocaleString()})</span>
                                 </div>
                               </div>
@@ -551,13 +557,28 @@
         });
     }
 
+    // 환율 셀(C2) 등 예산 항목이 아닌 행이 시트 범위에 같이 딸려올 경우를 걸러내기 위한 키워드
+    const NON_BUDGET_KEYWORDS = ['환율', 'exchange', 'rate'];
+
+    function isBogusLabel(label) {
+      if (!label) return false;
+      const normalized = String(label).trim();
+      if (!normalized) return false;
+      return NON_BUDGET_KEYWORDS.some(keyword => normalized.includes(keyword));
+    }
+
     function groupBudgetData(dataList, catTotals = {}, subTotals = {}) {
       const categories = {};
 
       dataList.forEach(row => {
-        const cat = row.category || '기타';
-        const subCat = row.subcategory || '기타';
-        
+        const cat = (row.category || '기타').toString().trim();
+        // 1) 환율 계산 셀이 예산 항목처럼 딸려온 행은 카테고리 단계에서부터 제외
+        if (isBogusLabel(cat)) return;
+
+        const subCat = (row.subcategory || '기타').toString().trim();
+        // 2) 혹시 서브카테고리 단계에 환율 값(숫자)이 들어온 경우도 방어적으로 제외
+        if (isBogusLabel(subCat)) return;
+
         const usd = parseFloat(String(row.amountUsd || 0).replace(/[^0-9.-]+/g, "")) || 0;
         const krw = parseFloat(String(row.amountKrw || 0).replace(/[^0-9.-]+/g, "")) || 0;
 
@@ -570,7 +591,7 @@
         if (!categories[cat].subcategories[subCat]) {
           const subUsd = subTotals[subCat] ? parseFloat(subTotals[subCat].usd) : 0;
           const subKrw = subTotals[subCat] ? parseFloat(subTotals[subCat].krw) : 0;
-          categories[cat].subcategories[subCat] = { totalUsd: subUsd, totalKrw: subKrw, items: [] };
+          categories[cat].subcategories[subCat] = { totalUsd: subUsd, totalKrw: subKrw, items: [], _detailMap: {} };
         }
 
         if (!catTotals[cat]) {
@@ -582,11 +603,26 @@
           categories[cat].subcategories[subCat].totalKrw += krw;
         }
 
-        categories[cat].subcategories[subCat].items.push({
-          detail: row.detail || '세부내용 없음',
-          note: row.note || '',
-          amountUsd: usd,
-          amountKrw: krw
+        // 3) 세부내용(detail) 단계 — 동일한 세부내용이 여러 줄로 나뉘어 있으면 하나로 합산
+        const subcategory = categories[cat].subcategories[subCat];
+        const detailKey = (row.detail || '세부내용 없음').toString().trim() || '세부내용 없음';
+
+        if (!subcategory._detailMap[detailKey]) {
+          const newItem = { detail: detailKey, note: row.note || '', amountUsd: 0, amountKrw: 0 };
+          subcategory._detailMap[detailKey] = newItem;
+          subcategory.items.push(newItem);
+        }
+
+        const detailItem = subcategory._detailMap[detailKey];
+        detailItem.amountUsd += usd;
+        detailItem.amountKrw += krw;
+        if (!detailItem.note && row.note) detailItem.note = row.note;
+      });
+
+      // 렌더링에 쓰이지 않는 내부 보조 맵 제거
+      Object.values(categories).forEach(category => {
+        Object.values(category.subcategories).forEach(subcategory => {
+          delete subcategory._detailMap;
         });
       });
 
