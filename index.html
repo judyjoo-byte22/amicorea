@@ -722,7 +722,7 @@
             }
           })
           .catch(err => {
-            formStatus.innerText = "❌ 제출 실패: 다시 시도해 주세요.";
+            formStatus.innerText = "❌ 제출 실패: " + (err && err.message ? err.message : "알 수 없는 오류");
             formStatus.style.color = "red";
           })
           .finally(() => {
