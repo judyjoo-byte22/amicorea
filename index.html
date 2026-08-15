@@ -71,7 +71,6 @@
     .spanish-pron { font-size: 0.85rem; color: var(--secondary); font-weight: 700; text-align: right; }
     .sound-btn { background: #fdf3e7; color: var(--accent); padding: 6px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-left: 8px; display: inline-block; }
 
-    /* 예산안 배너 및 카드 스타일 */
     .total-budget-banner { background: #fdf3e7; border: 2px solid var(--accent); border-radius: 14px; padding: 16px; text-align: center; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(243, 156, 18, 0.15); }
     .total-budget-title { font-size: 0.85rem; color: #8a6d3b; font-weight: bold; }
     .total-budget-amount { font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-top: 4px; }
@@ -81,13 +80,12 @@
     .summary-label { font-size: 0.75rem; color: #666; font-weight: bold; margin-bottom: 4px; }
     .summary-value { font-size: 1.05rem; font-weight: 800; color: var(--accent-warm); }
 
-    /* 환율 박스 스타일 */
     .exchange-rate-box {
       background: #fdf5f0;
       border: 1px solid #f0e6df;
       border-radius: 10px;
       padding: 10px 12px;
-      font-size: 0.83rem;
+      font-size: 0.85rem;
       color: #555;
       margin-bottom: 14px;
       display: flex;
@@ -99,7 +97,6 @@
       color: var(--primary);
     }
 
-    /* 대항목 (운영비, 사역비, 예비비 등) */
     .category-group {
       border: 1px solid #f0e6df;
       border-radius: 12px;
@@ -122,7 +119,6 @@
       color: var(--primary);
     }
 
-    /* 소항목 (숙박비, 유류비, 팀식비 등) */
     .subcategory-group {
       padding: 12px 14px;
       border-bottom: 1px dashed #f5ede6;
@@ -142,7 +138,6 @@
       color: var(--secondary);
     }
 
-    /* 금액 공통 표기 */
     .amount-badge {
       text-align: right;
       white-space: nowrap;
@@ -158,7 +153,6 @@
       font-weight: 600;
     }
 
-    /* 일자/세부내용 리스트 */
     .detail-list {
       background: #fafafa;
       border-radius: 8px;
@@ -177,12 +171,6 @@
     .detail-info {
       color: #555;
       padding-right: 8px;
-    }
-    .detail-date {
-      color: #888;
-      font-size: 0.72rem;
-      margin-right: 4px;
-      font-weight: bold;
     }
 
     .check-card-item { border-bottom: 1px solid #f5ede6; padding: 12px 0; }
@@ -228,20 +216,20 @@
       </div>
     </div>
 
-    <!-- 2. 팀원 & 비행 일정 -->
+    <!-- 2. 팀원 & 비행 일정 (가나다 순) -->
     <div id="tab-team" class="section">
       <div class="card">
         <div class="card-title">👥 팀원 명단 및 항공 일정</div>
-        <div class="member-card"><div class="member-header"><span class="member-name">송민선</span><span class="member-role">인솔, 미용, 운전</span></div><div class="member-flight">🛫 출국: 9/29(화) 12:30 출발</div></div>
-        <div class="member-card"><div class="member-header"><span class="member-name">임다솔</span><span class="member-role">요리</span></div><div class="member-flight">🛬 입국: 9/23(수) 07:50 도착<br>🛫 출국: 10/04(일) 10:10 출발</div></div>
-        <div class="member-card"><div class="member-header"><span class="member-name">최재혁</span><span class="member-role">미용, 게임, 운전</span></div><div class="member-flight">🛬 입국: 9/23(수) 07:50 도착<br>🛫 출국: 10/04(일) 10:10 출발</div></div>
-        <div class="member-card"><div class="member-header"><span class="member-name">주유정</span><span class="member-role">회계, 요리</span></div><div class="member-flight">🛬 입국: 9/22(화) 07:50 도착<br>🛫 출국: 9/29(화) 10:10 출발</div></div>
         <div class="member-card"><div class="member-header"><span class="member-name">김예준</span><span class="member-role">게임</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
-        <div class="member-card"><div class="member-header"><span class="member-name">김채은</span><span class="member-role">사진 촬영</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
-        <div class="member-card"><div class="member-header"><span class="member-name">이형선</span><span class="member-role">미용</span></div><div class="member-flight">🛬 입국: 9/23(수) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
-        <div class="member-card"><div class="member-header"><span class="member-name">백사무엘</span><span class="member-role">게임</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/30(수) 23:30 출발</div></div>
         <div class="member-card"><div class="member-header"><span class="member-name">김채림</span><span class="member-role">사진 촬영, 음악</span></div><div class="member-flight">🛫 출국: 9/29(화) 12:30 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">김채은</span><span class="member-role">사진 촬영</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">백사무엘</span><span class="member-role">게임</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/30(수) 23:30 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">송민선</span><span class="member-role">인솔, 미용, 운전</span></div><div class="member-flight">🛫 출국: 9/29(화) 12:30 출발</div></div>
         <div class="member-card"><div class="member-header"><span class="member-name">유건</span><span class="member-role">영상 촬영</span></div><div class="member-flight">🛬 입국: 9/23(수) 예정<br>🛫 출국: 9/30(수) 예정</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">이형선</span><span class="member-role">미용</span></div><div class="member-flight">🛬 입국: 9/23(수) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">임다솔</span><span class="member-role">요리</span></div><div class="member-flight">🛬 입국: 9/23(수) 07:50 도착<br>🛫 출국: 10/04(일) 10:10 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">주유정</span><span class="member-role">회계, 요리</span></div><div class="member-flight">🛬 입국: 9/22(화) 07:50 도착<br>🛫 출국: 9/29(화) 10:10 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">최재혁</span><span class="member-role">미용, 게임, 운전</span></div><div class="member-flight">🛬 입국: 9/23(수) 07:50 도착<br>🛫 출국: 10/04(일) 10:10 출발</div></div>
       </div>
       <div class="card">
         <div class="card-title">🏠 숙소 & 차량</div>
@@ -284,13 +272,11 @@
           <button onclick="fetchBudgetData()" style="background: none; border: 1px solid #ddd; padding: 4px 8px; border-radius: 6px; font-size: 0.72rem; cursor: pointer;">🔄 새로고침</button>
         </div>
 
-        <!-- 1. C2 환율 자동 노출 영역 -->
         <div class="exchange-rate-box">
-          <span>💱 구글 시트 적용 환율 (C2)</span>
+          <span>💱 현재환율</span>
           <span class="exchange-rate-value" id="exchangeRateDisplay">불러오는 중...</span>
         </div>
 
-        <!-- 2, 3, 4. 대항목 > 소항목 > 세부내역 자동 동적 생성 영역 -->
         <div id="budgetPlanList">
           <p style="text-align: center; color: #888; padding: 15px;">구글 시트에서 예산안 데이터를 가져오는 중...</p>
         </div>
@@ -411,8 +397,8 @@
   </nav>
 
   <script>
-    // 전달해주신 최신 Apps Script URL 적용
-    const GAS_URL = "https://script.google.com/macros/s/AKfycby9mGZzv5eLZLKdkQuOzfHXe47JJyAEHHP68aDT3kbw_VGMvtz1tSZxcvl1kgbNaJy8ag/exec";
+    // 요청하신 신규 Apps Script URL 적용
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbxGhJeC_RuDaqiS8fCswX-yFoPiZji3wVbwv3s5cDWE5t4qfz7JxpZkF6Gch0wh7NiTjw/exec";
 
     function switchTab(tabId, btn) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
@@ -481,24 +467,23 @@
             document.getElementById('usedUsdDisplay').innerText = `$${(res.totalUsd || 0).toFixed(2)}`;
             document.getElementById('usedKrwDisplay').innerText = `₩${(res.totalKrw || 0).toLocaleString()}`;
 
-            // 1. C2 환율 노출
+            // 환율 표기 (1USD=얼마)
             if (res.exchangeRate) {
               const exNum = parseFloat(String(res.exchangeRate).replace(/[^0-9.-]+/g, ""));
-              exchangeRateDisplay.innerText = !isNaN(exNum) ? `1 USD = ₩${exNum.toLocaleString()}` : res.exchangeRate;
+              exchangeRateDisplay.innerText = !isNaN(exNum) ? `1USD=₩${exNum.toLocaleString()}` : `1USD=${res.exchangeRate}`;
             } else {
               exchangeRateDisplay.innerText = "미설정";
             }
 
-            // 2, 3, 4. 예산안 대항목 / 소항목 / 세부내역 계층화 및 합산 노출
+            // 예산안 계층화 및 합산 노출
             if (res.budgetPlan && res.budgetPlan.length > 0) {
-              const structuredData = groupBudgetData(res.budgetPlan);
+              const structuredData = groupBudgetData(res.budgetPlan, res.categoryTotals, res.subcategoryTotals);
 
               budgetPlanContainer.innerHTML = Object.keys(structuredData).map(catName => {
                 const category = structuredData[catName];
 
                 return `
                   <div class="category-group">
-                    <!-- 대항목 타이틀 및 USD / KRW 총액 -->
                     <div class="category-header">
                       <span class="category-title">📂 ${catName}</span>
                       <div class="amount-badge">
@@ -507,7 +492,6 @@
                       </div>
                     </div>
 
-                    <!-- 소항목 목록 -->
                     ${Object.keys(category.subcategories).map(subName => {
                       const subcategory = category.subcategories[subName];
 
@@ -521,13 +505,12 @@
                             </div>
                           </div>
 
-                          <!-- 일자 / 세부내용별 리스트 (G열: USD / H열: KRW) -->
                           <div class="detail-list">
                             ${subcategory.items.map(item => `
                               <div class="detail-item">
                                 <div class="detail-info">
-                                  ${item.date ? `<span class="detail-date">[${item.date}]</span>` : ''}
                                   <span>${item.detail || '세부내용 없음'}</span>
+                                  ${item.note ? `<span style="font-size:0.72rem; color:#888;"> (${item.note})</span>` : ''}
                                 </div>
                                 <div class="amount-badge" style="font-size:0.78rem;">
                                   <span style="font-weight:700; color:#555;">$${item.amountUsd.toLocaleString()}</span>
@@ -568,33 +551,40 @@
         });
     }
 
-    // 예산안 데이터를 [대항목 -> 소항목 -> 세부내용] 계층구조로 변환 및 합산해주는 헬퍼 함수
-    function groupBudgetData(dataList) {
+    function groupBudgetData(dataList, catTotals = {}, subTotals = {}) {
       const categories = {};
 
       dataList.forEach(row => {
         const cat = row.category || '기타';
-        const subCat = row.subcategory || row.item || '일반';
+        const subCat = row.subcategory || '기타';
         
-        // G열(amountUsd) & H열(amountKrw) 숫자 파싱
-        const usd = parseFloat(String(row.amountUsd || row.usd || 0).replace(/[^0-9.-]+/g, "")) || 0;
-        const krw = parseFloat(String(row.amountKrw || row.krw || 0).replace(/[^0-9.-]+/g, "")) || 0;
+        const usd = parseFloat(String(row.amountUsd || 0).replace(/[^0-9.-]+/g, "")) || 0;
+        const krw = parseFloat(String(row.amountKrw || 0).replace(/[^0-9.-]+/g, "")) || 0;
 
         if (!categories[cat]) {
-          categories[cat] = { totalUsd: 0, totalKrw: 0, subcategories: {} };
+          const catUsd = catTotals[cat] ? parseFloat(catTotals[cat].usd) : 0;
+          const catKrw = catTotals[cat] ? parseFloat(catTotals[cat].krw) : 0;
+          categories[cat] = { totalUsd: catUsd, totalKrw: catKrw, subcategories: {} };
         }
-        categories[cat].totalUsd += usd;
-        categories[cat].totalKrw += krw;
 
         if (!categories[cat].subcategories[subCat]) {
-          categories[cat].subcategories[subCat] = { totalUsd: 0, totalKrw: 0, items: [] };
+          const subUsd = subTotals[subCat] ? parseFloat(subTotals[subCat].usd) : 0;
+          const subKrw = subTotals[subCat] ? parseFloat(subTotals[subCat].krw) : 0;
+          categories[cat].subcategories[subCat] = { totalUsd: subUsd, totalKrw: subKrw, items: [] };
         }
-        categories[cat].subcategories[subCat].totalUsd += usd;
-        categories[cat].subcategories[subCat].totalKrw += krw;
+
+        if (!catTotals[cat]) {
+          categories[cat].totalUsd += usd;
+          categories[cat].totalKrw += krw;
+        }
+        if (!subTotals[subCat]) {
+          categories[cat].subcategories[subCat].totalUsd += usd;
+          categories[cat].subcategories[subCat].totalKrw += krw;
+        }
 
         categories[cat].subcategories[subCat].items.push({
-          date: row.date || '',
-          detail: row.detail || row.note || row.item || '',
+          detail: row.detail || '세부내용 없음',
+          note: row.note || '',
           amountUsd: usd,
           amountKrw: krw
         });
