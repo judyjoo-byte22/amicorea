@@ -57,11 +57,14 @@
 
     .song-box { background: #fdfaf6; border: 1px solid #f0e6df; border-radius: 12px; padding: 14px; margin-bottom: 14px; }
     .song-title { font-size: 1rem; font-weight: 800; color: var(--secondary); margin-bottom: 8px; }
-    .song-order { font-size: 0.78rem; background: #e8f5e9; color: var(--secondary); padding: 4px 8px; border-radius: 6px; font-weight: bold; margin-bottom: 10px; display: inline-block; }
-    .song-lyrics { font-size: 0.82rem; line-height: 1.6; color: #333; margin-top: 10px; }
+    .song-order { font-size: 0.75rem; background: #e8f5e9; color: var(--secondary); padding: 4px 8px; border-radius: 6px; font-weight: bold; margin-bottom: 10px; display: inline-block; line-height: 1.4; }
+    .song-lyrics { font-size: 0.82rem; line-height: 1.5; color: #333; margin-top: 10px; }
+    
+    .section-tag { font-weight: 800; color: var(--primary); margin-top: 12px; margin-bottom: 4px; font-size: 0.85rem; border-bottom: 1px solid #f0e6df; padding-bottom: 2px; }
+    .lyric-item { margin-bottom: 8px; }
     .lyric-es { font-weight: 700; color: var(--primary); }
-    .lyric-pron { color: var(--secondary); font-size: 0.78rem; }
-    .lyric-kr { color: #666; font-size: 0.78rem; margin-bottom: 6px; }
+    .lyric-pron { color: var(--secondary); font-size: 0.78rem; font-weight: 600; }
+    .lyric-kr { color: #666; font-size: 0.78rem; }
 
     audio { width: 100%; margin: 8px 0; border-radius: 8px; }
 
@@ -149,66 +152,182 @@
         </div>
       </div>
 
-      <!-- 특송 찬양 가사 & 음원 카드 추가 -->
+      <!-- 특송 찬양 가사 & 음원 카드 -->
       <div class="card">
         <div class="card-title">🎵 사역 특송 찬양 (음원 & 가사)</div>
 
         <!-- 1번 특송: Renuévame -->
         <div class="song-box">
-          <div class="song-title">1. Renuévame (나를 새롭게 하소서)</div>
+          <div class="song-title">1. Marcos Witt - Renuévame (나를 새롭게 하소서)</div>
           <audio controls controlsList="nodownload">
             <source src="https://judyjoo-byte22.github.io/amicorea/renuevame.mp3" type="audio/mpeg">
             사용 중인 브라우저가 오디오 재생을 지원하지 않습니다.
           </audio>
           <div class="song-lyrics">
-            <div class="lyric-es">Renuévame, Señor Jesús</div>
-            <div class="lyric-pron">레누에바메, 세뇨르 헤수스</div>
-            <div class="lyric-kr">새롭게 하소서 주님 (상한 나의 마음을)</div>
+            <div class="lyric-item">
+              <div class="lyric-es">Renuévame, Señor Jesús</div>
+              <div class="lyric-pron">레누에바메, 세뇨르 헤수스</div>
+              <div class="lyric-kr">새롭게 하소서 주님 (상한 나의 마음을)</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Ya no quiero ser igual</div>
+              <div class="lyric-pron">야 노 키에로 세르 이구알</div>
+              <div class="lyric-kr">새롭게 하소서 주님 (주님 마음 주소서)</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Renuévame, Señor Jesús</div>
+              <div class="lyric-pron">레누에바메, 세뇨르 헤수스</div>
+              <div class="lyric-kr">새롭게 하소서 주님</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Pon en mí Tu corazón</div>
+              <div class="lyric-pron">폰 엔 미 투 꼬라손</div>
+              <div class="lyric-kr">내 안에 있는 모든 것들은 간절히 주님만 원합니다</div>
+            </div>
 
-            <div class="lyric-es">Ya no quiero ser igual</div>
-            <div class="lyric-pron">야 노 키에로 세르 이구알</div>
-            <div class="lyric-kr">새롭게 하소서 주님 (주님 마음 주소서)</div>
-
-            <div class="lyric-es">Pon en mí Tu corazón</div>
-            <div class="lyric-pron">폰 엔 미 투 꼬라손</div>
-            <div class="lyric-kr">내 안에 있는 모든 것들은 간절히 주님만 원합니다</div>
-
-            <div class="lyric-es">Porque todo lo que hay dentro de mí</div>
-            <div class="lyric-pron">뽀르께 또도 로 께 아이 덴뜨로 데 미</div>
-            <div class="lyric-kr">나를 새롭게 하소서 주님 (그대로 있기 싫습니다)</div>
-
-            <div class="lyric-es">Necesita ser cambiado, Señor</div>
-            <div class="lyric-pron">네세시따 세르 깜비아도, 세뇨르</div>
-            <div class="lyric-kr">내게 당신의 맘을 주시옵소서</div>
+            <div class="lyric-item" style="margin-top: 10px;">
+              <div class="lyric-es">Porque todo lo que hay dentro de mí</div>
+              <div class="lyric-pron">뽀르께 또도 로 께 아이 덴뜨로 데 미</div>
+              <div class="lyric-kr">나를 새롭게 하소서 주님 (그대로 있기 싫습니다)</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Necesita ser cambiado, Señor</div>
+              <div class="lyric-pron">네세시따 세르 깜비아도, 세뇨르</div>
+              <div class="lyric-kr">내게 당신의 맘을 주시옵소서</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Porque todo lo que hay dentro de mi corazón</div>
+              <div class="lyric-pron">뽀르께 또도 로 께 아이 덴뜨로 데 미 꼬라손</div>
+              <div class="lyric-kr">내 안(내 마음 속)에 있는 것은</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Necesita más de Ti</div>
+              <div class="lyric-pron">네세시따 마스 데 띠</div>
+              <div class="lyric-kr">당신이 더 필요합니다</div>
+            </div>
           </div>
         </div>
 
         <!-- 2번 특송: La Bondad de Dios -->
         <div class="song-box">
-          <div class="song-title">2. La Bondad de Dios (주님의 선하심)</div>
-          <div class="song-order">🔄 순서: Intro - Verse 1 - Chorus - Verse 2 - Chorus - Bridge - Bridge(한) - Chorus(한) - Tag</div>
+          <div class="song-title">2. La Bondad de Dios (Goodness of God, 주님의 선하심)</div>
+          <div class="song-order">🔄 Intro - Verse1 - Chorus - Verse2 - Chorus - Bridge - Bridge(한) - Chorus(한) - Tag(스페인어)</div>
           <audio controls controlsList="nodownload">
             <source src="https://judyjoo-byte22.github.io/amicorea/bondad_de_dios.mp3" type="audio/mpeg">
             사용 중인 브라우저가 오디오 재생을 지원하지 않습니다.
           </audio>
+          
           <div class="song-lyrics">
-            <div style="font-weight:bold; color:var(--primary); margin-top:8px;">[Verso]</div>
-            <div class="lyric-es">Te amo Dios, Tu amor nunca me falla</div>
-            <div class="lyric-pron">떼 아모 디오스, 뚜 아모르 눈까 메 파야</div>
-            <div class="lyric-kr">신실하신 나의 주님 / 나의 삶을 인도하셨네</div>
+            <div class="section-tag">[Verso 1]</div>
+            <div class="lyric-item">
+              <div class="lyric-es">Te amo Dios</div>
+              <div class="lyric-pron">떼 아모 디오스</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Tu amor nunca me falla</div>
+              <div class="lyric-pron">뚜 아모르 눈까 메 파야</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Mi existir en Tus manos está</div>
+              <div class="lyric-pron">미 엑시스띠르 엔 뚜스 마노스 에스따</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Desde el momento en que despierto</div>
+              <div class="lyric-pron">데스데 엘 모멘또 엔 께 데스삐에르또</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Hasta el anochecer</div>
+              <div class="lyric-pron">아스따 엘 아노체세르</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Yo cantaré de la bondad de Dios</div>
+              <div class="lyric-pron">효 깐따레 데 라 본다드 데 디오스</div>
+            </div>
 
-            <div class="lyric-es">Hasta el anochecer, Yo cantaré de la bondad de Dios</div>
-            <div class="lyric-pron">아스따 엘 아노체세르, 효 깐따레 데 라 본다드 데 디오스</div>
-            <div class="lyric-kr">내 모든 호흡으로 온 선하신 주를 노래하리</div>
+            <div class="section-tag">[Coro]</div>
+            <div class="lyric-item">
+              <div class="lyric-es">En mi vida has sido bueno</div>
+              <div class="lyric-pron">엔 미 비다 야스 씨도 부에노</div>
+              <div class="lyric-kr">신실하신 나의 주님</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">En mi vida has sido tan fiel</div>
+              <div class="lyric-pron">엔 미 비다 야스 씨도 딴 피엘</div>
+              <div class="lyric-kr">나의 삶을 인도하셨네</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Con mi ser, con cada aliento</div>
+              <div class="lyric-pron">콘 미 세르, 콘 까다 알리엔또</div>
+              <div class="lyric-kr">나의 모든 호흡으로</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Yo cantaré de la bondad de Dios</div>
+              <div class="lyric-pron">효 깐따레 데 라 본다드 데 디오스</div>
+              <div class="lyric-kr">온 선하신 주를 노래하리</div>
+            </div>
 
-            <div style="font-weight:bold; color:var(--primary); margin-top:8px;">[Coro]</div>
-            <div class="lyric-es">En mi vida has sido bueno, En mi vida has sido tan fiel</div>
-            <div class="lyric-pron">엔 미 비다 야스 씨도 부에노, 엔 미 비다 야스 씨도 딴 피엘</div>
+            <div class="section-tag">[Verso 2]</div>
+            <div class="lyric-item">
+              <div class="lyric-es">Yo amo Tu voz</div>
+              <div class="lyric-pron">효 아모 뚜 보스</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Me has guiado por el fuego</div>
+              <div class="lyric-pron">메 야스 기아도 뽀르 엘 푸에고</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Tú cerca estás en la oscuridad</div>
+              <div class="lyric-pron">뚜 쎄르까 에스따스 엔 라 오스꾸리다드</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Te conozco como Padre</div>
+              <div class="lyric-pron">떼 꼬노스꼬 꼬모 빠드레</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Y como amigo fiel</div>
+              <div class="lyric-pron">이 꼬모 아미고 피엘</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Mi vida está en la bondad de Dios</div>
+              <div class="lyric-pron">미 비다 에스따 엔 라 본다드 데 디오스</div>
+            </div>
 
-            <div style="font-weight:bold; color:var(--primary); margin-top:8px;">[Puente / Bridge]</div>
-            <div class="lyric-es">Tu fidelidad sigue persiguiéndome</div>
-            <div class="lyric-pron">뚜 피델리다드 씨게 페르시기엔도메</div>
-            <div class="lyric-kr">주님의 선하심 날 인도하시네 / 날 지켜주시네 / 주께 엎드려 내 모든 삶 전하네</div>
+            <div class="section-tag">[Puente / Bridge]</div>
+            <div class="lyric-item">
+              <div class="lyric-es">Tu fidelidad sigue persiguiéndome</div>
+              <div class="lyric-pron">뚜 피델리다드 씨게 페르시기엔도메</div>
+              <div class="lyric-kr">주님의 선하심</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Persiguiéndome</div>
+              <div class="lyric-pron">페르시기엔도메</div>
+              <div class="lyric-kr">날 인도하시네</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Tu fidelidad sigue persiguiéndome</div>
+              <div class="lyric-pron">뚜 피델리다드 씨게 페르시기엔도메</div>
+              <div class="lyric-kr">주님의 선하심</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Persiguiéndome</div>
+              <div class="lyric-pron">페르시기엔도메</div>
+              <div class="lyric-kr">날 지켜주시네</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Todo lo que soy te lo entrego hoy</div>
+              <div class="lyric-pron">또도 로 께 소이 떼 로 엔뜨레고 오이</div>
+              <div class="lyric-kr">주께 엎드려</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">A Ti me rendiré</div>
+              <div class="lyric-pron">아 띠 메 랜디레</div>
+              <div class="lyric-kr">나의 모든 삶 주님께 드리네</div>
+            </div>
+            <div class="lyric-item">
+              <div class="lyric-es">Tu fidelidad sigue persiguiéndome</div>
+              <div class="lyric-pron">뚜 피델리다드 씨게 페르시기엔도메</div>
+              <div class="lyric-kr">주님의 선하심 날 인도하시네</div>
+            </div>
           </div>
         </div>
 
