@@ -51,9 +51,9 @@
     .card-title { font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px dashed #f0e6df; padding-bottom: 8px; }
     .notice { background: #fff8e7; border-left: 4px solid var(--accent); color: #8a6d3b; padding: 12px 14px; border-radius: 10px; font-size: 0.82rem; margin-bottom: 14px; line-height: 1.4; }
 
-    .schedule-item { border-left: 3px solid var(--secondary); padding-left: 12px; margin-bottom: 14px; }
-    .schedule-date { font-weight: 800; color: var(--primary); font-size: 0.95rem; }
-    .schedule-desc { font-size: 0.85rem; color: #555; margin-top: 4px; white-space: pre-line; line-height: 1.45; }
+    .schedule-item { border-left: 3px solid var(--secondary); padding-left: 12px; margin-bottom: 16px; }
+    .schedule-date { font-weight: 800; color: var(--primary); font-size: 0.95rem; margin-bottom: 4px; }
+    .schedule-desc { font-size: 0.85rem; color: #444; line-height: 1.6; white-space: pre-line; }
 
     .member-card { border: 1px solid #f0e6df; border-radius: 12px; padding: 12px; margin-bottom: 10px; background: #fffaf7; }
     .member-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
@@ -71,114 +71,15 @@
     .spanish-pron { font-size: 0.85rem; color: var(--secondary); font-weight: 700; text-align: right; }
     .sound-btn { background: #fdf3e7; color: var(--accent); padding: 6px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-left: 8px; display: inline-block; }
 
-    .total-budget-banner { background: #fdf3e7; border: 2px solid var(--accent); border-radius: 14px; padding: 16px; text-align: center; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(243, 156, 18, 0.15); }
-    .total-budget-title { font-size: 0.85rem; color: #8a6d3b; font-weight: bold; }
-    .total-budget-amount { font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-top: 4px; }
-    .total-budget-usd-sub { font-size: 0.82rem; color: #8a6d3b; margin-top: 4px; font-weight: 600; }
-
-    .remaining-budget-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
-    .remaining-budget-box { background: rgba(255,255,255,0.65); border: 1px solid rgba(243, 156, 18, 0.4); border-radius: 10px; padding: 10px 6px; }
-    .remaining-budget-label { font-size: 0.72rem; color: #8a6d3b; font-weight: 700; margin-bottom: 3px; }
-    .remaining-budget-value { font-size: 1.05rem; font-weight: 800; color: var(--primary); }
-    .remaining-budget-value.over-budget { color: #c0392b; }
-
     .budget-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; text-align: center; }
     .summary-box { background: #fdfaf6; border: 1px solid #f0e6df; border-radius: 12px; padding: 12px 6px; }
     .summary-label { font-size: 0.75rem; color: #666; font-weight: bold; margin-bottom: 4px; }
     .summary-value { font-size: 1.05rem; font-weight: 800; color: var(--accent-warm); }
 
-    .exchange-rate-box {
-      background: #fdf5f0;
-      border: 1px solid #f0e6df;
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 0.85rem;
-      color: #555;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .exchange-rate-value {
-      font-weight: 800;
-      color: var(--primary);
-    }
-
-    .category-group {
-      border: 1px solid #f0e6df;
-      border-radius: 12px;
-      margin-bottom: 14px;
-      background: #ffffff;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-    }
-    .category-header {
-      background: #fdf5f0;
-      padding: 12px 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #f0e6df;
-    }
-    .category-title {
-      font-size: 0.98rem;
-      font-weight: 800;
-      color: var(--primary);
-    }
-
-    .subcategory-group {
-      padding: 12px 14px;
-      border-bottom: 1px dashed #f5ede6;
-    }
-    .subcategory-group:last-child {
-      border-bottom: none;
-    }
-    .subcategory-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-    }
-    .subcategory-title {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--secondary);
-    }
-
-    .amount-badge {
-      text-align: right;
-      white-space: nowrap;
-    }
-    .amount-usd {
-      font-size: 0.9rem;
-      font-weight: 800;
-      color: #2c3e50;
-    }
-    .amount-krw {
-      font-size: 0.75rem;
-      color: #777;
-      font-weight: 600;
-    }
-
-    .detail-list {
-      background: #fafafa;
-      border-radius: 8px;
-      padding: 8px 10px;
-      margin-top: 6px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .detail-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-    }
-    .detail-info {
-      color: #555;
-      padding-right: 8px;
-    }
+    .budget-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.88rem; }
+    .budget-name { font-weight: 700; color: #333; }
+    .budget-sub { font-size: 0.75rem; color: #777; margin-top: 2px; }
+    .budget-val { color: var(--primary); font-weight: 800; font-size: 0.95rem; }
 
     .check-card-item { border-bottom: 1px solid #f5ede6; padding: 12px 0; }
     .check-card-title { font-weight: 700; font-size: 0.92rem; color: #333; display: flex; justify-content: space-between; align-items: center; }
@@ -216,27 +117,42 @@
         <div class="schedule-item"><div class="schedule-date">9/28 (월) ~ 9/30 (수)</div><div>LA 이동 ✈️ 귀국 및 한국 도착</div></div>
       </div>
       <div class="card">
-        <div class="card-title">📌 주요 사역 상세</div>
-        <div class="schedule-item"><div class="schedule-date">9/25 (금) 리햅센터 사역</div><div class="schedule-desc">• 예배 특송/스킷드라마 + 중보기도 • 샌드위치 200개 + 음료수 준비 ($300-350 예상) • 미용 및 게임 사역 (남: 민선 / 여: 형선)</div></div>
-        <div class="schedule-item"><div class="schedule-date">9/26 (토) 청소년 보육원 [한국의 날]</div><div class="schedule-desc">• 30여 명 청소년 대상 (복음 메시지) • 요리교실(제육, 김밥, 만두), 한국어/전통놀이</div></div>
-        <div class="schedule-item"><div class="schedule-date">9/27 (주일) 현지교회 사역</div><div class="schedule-desc">• 특송, 가족사진 촬영(프린트 발급), 미용 • 전기가 자주 나가므로 사전 체크 필요</div></div>
+        <div class="card-title">📌 주요 사역 상세 일정</div>
+        <div class="schedule-item">
+          <div class="schedule-date">9/25 (금) [리햅센터]</div>
+          <div class="schedule-desc">• <b>10:30 - 12:00</b>: 예배 (특송/중보기도), 샌드위치 준비
+• <b>12:00 - 13:00</b>: 식사
+• <b>13:00 - 15:00</b>: 미용 & 레크레이션</div>
+        </div>
+        <div class="schedule-item">
+          <div class="schedule-date">9/26 (토) [믿음의 아이들 청소년 보육원]</div>
+          <div class="schedule-desc">• <b>10:30 - 12:30</b>: 레크레이션 & 노래교실 (+식사 준비)
+• <b>12:30 - 14:30</b>: 식사 (복음김밥, 부대찌개)
+• <b>14:30 - </b>: 뒷정리 및 철수</div>
+        </div>
+        <div class="schedule-item">
+          <div class="schedule-date">9/27 (주일) [하늘의 복 교회]</div>
+          <div class="schedule-desc">• <b>10:00 - 11:30</b>: 주일예배 (특송)
+• <b>11:30 - 13:00</b>: 식사 (음료는 선교팀이 준비)
+• <b>13:00 - 16:00</b>: 미용 & 사진 사역</div>
+        </div>
       </div>
     </div>
 
-    <!-- 2. 팀원 & 비행 일정 (가나다 순) -->
+    <!-- 2. 팀원 & 비행 일정 -->
     <div id="tab-team" class="section">
       <div class="card">
         <div class="card-title">👥 팀원 명단 및 항공 일정</div>
-        <div class="member-card"><div class="member-header"><span class="member-name">김예준</span><span class="member-role">게임</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
-        <div class="member-card"><div class="member-header"><span class="member-name">김채림</span><span class="member-role">사진 촬영, 음악</span></div><div class="member-flight">🛫 출국: 9/29(화) 12:30 출발</div></div>
-        <div class="member-card"><div class="member-header"><span class="member-name">김채은</span><span class="member-role">사진 촬영</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
-        <div class="member-card"><div class="member-header"><span class="member-name">백사무엘</span><span class="member-role">게임</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/30(수) 23:30 출발</div></div>
         <div class="member-card"><div class="member-header"><span class="member-name">송민선</span><span class="member-role">인솔, 미용, 운전</span></div><div class="member-flight">🛫 출국: 9/29(화) 12:30 출발</div></div>
-        <div class="member-card"><div class="member-header"><span class="member-name">유건</span><span class="member-role">영상 촬영</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
-        <div class="member-card"><div class="member-header"><span class="member-name">이형선</span><span class="member-role">미용</span></div><div class="member-flight">🛬 입국: 9/23(수) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
         <div class="member-card"><div class="member-header"><span class="member-name">임다솔</span><span class="member-role">요리</span></div><div class="member-flight">🛬 입국: 9/23(수) 07:50 도착<br>🛫 출국: 10/04(일) 10:10 출발</div></div>
-        <div class="member-card"><div class="member-header"><span class="member-name">주유정</span><span class="member-role">회계, 요리</span></div><div class="member-flight">🛬 입국: 9/22(화) 07:50 도착<br>🛫 출국: 9/29(화) 10:10 출발</div></div>
         <div class="member-card"><div class="member-header"><span class="member-name">최재혁</span><span class="member-role">미용, 게임, 운전</span></div><div class="member-flight">🛬 입국: 9/23(수) 07:50 도착<br>🛫 출국: 10/04(일) 10:10 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">주유정</span><span class="member-role">회계, 요리</span></div><div class="member-flight">🛬 입국: 9/22(화) 07:50 도착<br>🛫 출국: 9/29(화) 10:10 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">김예준</span><span class="member-role">게임</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">김채은</span><span class="member-role">사진 촬영</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">이형선</span><span class="member-role">미용</span></div><div class="member-flight">🛬 입국: 9/23(수) 08:20 도착<br>🛫 출국: 9/29(화) 10:50 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">백사무엘</span><span class="member-role">게임</span></div><div class="member-flight">🛬 입국: 9/22(화) 08:20 도착<br>🛫 출국: 9/30(수) 23:30 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">김채림</span><span class="member-role">사진 촬영, 음악</span></div><div class="member-flight">🛫 출국: 9/29(화) 12:30 출발</div></div>
+        <div class="member-card"><div class="member-header"><span class="member-name">유건</span><span class="member-role">영상 촬영</span></div><div class="member-flight">🛬 입국: 9/23(수) 예정<br>🛫 출국: 9/30(수) 예정</div></div>
       </div>
       <div class="card">
         <div class="card-title">🏠 숙소 & 차량</div>
@@ -260,47 +176,22 @@
 
     <!-- 4. 예산안 탭 -->
     <div id="tab-budget" class="section">
-      <div class="total-budget-banner">
-        <div class="total-budget-title">확정 예산 (원화 기준)</div>
-        <div class="total-budget-amount">₩8,000,000</div>
-        <div class="total-budget-usd-sub" id="totalBudgetUsdDisplay">현재 환율 기준 달러 환산액 계산 중...</div>
-
-        <div class="remaining-budget-grid">
-          <div class="remaining-budget-box">
-            <div class="remaining-budget-label">잔여 예산 (KRW)</div>
-            <div class="remaining-budget-value" id="remainingKrwDisplay">₩0</div>
-          </div>
-          <div class="remaining-budget-box">
-            <div class="remaining-budget-label">잔여 예산 (USD)</div>
-            <div class="remaining-budget-value" id="remainingUsdDisplay">$0.00</div>
-          </div>
-        </div>
-      </div>
-
       <div class="card">
-        <div class="card-title">📊 실시간 현장 지출 합계</div>
+        <div class="card-title">📊 실시간 누적 지출 합계</div>
         <div class="budget-summary">
           <div class="summary-box"><div class="summary-label">달러 지출 총액</div><div class="summary-value" id="usedUsdDisplay">$0.00</div></div>
           <div class="summary-box"><div class="summary-label">원화 지출 총액</div><div class="summary-value" id="usedKrwDisplay">₩0</div></div>
         </div>
       </div>
-
       <div class="card">
         <div class="card-title">
-          <span>💰 사역별 예산안 세부 계획</span>
+          <span>💰 사역별 예상 예산안 계획</span>
           <button onclick="fetchBudgetData()" style="background: none; border: 1px solid #ddd; padding: 4px 8px; border-radius: 6px; font-size: 0.72rem; cursor: pointer;">🔄 새로고침</button>
         </div>
-
-        <div class="exchange-rate-box">
-          <span>💱 현재환율</span>
-          <span class="exchange-rate-value" id="exchangeRateDisplay">불러오는 중...</span>
-        </div>
-
         <div id="budgetPlanList">
-          <p style="text-align: center; color: #888; padding: 15px;">구글 시트에서 예산안 데이터를 가져오는 중...</p>
+          <p style="text-align: center; color: #888; padding: 15px;">구글 시트에서 예산안 계획을 불러오는 중...</p>
         </div>
       </div>
-
       <div class="card">
         <div class="card-title">🧾 실시간 지출 기록 내역</div>
         <div id="expenseHistoryList" style="font-size: 0.85rem; color: #555;">
@@ -416,8 +307,7 @@
   </nav>
 
   <script>
-    // 요청하신 신규 Apps Script URL 적용
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbxrip-Fv8woXR7nUDyOuv4VWSi874i7uVm2SIjikS5taYdK3Ex0dfkkypAb9fecwpsShA/exec";
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbxDa_HSiRAzv0WPpWZ6nmLFmNR6buMHct9P4xdQtMiqAHwZYbm64iZSQEqF_0b2X9EvZw/exec";
 
     function switchTab(tabId, btn) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
@@ -474,210 +364,46 @@
         });
     }
 
-    // 확정된 원화 예산 (고정값) — 환율은 변동돼도 이 원화 총액은 그대로 유지됩니다.
-    const TOTAL_BUDGET_KRW = 8000000;
-
     function fetchBudgetData() {
       const budgetPlanContainer = document.getElementById('budgetPlanList');
-      const exchangeRateDisplay = document.getElementById('exchangeRateDisplay');
-      const totalBudgetUsdDisplay = document.getElementById('totalBudgetUsdDisplay');
-      const remainingKrwDisplay = document.getElementById('remainingKrwDisplay');
-      const remainingUsdDisplay = document.getElementById('remainingUsdDisplay');
 
       fetch(GAS_URL)
         .then(res => res.json())
         .then(res => {
           if (res.result === "success") {
-            // 실시간 현장 지출 합계
-            const spentUsd = res.totalUsd || 0;
-            const spentKrw = res.totalKrw || 0;
-            document.getElementById('usedUsdDisplay').innerText = `$${spentUsd.toFixed(2)}`;
-            document.getElementById('usedKrwDisplay').innerText = `₩${spentKrw.toLocaleString()}`;
+            document.getElementById('usedUsdDisplay').innerText = `$${(res.totalUsd || 0).toFixed(2)}`;
+            document.getElementById('usedKrwDisplay').innerText = `₩${(res.totalKrw || 0).toLocaleString()}`;
 
-            // 환율 표기 (1USD=얼마) — 이 박스가 화면에서 환율이 보이는 유일한 위치입니다.
-            const exNum = res.exchangeRate ? parseFloat(String(res.exchangeRate).replace(/[^0-9.-]+/g, "")) : NaN;
-
-            if (res.exchangeRate) {
-              exchangeRateDisplay.innerText = !isNaN(exNum) ? `1USD=₩${exNum.toLocaleString()}` : `1USD=${res.exchangeRate}`;
-            } else {
-              exchangeRateDisplay.innerText = "미설정";
-            }
-
-            // 현재 환율 기준 총 예산(USD) 및 잔여 예산(KRW/USD) 계산
-            // - 원화 총 예산은 고정, 환율에 따라 달러 환산액만 움직입니다.
-            // - 지출은 KRW/USD가 섞여 들어오므로, 환율로 한쪽을 다른 쪽으로 환산해 하나의 기준(KRW)으로 합산합니다.
-            if (!isNaN(exNum) && exNum > 0) {
-              const totalBudgetUsd = TOTAL_BUDGET_KRW / exNum;
-              totalBudgetUsdDisplay.innerText = `≈ $${totalBudgetUsd.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} (현재 환율 기준)`;
-
-              const spentKrwEquivalent = spentKrw + (spentUsd * exNum);
-              const remainingKrw = TOTAL_BUDGET_KRW - spentKrwEquivalent;
-              const remainingUsd = remainingKrw / exNum;
-
-              remainingKrwDisplay.innerText = `₩${Math.round(remainingKrw).toLocaleString()}`;
-              remainingUsdDisplay.innerText = `$${remainingUsd.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-
-              const overBudget = remainingKrw < 0;
-              remainingKrwDisplay.classList.toggle('over-budget', overBudget);
-              remainingUsdDisplay.classList.toggle('over-budget', overBudget);
-            } else {
-              totalBudgetUsdDisplay.innerText = "환율 정보를 불러오지 못했습니다.";
-              remainingKrwDisplay.innerText = "-";
-              remainingUsdDisplay.innerText = "-";
-            }
-
-            // 예산안 계층화 및 합산 노출
             if (res.budgetPlan && res.budgetPlan.length > 0) {
-              const structuredData = groupBudgetData(res.budgetPlan, res.categoryTotals, res.subcategoryTotals);
-              const catNames = Object.keys(structuredData);
-
-              if (catNames.length === 0) {
-                budgetPlanContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">시트에 등록된 예산안 데이터가 없습니다.</p>`;
-                return;
-              }
-
-              budgetPlanContainer.innerHTML = catNames.map(catName => {
-                const category = structuredData[catName];
-
-                return `
-                  <div class="category-group">
-                    <div class="category-header">
-                      <span class="category-title">📂 ${catName}</span>
-                      <div class="amount-badge">
-                        <div class="amount-usd">$${category.totalUsd.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2})}</div>
-                        <div class="amount-krw">₩${Math.round(category.totalKrw).toLocaleString()}</div>
-                      </div>
-                    </div>
-
-                    ${Object.keys(category.subcategories).map(subName => {
-                      const subcategory = category.subcategories[subName];
-
-                      return `
-                        <div class="subcategory-group">
-                          <div class="subcategory-header">
-                            <span class="subcategory-title">ㆍ ${subName}</span>
-                            <div class="amount-badge">
-                              <span class="amount-usd">$${subcategory.totalUsd.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2})}</span>
-                              <span class="amount-krw">(₩${Math.round(subcategory.totalKrw).toLocaleString()})</span>
-                            </div>
-                          </div>
-
-                          <div class="detail-list">
-                            ${subcategory.items.map(item => `
-                              <div class="detail-item">
-                                <div class="detail-info">
-                                  <span>${item.detail || '세부내용 없음'}</span>
-                                  ${item.note ? `<span style="font-size:0.72rem; color:#888;"> (${item.note})</span>` : ''}
-                                </div>
-                                <div class="amount-badge" style="font-size:0.78rem;">
-                                  <span style="font-weight:700; color:#555;">$${item.amountUsd.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2})}</span>
-                                  <span style="color:#888; font-size:0.7rem;">(₩${Math.round(item.amountKrw).toLocaleString()})</span>
-                                </div>
-                              </div>
-                            `).join('')}
-                          </div>
-                        </div>
-                      `;
-                    }).join('')}
+              budgetPlanContainer.innerHTML = res.budgetPlan.map(p => `
+                <div class="budget-item">
+                  <div>
+                    <span class="budget-name">${p.item}</span>
+                    <div class="budget-sub">${p.category ? `[${p.category}] ` : ''}${p.note ? p.note : ''}</div>
                   </div>
-                `;
-              }).join('');
+                  <span class="budget-val">${p.amount}</span>
+                </div>
+              `).join('');
             } else {
-              budgetPlanContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">시트에 등록된 예산안 데이터가 없습니다.</p>`;
+              budgetPlanContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">시트에 등록된 예산안 계획이 없습니다.</p>`;
             }
 
-            // 지출 기록 내역
             const listContainer = document.getElementById('expenseHistoryList');
             if (res.history && res.history.length > 0) {
               listContainer.innerHTML = res.history.map(item => `
-                <div class="budget-item" style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px dashed #eee;">
+                <div class="budget-item">
                   <div>
-                    <span style="font-weight:bold; color:#333;">${item.item}</span>
+                    <span class="budget-name">${item.item}</span>
                     <div style="font-size:0.72rem; color:#888;">${item.date} | ${item.author} (${item.payment})</div>
                   </div>
-                  <span style="color:#d9532f; font-weight:bold;">-${item.currency === 'KRW' ? '₩' + parseFloat(item.amount).toLocaleString() : '$' + parseFloat(item.amount).toFixed(2)}</span>
+                  <span class="budget-val" style="color:#d9532f;">-${item.currency === 'KRW' ? '₩' + parseFloat(item.amount).toLocaleString() : '$' + parseFloat(item.amount).toFixed(2)}</span>
                 </div>
               `).join('');
             } else {
               listContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">아직 입력된 지출 내역이 없습니다.</p>`;
             }
           }
-        })
-        .catch(err => {
-          budgetPlanContainer.innerHTML = `<p style="text-align: center; color: #d9532f; padding: 10px;">데이터를 불러오지 못했습니다.</p>`;
         });
-    }
-
-    // 환율 셀(C2) 등 예산 항목이 아닌 행이 시트 범위에 같이 딸려올 경우를 걸러내기 위한 키워드
-    const NON_BUDGET_KEYWORDS = ['환율', 'exchange', 'rate'];
-
-    function isBogusLabel(label) {
-      if (!label) return false;
-      const normalized = String(label).trim();
-      if (!normalized) return false;
-      return NON_BUDGET_KEYWORDS.some(keyword => normalized.includes(keyword));
-    }
-
-    function groupBudgetData(dataList, catTotals = {}, subTotals = {}) {
-      const categories = {};
-
-      dataList.forEach(row => {
-        const cat = (row.category || '기타').toString().trim();
-        // 1) 환율 계산 셀이 예산 항목처럼 딸려온 행은 카테고리 단계에서부터 제외
-        if (isBogusLabel(cat)) return;
-
-        const subCat = (row.subcategory || '기타').toString().trim();
-        // 2) 혹시 서브카테고리 단계에 환율 값(숫자)이 들어온 경우도 방어적으로 제외
-        if (isBogusLabel(subCat)) return;
-
-        const usd = parseFloat(String(row.amountUsd || 0).replace(/[^0-9.-]+/g, "")) || 0;
-        const krw = parseFloat(String(row.amountKrw || 0).replace(/[^0-9.-]+/g, "")) || 0;
-
-        if (!categories[cat]) {
-          const catUsd = catTotals[cat] ? parseFloat(catTotals[cat].usd) : 0;
-          const catKrw = catTotals[cat] ? parseFloat(catTotals[cat].krw) : 0;
-          categories[cat] = { totalUsd: catUsd, totalKrw: catKrw, subcategories: {} };
-        }
-
-        if (!categories[cat].subcategories[subCat]) {
-          const subUsd = subTotals[subCat] ? parseFloat(subTotals[subCat].usd) : 0;
-          const subKrw = subTotals[subCat] ? parseFloat(subTotals[subCat].krw) : 0;
-          categories[cat].subcategories[subCat] = { totalUsd: subUsd, totalKrw: subKrw, items: [], _detailMap: {} };
-        }
-
-        if (!catTotals[cat]) {
-          categories[cat].totalUsd += usd;
-          categories[cat].totalKrw += krw;
-        }
-        if (!subTotals[subCat]) {
-          categories[cat].subcategories[subCat].totalUsd += usd;
-          categories[cat].subcategories[subCat].totalKrw += krw;
-        }
-
-        // 3) 세부내용(detail) 단계 — 동일한 세부내용이 여러 줄로 나뉘어 있으면 하나로 합산
-        const subcategory = categories[cat].subcategories[subCat];
-        const detailKey = (row.detail || '세부내용 없음').toString().trim() || '세부내용 없음';
-
-        if (!subcategory._detailMap[detailKey]) {
-          const newItem = { detail: detailKey, note: row.note || '', amountUsd: 0, amountKrw: 0 };
-          subcategory._detailMap[detailKey] = newItem;
-          subcategory.items.push(newItem);
-        }
-
-        const detailItem = subcategory._detailMap[detailKey];
-        detailItem.amountUsd += usd;
-        detailItem.amountKrw += krw;
-        if (!detailItem.note && row.note) detailItem.note = row.note;
-      });
-
-      // 렌더링에 쓰이지 않는 내부 보조 맵 제거
-      Object.values(categories).forEach(category => {
-        Object.values(category.subcategories).forEach(subcategory => {
-          delete subcategory._detailMap;
-        });
-      });
-
-      return categories;
     }
 
     function speakSpanish(text) {
@@ -773,7 +499,7 @@
             }
           })
           .catch(err => {
-            formStatus.innerText = "❌ 제출 실패: " + (err && err.message ? err.message : "알 수 없는 오류");
+            formStatus.innerText = "❌ 제출 실패: 다시 시도해 주세요.";
             formStatus.style.color = "red";
           })
           .finally(() => {
