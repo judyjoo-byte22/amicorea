@@ -637,23 +637,33 @@
         })
         .then(res => {
           if (res.result === "success") {
+            // 1. 누적 지출 합계
             document.getElementById('usedUsdDisplay').innerText = `$${(res.totalUsd || 0).toFixed(2)}`;
             document.getElementById('usedKrwDisplay').innerText = `₩${(res.totalKrw || 0).toLocaleString()}`;
 
+            // 2. 예산안 계획 데이터 파싱 (GAS 필드 구조 반영)
             if (res.budgetPlan && res.budgetPlan.length > 0) {
-              budgetPlanContainer.innerHTML = res.budgetPlan.map(p => `
-                <div class="budget-item">
-                  <div>
-                    <span class="budget-name">${p.item}</span>
-                    <div class="budget-sub">${p.category ? `[${p.category}] ` : ''}${p.note ? p.note : ''}</div>
+              budgetPlanContainer.innerHTML = res.budgetPlan.map(p => {
+                let priceStr = '';
+                if (p.amountUsd) priceStr += `$${parseFloat(p.amountUsd).toFixed(2)} `;
+                if (p.amountKrw) priceStr += `(₩${parseFloat(p.amountKrw).toLocaleString()})`;
+                if (!priceStr.trim()) priceStr = '-';
+
+                return `
+                  <div class="budget-item">
+                    <div>
+                      <span class="budget-name">${p.detail || p.subcategory || p.category}</span>
+                      <div class="budget-sub">[${p.category}${p.subcategory ? ' > ' + p.subcategory : ''}] ${p.note ? '| ' + p.note : ''}</div>
+                    </div>
+                    <span class="budget-val">${priceStr}</span>
                   </div>
-                  <span class="budget-val">${p.amount}</span>
-                </div>
-              `).join('');
+                `;
+              }).join('');
             } else {
               budgetPlanContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">시트에 등록된 예산안 계획이 없습니다.</p>`;
             }
 
+            // 3. 지출 기록 내역 파싱
             if (res.history && res.history.length > 0) {
               listContainer.innerHTML = res.history.map(item => `
                 <div class="budget-item">
