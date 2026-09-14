@@ -625,9 +625,16 @@
 
     function fetchBudgetData() {
       const budgetPlanContainer = document.getElementById('budgetPlanList');
+      const listContainer = document.getElementById('expenseHistoryList');
+
+      budgetPlanContainer.innerHTML = `<p style="text-align: center; color: #888; padding: 15px;">구글 시트에서 예산안 계획을 불러오는 중...</p>`;
+      listContainer.innerHTML = `<p style="text-align: center; color: #888; padding: 10px;">지출 내역을 불러오는 중...</p>`;
 
       fetch(GAS_URL)
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) throw new Error("네트워크 응답 이상");
+          return res.json();
+        })
         .then(res => {
           if (res.result === "success") {
             document.getElementById('usedUsdDisplay').innerText = `$${(res.totalUsd || 0).toFixed(2)}`;
@@ -647,7 +654,6 @@
               budgetPlanContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">시트에 등록된 예산안 계획이 없습니다.</p>`;
             }
 
-            const listContainer = document.getElementById('expenseHistoryList');
             if (res.history && res.history.length > 0) {
               listContainer.innerHTML = res.history.map(item => `
                 <div class="budget-item">
@@ -661,7 +667,14 @@
             } else {
               listContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">아직 입력된 지출 내역이 없습니다.</p>`;
             }
+          } else {
+            throw new Error(res.error || "데이터 처리 실패");
           }
+        })
+        .catch(err => {
+          console.error("예산 데이터 로딩 오류:", err);
+          budgetPlanContainer.innerHTML = `<p style="text-align: center; color: #d9532f; padding: 10px;">예산안 데이터를 불러오지 못했습니다.</p>`;
+          listContainer.innerHTML = `<p style="text-align: center; color: #d9532f; padding: 10px;">지출 내역을 불러오지 못했습니다.</p>`;
         });
     }
 
