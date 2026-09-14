@@ -566,7 +566,7 @@
   </nav>
 
   <script>
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbxDa_HSiRAzv0WPpWZ6nmLFmNR6buMHct9P4xdQtMiqAHwZYbm64iZSQEqF_0b2X9EvZw/exec";
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbxoMK6RKZVI7NYhvazVA2Lpvq1ffHA9IQWw3xLFlvnGaeJKW7aHl8CVJcNgsMk5T3BdOw/exec";
 
     function switchTab(tabId, btn) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
@@ -645,8 +645,8 @@
             if (res.budgetPlan && res.budgetPlan.length > 0) {
               budgetPlanContainer.innerHTML = res.budgetPlan.map(p => {
                 let priceStr = '';
-                if (p.amountUsd) priceStr += `$${parseFloat(p.amountUsd).toFixed(2)} `;
-                if (p.amountKrw) priceStr += `(₩${parseFloat(p.amountKrw).toLocaleString()})`;
+                if (p.amountUsd !== "" && p.amountUsd !== undefined) priceStr += `$${parseFloat(p.amountUsd || 0).toFixed(2)} `;
+                if (p.amountKrw !== "" && p.amountKrw !== undefined) priceStr += `(₩${parseFloat(p.amountKrw || 0).toLocaleString()})`;
                 if (!priceStr.trim()) priceStr = '-';
 
                 return `
