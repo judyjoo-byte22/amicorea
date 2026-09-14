@@ -747,7 +747,6 @@
         });
     }
 
-    // 확정된 원화 예산 고정값
     const TOTAL_BUDGET_KRW = 8000000;
 
     function fetchBudgetData() {
@@ -760,16 +759,17 @@
       budgetPlanContainer.innerHTML = `<p style="text-align: center; color: #888; padding: 15px;">구글 시트에서 예산안 데이터를 가져오는 중...</p>`;
 
       fetch(GAS_URL)
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) throw new Error("네트워크 응답 이상");
+          return res.json();
+        })
         .then(res => {
           if (res.result === "success") {
-            // 1. 실시간 현장 지출 합계
             const spentUsd = res.totalUsd || 0;
             const spentKrw = res.totalKrw || 0;
             document.getElementById('usedUsdDisplay').innerText = `$${spentUsd.toFixed(2)}`;
             document.getElementById('usedKrwDisplay').innerText = `₩${spentKrw.toLocaleString()}`;
 
-            // 2. 환율 표기
             const exNum = res.exchangeRate ? parseFloat(String(res.exchangeRate).replace(/[^0-9.-]+/g, "")) : NaN;
             if (res.exchangeRate) {
               exchangeRateDisplay.innerText = !isNaN(exNum) ? `1USD=₩${exNum.toLocaleString()}` : `1USD=${res.exchangeRate}`;
@@ -777,7 +777,6 @@
               exchangeRateDisplay.innerText = "미설정";
             }
 
-            // 3. 총 예산 달러 환산액 & 잔여 예산 계산
             if (!isNaN(exNum) && exNum > 0) {
               const totalBudgetUsd = TOTAL_BUDGET_KRW / exNum;
               totalBudgetUsdDisplay.innerText = `≈ $${totalBudgetUsd.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} (현재 환율 기준)`;
@@ -798,7 +797,6 @@
               remainingUsdDisplay.innerText = "-";
             }
 
-            // 4. 예산안 계획 계층형 데이터 렌더링
             if (res.budgetPlan && res.budgetPlan.length > 0) {
               const structuredData = groupBudgetData(res.budgetPlan, res.categoryTotals, res.subcategoryTotals);
               const catNames = Object.keys(structuredData);
@@ -858,7 +856,6 @@
               budgetPlanContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">시트에 등록된 예산안 데이터가 없습니다.</p>`;
             }
 
-            // 5. 지출 기록 내역 렌더링
             const listContainer = document.getElementById('expenseHistoryList');
             if (res.history && res.history.length > 0) {
               listContainer.innerHTML = res.history.map(item => `
@@ -873,9 +870,12 @@
             } else {
               listContainer.innerHTML = `<p style="text-align: center; color: #999; padding: 10px;">아직 입력된 지출 내역이 없습니다.</p>`;
             }
+          } else {
+            throw new Error(res.error || "데이터 처리 실패");
           }
         })
         .catch(err => {
+          console.error("예산 로딩 오류:", err);
           budgetPlanContainer.innerHTML = `<p style="text-align: center; color: #d9532f; padding: 10px;">데이터를 불러오지 못했습니다.</p>`;
         });
     }
@@ -893,35 +893,27 @@
       const categories = {};
 
       dataList.forEach(row => {
-        const cat = (row.category || '기타').toString().trim();
+        const cat = (row.category || '운영비/사역비').toString().trim();
         if (isBogusLabel(cat)) return;
 
-        const subCat = (row.subcategory || '기타').toString().trim();
+        const subCat = (row.subcategory || '세부 항목').toString().trim();
         if (isBogusLabel(subCat)) return;
 
         const usd = parseFloat(String(row.amountUsd || 0).replace(/[^0-9.-]+/g, "")) || 0;
         const krw = parseFloat(String(row.amountKrw || 0).replace(/[^0-9.-]+/g, "")) || 0;
 
         if (!categories[cat]) {
-          const catUsd = catTotals[cat] ? parseFloat(catTotals[cat].usd) : 0;
-          const catKrw = catTotals[cat] ? parseFloat(catTotals[cat].krw) : 0;
-          categories[cat] = { totalUsd: catUsd, totalKrw: catKrw, subcategories: {} };
+          categories[cat] = { totalUsd: 0, totalKrw: 0, subcategories: {} };
         }
 
         if (!categories[cat].subcategories[subCat]) {
-          const subUsd = subTotals[subCat] ? parseFloat(subTotals[subCat].usd) : 0;
-          const subKrw = subTotals[subCat] ? parseFloat(subTotals[subCat].krw) : 0;
-          categories[cat].subcategories[subCat] = { totalUsd: subUsd, totalKrw: subKrw, items: [], _detailMap: {} };
+          categories[cat].subcategories[subCat] = { totalUsd: 0, totalKrw: 0, items: [], _detailMap: {} };
         }
 
-        if (!catTotals[cat]) {
-          categories[cat].totalUsd += usd;
-          categories[cat].totalKrw += krw;
-        }
-        if (!subTotals[subCat]) {
-          categories[cat].subcategories[subCat].totalUsd += usd;
-          categories[cat].subcategories[subCat].totalKrw += krw;
-        }
+        categories[cat].totalUsd += usd;
+        categories[cat].totalKrw += krw;
+        categories[cat].subcategories[subCat].totalUsd += usd;
+        categories[cat].subcategories[subCat].totalKrw += krw;
 
         const subcategory = categories[cat].subcategories[subCat];
         const detailKey = (row.detail || '세부내용 없음').toString().trim() || '세부내용 없음';
