@@ -666,9 +666,9 @@
             <input type="text" id="expAuthor" placeholder="작성자 이름" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 4px;">
           </div>
           <div>
-            <label style="font-size: 0.8rem; font-weight: bold; color: #555;">영수증 사진 첨부</label>
-            <!-- capture 속성을 제거하여 바로 카메라가 켜지지 않고 사진 앨범/파일 선택창이 나타납니다 -->
-            <input type="file" id="expFile" accept="image/*" style="width: 100%; padding: 8px; margin-top: 4px;">
+            <label style="font-size: 0.8rem; font-weight: bold; color: #555;">영수증 첨부 (이미지 또는 PDF)</label>
+            <!-- accept 속성에 application/pdf 추가 -->
+            <input type="file" id="expFile" accept="image/*, application/pdf" style="width: 100%; padding: 8px; margin-top: 4px;">
           </div>
           <button type="submit" id="submitBtn" class="btn-submit" style="border: none; cursor: pointer;">
             📷 제출하기
@@ -967,7 +967,7 @@
 
       submitBtn.disabled = true;
       submitBtn.innerText = "전송 중...";
-      formStatus.innerText = "영수증 압축 및 지출 내역을 저장하는 중입니다...";
+      formStatus.innerText = "영수증 파일 및 지출 내역을 저장하는 중입니다...";
       formStatus.style.color = "#2b5876";
 
       const payload = {
@@ -984,37 +984,49 @@
       const file = fileInput.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = function(evt) {
-          const img = new Image();
-          img.onload = function() {
-            const canvas = document.createElement('canvas');
-            let width = img.width;
-            let height = img.height;
-            const max_size = 600;
 
-            if (width > height) {
-              if (width > max_size) {
-                height *= max_size / width;
-                width = max_size;
-              }
-            } else {
-              if (height > max_size) {
-                width *= max_size / height;
-                height = max_size;
-              }
-            }
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, width, height);
-            
-            payload.fileData = canvas.toDataURL('image/jpeg', 0.4);
-            payload.fileName = file.name.replace(/\.[^/.]+$/, "") + ".jpg";
+        // PDF 파일일 경우 압축 과정 없이 곧바로 Base64 전송
+        if (file.type === "application/pdf") {
+          reader.onload = function(evt) {
+            payload.fileData = evt.target.result;
+            payload.fileName = file.name;
             sendData(payload);
           };
-          img.src = evt.target.result;
-        };
-        reader.readAsDataURL(file);
+          reader.readAsDataURL(file);
+        } else {
+          // 이미지 파일일 경우 리사이징 및 Canvas 압축 진행
+          reader.onload = function(evt) {
+            const img = new Image();
+            img.onload = function() {
+              const canvas = document.createElement('canvas');
+              let width = img.width;
+              let height = img.height;
+              const max_size = 600;
+
+              if (width > height) {
+                if (width > max_size) {
+                  height *= max_size / width;
+                  width = max_size;
+                }
+              } else {
+                if (height > max_size) {
+                  width *= max_size / height;
+                  height = max_size;
+                }
+              }
+              canvas.width = width;
+              canvas.height = height;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, width, height);
+              
+              payload.fileData = canvas.toDataURL('image/jpeg', 0.4);
+              payload.fileName = file.name.replace(/\.[^/.]+$/, "") + ".jpg";
+              sendData(payload);
+            };
+            img.src = evt.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
       } else {
         sendData(payload);
       }
